@@ -11,6 +11,17 @@
 		EE2C77522902689E00D9FE84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C77512902689E00D9FE84 /* ContentView.swift */; };
 		EE2C77542902689F00D9FE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2C77532902689F00D9FE84 /* Assets.xcassets */; };
 		EE2C77572902689F00D9FE84 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2C77562902689F00D9FE84 /* Preview Assets.xcassets */; };
+		EE320D1829029CF70083FF2D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1729029CF70083FF2D /* SignInView.swift */; };
+		EE320D1A29029D220083FF2D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1929029D220083FF2D /* SignUpView.swift */; };
+		EE320D1D2902A1060083FF2D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1C2902A1060083FF2D /* Colors.swift */; };
+		EE320D1F2902CBAA0083FF2D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1E2902CBAA0083FF2D /* Fonts.swift */; };
+		EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D202902DAA70083FF2D /* Dimensions.swift */; };
+		EE320D232902E9320083FF2D /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D222902E9320083FF2D /* Labels.swift */; };
+		EE320D262902E9A00083FF2D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EE320D252902E9A00083FF2D /* Kingfisher */; };
+		EE320D28290313390083FF2D /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D27290313390083FF2D /* ViewModifiers.swift */; };
+		EE320D2A2903137C0083FF2D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D292903137C0083FF2D /* Constants.swift */; };
+		EE320D2C290313C80083FF2D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D2B290313C80083FF2D /* Extensions.swift */; };
+		EE320D2E290364BF0083FF2D /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D2D290364BF0083FF2D /* Shapes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +30,16 @@
 		EE2C77512902689E00D9FE84 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EE2C77532902689F00D9FE84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2C77562902689F00D9FE84 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EE320D1729029CF70083FF2D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		EE320D1929029D220083FF2D /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		EE320D1C2902A1060083FF2D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EE320D1E2902CBAA0083FF2D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		EE320D202902DAA70083FF2D /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
+		EE320D222902E9320083FF2D /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		EE320D27290313390083FF2D /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		EE320D292903137C0083FF2D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EE320D2B290313C80083FF2D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EE320D2D290364BF0083FF2D /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE320D262902E9A00083FF2D /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +73,11 @@
 		EE2C774E2902689E00D9FE84 /* messaging */ = {
 			isa = PBXGroup;
 			children = (
+				EE2C776A29026AD100D9FE84 /* Models */,
+				EE2C776929026ACC00D9FE84 /* Views */,
+				EE2C776829026AB800D9FE84 /* ViewModels */,
+				EE2C776729026AB200D9FE84 /* API */,
+				EE2C776629026AAE00D9FE84 /* Utils */,
 				EE2C774F2902689E00D9FE84 /* messagingApp.swift */,
 				EE2C77512902689E00D9FE84 /* ContentView.swift */,
 				EE2C77532902689F00D9FE84 /* Assets.xcassets */,
@@ -65,6 +92,67 @@
 				EE2C77562902689F00D9FE84 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EE2C776629026AAE00D9FE84 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EE320D292903137C0083FF2D /* Constants.swift */,
+				EE320D2B290313C80083FF2D /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		EE2C776729026AB200D9FE84 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		EE2C776829026AB800D9FE84 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EE2C776929026ACC00D9FE84 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EE320D1B2902A0F20083FF2D /* Styling */,
+				EE320D1629029CE00083FF2D /* Authentication */,
+				EE320D222902E9320083FF2D /* Labels.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EE2C776A29026AD100D9FE84 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EE320D1629029CE00083FF2D /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				EE320D1729029CF70083FF2D /* SignInView.swift */,
+				EE320D1929029D220083FF2D /* SignUpView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		EE320D1B2902A0F20083FF2D /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				EE320D1C2902A1060083FF2D /* Colors.swift */,
+				EE320D1E2902CBAA0083FF2D /* Fonts.swift */,
+				EE320D202902DAA70083FF2D /* Dimensions.swift */,
+				EE320D27290313390083FF2D /* ViewModifiers.swift */,
+				EE320D2D290364BF0083FF2D /* Shapes.swift */,
+			);
+			path = Styling;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +171,9 @@
 			dependencies = (
 			);
 			name = messaging;
+			packageProductDependencies = (
+				EE320D252902E9A00083FF2D /* Kingfisher */,
+			);
 			productName = messaging;
 			productReference = EE2C774C2902689E00D9FE84 /* messaging.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +202,9 @@
 				Base,
 			);
 			mainGroup = EE2C77432902689E00D9FE84;
+			packageReferences = (
+				EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = EE2C774D2902689E00D9FE84 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +231,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE320D1A29029D220083FF2D /* SignUpView.swift in Sources */,
+				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
+				EE320D232902E9320083FF2D /* Labels.swift in Sources */,
+				EE320D28290313390083FF2D /* ViewModifiers.swift in Sources */,
+				EE320D1829029CF70083FF2D /* SignInView.swift in Sources */,
+				EE320D2A2903137C0083FF2D /* Constants.swift in Sources */,
 				EE2C77522902689E00D9FE84 /* ContentView.swift in Sources */,
+				EE320D1F2902CBAA0083FF2D /* Fonts.swift in Sources */,
+				EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */,
+				EE320D2C290313C80083FF2D /* Extensions.swift in Sources */,
 				EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */,
+				EE320D2E290364BF0083FF2D /* Shapes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +443,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE320D252902E9A00083FF2D /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE2C77442902689E00D9FE84 /* Project object */;
 }
