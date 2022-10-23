@@ -69,9 +69,39 @@ struct Constants {
     static let posts = "posts"
     static let userPosts = "user-posts"
     
-    
-//    static let collectionUsers = Firestore.firestore().collection(users)
-//    static let collectionFollowers = Firestore.firestore().collection(followers)
-//    static let collectionFollowing = Firestore.firestore().collection(following)
-//    static let collectionPosts = Firestore.firestore().collection(posts)
+    struct Nutrients {
+        struct Name {
+            static let vitaminA = "Vitamin A"
+            static let vitaminB1 = "Vitamin B1"
+            static let vitaminB2 = "Vitamin B2"
+            static let vitaminB3 = "Vitamin B3"
+            static let vitaminB4 = "Vitamin B4"
+            static let vitaminB5 = "Vitamin B5"
+            static let vitaminB6 = "Vitamin B6"
+            static let vitaminB7 = "Vitamin B7"
+            static let vitaminB9 = "Vitamin B9"
+            static let vitaminB12 = "Vitamin B12"
+            static let vitaminC = "Vitamin C"
+            static let vitaminD = "Vitamin D"
+            static let vitaminE = "Vitamin E"
+            static let vitaminK = "Vitamin K"
+        }
+        
+        struct Compound {
+            static let vitaminA = "Calciferol"
+            static let vitaminB1 = "Thiamin"
+            static let vitaminB2 = "Riboflavin"
+            static let vitaminB3 = "Niacin"
+            static let vitaminB4 = "Choline"
+            static let vitaminB5 = "Pantothenic Acid"
+            static let vitaminB6 = "Pyridoxine"
+            static let vitaminB7 = "Biotin"
+            static let vitaminB9 = "Folate"
+            static let vitaminB12 = "Cobalamin"
+            static let vitaminC = "Ascorbic Acid"
+            static let vitaminD = "Calciferol"
+            static let vitaminE = "Tocoferol"
+            static let vitaminK = "Phylloquinone"
+        }
+    }
 }
