@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @State private var isSignInScreen: Bool = false
+    @State private var isSignInScreen: Bool = true
     @State private var signInText: String = ""
     @State private var password: String = ""
     @State private var isSecured: Bool = true
