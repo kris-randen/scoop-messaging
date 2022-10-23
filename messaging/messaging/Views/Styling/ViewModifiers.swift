@@ -266,51 +266,51 @@ struct ShadowModifier: ViewModifier {
     }
 }
 
-struct FlexFrame: ViewModifier {
+enum Dimension {
     enum Level {
         case min
         case ideal
         case max
     }
     
-    enum Dimension {
-        case width(scaling: CGFloat, tolerance: CGFloat)
-        case height(scaling: CGFloat, tolerance: CGFloat)
-        
-        var standard: CGFloat {
-            switch self {
-            case .width:
-                return Constants.screen.width
-            case .height:
-                return Constants.screen.height
-            }
-        }
-        
-        var minDim: CGFloat {
-            min(Constants.screen.width, Constants.screen.height)
-        }
-        
-        func length(_ level: Level) -> CGFloat {
-            switch level {
-            case .min:
-                switch self {
-                case .width(let scaling, let tolerance), .height(let scaling, let tolerance):
-                    return standard / (scaling * (1 + tolerance))
-                }
-            case .ideal:
-                switch self {
-                case .width(let scaling, _), .height(let scaling, _):
-                    return standard / scaling
-                }
-            case .max:
-                switch self {
-                case .width(let scaling, let tolerance), .height(let scaling, let tolerance):
-                    return standard / (scaling * (1 - tolerance))
-                }
-            }
+    case width(scaling: CGFloat, tolerance: CGFloat)
+    case height(scaling: CGFloat, tolerance: CGFloat)
+    
+    var standard: CGFloat {
+        switch self {
+        case .width:
+            return Constants.screen.width
+        case .height:
+            return Constants.screen.height
         }
     }
     
+    var minDim: CGFloat {
+        min(Constants.screen.width, Constants.screen.height)
+    }
+    
+    func length(_ level: Level) -> CGFloat {
+        switch level {
+        case .min:
+            switch self {
+            case .width(let scaling, let tolerance), .height(let scaling, let tolerance):
+                return standard / (scaling * (1 + tolerance))
+            }
+        case .ideal:
+            switch self {
+            case .width(let scaling, _), .height(let scaling, _):
+                return standard / scaling
+            }
+        case .max:
+            switch self {
+            case .width(let scaling, let tolerance), .height(let scaling, let tolerance):
+                return standard / (scaling * (1 - tolerance))
+            }
+        }
+    }
+}
+
+struct FlexFrame: ViewModifier {
     var width: Dimension = .width(scaling: 1.1, tolerance: 0.1)
     var height: Dimension = .height(scaling: 30, tolerance: 0.1)
     var alignment: Alignment = .center
@@ -476,7 +476,7 @@ struct SearchBarModifier: ViewModifier {
 struct TextFieldModifier: ViewModifier {
     var heightScaling: CGFloat = 30
     var background: UIColor = .white
-    var fontColor: Color = Colors.scoopRed.opacity(0.25)
+    var fontColor: Color = Colors.scoopRed
     var alignment: Alignment = .center
     func body(content: Content) -> some View {
         content
@@ -533,7 +533,7 @@ extension View {
         modifier(SearchBarModifier())
     }
     
-    func textFieldify(heightScaling: CGFloat = 30, backgroundColor: UIColor = UIColor.white, fontColor: Color = Colors.scoopRed.opacity(0.25), alignment: Alignment = .center) -> some View {
+    func textFieldify(heightScaling: CGFloat = 30, backgroundColor: UIColor = UIColor.white, fontColor: Color = Colors.scoopRed, alignment: Alignment = .center) -> some View {
         modifier(TextFieldModifier(heightScaling: heightScaling, background: backgroundColor, fontColor: fontColor, alignment: alignment))
     }
     
@@ -555,8 +555,8 @@ extension View {
     }
 
     func flexFramify(
-                        width: FlexFrame.Dimension = .width(scaling: 1.1, tolerance: 0.1) ,
-                        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1),
+                        width: Dimension = .width(scaling: 1.1, tolerance: 0.1) ,
+                        height: Dimension = .height(scaling: 30, tolerance: 0.1),
                         alignment: Alignment = .center
     ) -> some View {
         modifier(FlexFrame(width: width, height: height, alignment: alignment))
@@ -584,7 +584,7 @@ extension View {
     }
     
     func fullButtonify(
-        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1)
+        height: Dimension = .height(scaling: 30, tolerance: 0.1)
     ) -> some View {
         self.flexFramify(
                     width: .width(scaling: 1.1, tolerance: 0.1),
@@ -594,7 +594,7 @@ extension View {
     }
     
     func fullBlueButtonify(
-                        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1),
+                        height: Dimension = .height(scaling: 30, tolerance: 0.1),
                         shape: Modifiers.Shapes = .rectangle(cornerRadiusScaling: 150)
     ) -> some View {
         self
@@ -603,7 +603,7 @@ extension View {
     }
     
     func fullYellowButtonify(
-                        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1),
+                        height: Dimension = .height(scaling: 30, tolerance: 0.1),
                         shape: Modifiers.Shapes = .rectangle(cornerRadiusScaling: 150)
     ) -> some View {
         self
@@ -612,7 +612,7 @@ extension View {
 }
     
     func fullBlackAndWhiteButtonify(
-        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1),
+        height: Dimension = .height(scaling: 30, tolerance: 0.1),
         shape: Modifiers.Shapes = .rectangle(cornerRadiusScaling: 150),
         lineWidth: Modifiers.Line = .width(scaling: 450)
     ) -> some View {
@@ -623,7 +623,7 @@ extension View {
     }
     
     func halfButtonify(
-        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1)
+        height: Dimension = .height(scaling: 30, tolerance: 0.1)
     ) -> some View {
         self.flexFramify(
                     width: .width(scaling: 2.2, tolerance: 0.1),
@@ -633,7 +633,7 @@ extension View {
     }
     
     func halfBlueButtonify(
-        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1),
+        height: Dimension = .height(scaling: 30, tolerance: 0.1),
         shape: Modifiers.Shapes = .rectangle(cornerRadiusScaling: 150)
     ) -> some View {
         self
@@ -642,7 +642,7 @@ extension View {
     }
     
     func halfBlackAndWhiteButtonify(
-        height: FlexFrame.Dimension = .height(scaling: 30, tolerance: 0.1),
+        height: Dimension = .height(scaling: 30, tolerance: 0.1),
         shape: Modifiers.Shapes = .rectangle(cornerRadiusScaling: 150),
         lineWidth: Modifiers.Line = .width(scaling: 450)
     ) -> some View {

@@ -19,6 +19,10 @@ struct Constants {
     static let screen = UIScreen.main.bounds
     static let screenWidth = screen.width
     static let screenHeight = screen.height
+    static let Bounds = screen
+    static let Width = screenWidth
+    static let Height = screenHeight
+    static let MinDim = screen.minDim
     
     static let instaBlue = Color(red: 81 / 255, green: 91 / 255, blue: 212 / 255)
     static let instaPurple = Color(red: 129 / 255, green: 52 / 255, blue: 175 / 255)

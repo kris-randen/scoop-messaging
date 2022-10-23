@@ -8,14 +8,14 @@
 import UIKit
 
 struct Dimensions {
-    static let Bounds: CGRect = UIScreen().bounds
-    static let Height: CGFloat = Bounds.height
-    static let Width: CGFloat = Bounds.width
-    static let MinDim: CGFloat = Bounds.minDim
+    private static let Bounds: CGRect = UIScreen().bounds
+    private static let Height: CGFloat = Bounds.height
+    private static let Width: CGFloat = Bounds.width
+    private static let MinDim: CGFloat = Bounds.minDim
     
     struct HeightScaling {
-        static let textField: CGFloat = 20.0
-        static let button: CGFloat = 20.0
+        static let textField: CGFloat = 25
+        static let button: CGFloat = 17
         static let scoopLogoLarge: CGFloat = 20.0
     }
     
