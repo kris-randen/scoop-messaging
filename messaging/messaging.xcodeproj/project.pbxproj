@@ -12,7 +12,6 @@
 		EE2C77542902689F00D9FE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2C77532902689F00D9FE84 /* Assets.xcassets */; };
 		EE2C77572902689F00D9FE84 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2C77562902689F00D9FE84 /* Preview Assets.xcassets */; };
 		EE320D1829029CF70083FF2D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1729029CF70083FF2D /* SignInView.swift */; };
-		EE320D1A29029D220083FF2D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1929029D220083FF2D /* SignUpView.swift */; };
 		EE320D1D2902A1060083FF2D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1C2902A1060083FF2D /* Colors.swift */; };
 		EE320D1F2902CBAA0083FF2D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D1E2902CBAA0083FF2D /* Fonts.swift */; };
 		EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D202902DAA70083FF2D /* Dimensions.swift */; };
@@ -32,7 +31,6 @@
 		EE2C77532902689F00D9FE84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2C77562902689F00D9FE84 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EE320D1729029CF70083FF2D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		EE320D1929029D220083FF2D /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		EE320D1C2902A1060083FF2D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EE320D1E2902CBAA0083FF2D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EE320D202902DAA70083FF2D /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				EE320D1729029CF70083FF2D /* SignInView.swift */,
-				EE320D1929029D220083FF2D /* SignUpView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -242,7 +239,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE320D1A29029D220083FF2D /* SignUpView.swift in Sources */,
 				EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */,
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
 				EE320D232902E9320083FF2D /* Labels.swift in Sources */,

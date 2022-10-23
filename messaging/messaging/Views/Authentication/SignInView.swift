@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SignInView: View {
-    @State private var login: String = ""
+    @State private var isSignInScreen: Bool = false
+    @State private var signInText: String = ""
     @State private var password: String = ""
     @State private var isSecured: Bool = true
     @State private var isEmail: Bool = true
@@ -30,7 +31,7 @@ struct SignInView: View {
                             .padding(.top)
                     }
                     Spacer()
-                    noAccountSignUpButton()
+                    toggleSignInSignUpScreens()
                         .padding(.top, Constants.screenHeight/12)
                 }
             }
@@ -41,13 +42,11 @@ struct SignInView: View {
     fileprivate func textFieldEmailIcon() -> some View {
         Image(systemName: "envelope.fill")
             .foregroundColor(Colors.scoopRed)
-//            .padding()
     }
     
     fileprivate func textFieldPhoneIcon() -> some View {
         Image(systemName: "phone.fill")
             .foregroundColor(Colors.scoopRed)
-//            .padding()
     }
     
     fileprivate func emailPhoneIcon() -> some View {
@@ -62,7 +61,7 @@ struct SignInView: View {
     }
     
     fileprivate func loginTextField(with shape: Modifiers.Shapes = Shapes.textField) -> some View {
-        TextField(text: $login, prompt: Text(isEmail ? "Email" : "Phone").foregroundColor(Colors.scoopRedPlaceholder)) {
+        TextField(text: $signInText, prompt: Text(isEmail ? "Email" : "Phone").foregroundColor(Colors.scoopRedPlaceholder)) {
                 Text("").foregroundColor(Colors.scoopRedPlaceholder)
            }
             .foregroundColor(Colors.scoopRed)
@@ -140,7 +139,7 @@ struct SignInView: View {
     }
     
     fileprivate func signInButtonLabel(with shape: Modifiers.Shapes = Shapes.textField) -> some View {
-        Text("Sign in")
+        Text(isSignInScreen ? "Sign in" : "Sign up")
             .foregroundColor(Colors.scoopRed)
             .font(Fonts.fullWidthButtonLabel)
             .fullYellowButtonify(height: .height(scaling: Dimensions.HeightScaling.button, tolerance: 0))
@@ -150,7 +149,7 @@ struct SignInView: View {
     }
     
     var loginAndPassword: Bool {
-        !login.isEmpty && !password.isEmpty
+        !signInText.isEmpty && !password.isEmpty
     }
     
     fileprivate func scoopLogo() -> Text {
@@ -159,11 +158,11 @@ struct SignInView: View {
             .font(Fonts.scoopLogoSignIn)
     }
     
-    fileprivate func noAccountSignUpButton() -> some View {
+    fileprivate func toggleSignInSignUpScreens() -> some View {
         Button {
-            //
+            isSignInScreen.toggle()
         } label: {
-            Text("Don’t have an account? **Sign up**")
+            Text(isSignInScreen ? "Don’t have an account? **Sign up**" : "Already have an account? **Sign in**")
                 .font(Fonts.signInScreenSmall)
                 .foregroundColor(Colors.scoopRed)
         }
@@ -187,7 +186,7 @@ struct SignInView: View {
             Text("|")
                 .font(Fonts.halfWidthButtonLabel.weight(.light))
             Spacer()
-            Text("Sign in")
+            Text(isSignInScreen ? "Sign in" : "Sign up")
                 .padding(.horizontal)
             Spacer()
         }
@@ -216,7 +215,7 @@ struct SignInView: View {
             Text("|")
                 .font(Fonts.halfWidthButtonLabel.weight(.light))
             Spacer()
-            Text("Sign in")
+            Text(isSignInScreen ? "Sign in" : "Sign up")
                 .padding(.horizontal)
             Spacer()
         }
