@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */; };
 		EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C774F2902689E00D9FE84 /* messagingApp.swift */; };
 		EE2C77522902689E00D9FE84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C77512902689E00D9FE84 /* ContentView.swift */; };
 		EE2C77542902689F00D9FE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2C77532902689F00D9FE84 /* Assets.xcassets */; };
@@ -27,6 +28,13 @@
 		EE4042DE2904CA6F005714A9 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = EE4042DD2904CA6F005714A9 /* FirebaseMessaging */; };
 		EE4042E02904CA6F005714A9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EE4042DF2904CA6F005714A9 /* FirebaseStorage */; };
 		EE4042E22904CCD4005714A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */; };
+		EE96A17A2906DE89005E10DB /* RoundedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A1792906DE89005E10DB /* RoundedLine.swift */; };
+		EE96A17C29071B8C005E10DB /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17B29071B8C005E10DB /* Line.swift */; };
+		EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17D29071CE9005E10DB /* LineCaps.swift */; };
+		EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17F2907205A005E10DB /* FlexibleRoundedLine.swift */; };
+		EE96A183290747D3005E10DB /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = EE96A182290747D3005E10DB /* Collections */; };
+		EE96A185290747D3005E10DB /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = EE96A184290747D3005E10DB /* DequeModule */; };
+		EE96A187290747D3005E10DB /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = EE96A186290747D3005E10DB /* OrderedCollections */; };
 		EE97DD2E2905538B006C86AD /* FoodDetailMicrosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD2D2905538B006C86AD /* FoodDetailMicrosView.swift */; };
 		EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */; };
 		EE97DD32290553AC006C86AD /* FoodItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD31290553AC006C86AD /* FoodItemCellView.swift */; };
@@ -38,10 +46,13 @@
 		EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3D2905A88B006C86AD /* Nutrients.swift */; };
 		EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */; };
 		EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */; };
+		EEB2462929098C5300C08012 /* RequiredIntakesII.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB2462829098C5300C08012 /* RequiredIntakesII.swift */; };
+		EEB2462B29098D3900C08012 /* Intakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB2462A29098D3900C08012 /* Intakes.swift */; };
 		EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC26E8B2904A50D002BCF97 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredIntakes.swift; sourceTree = "<group>"; };
 		EE2C774C2902689E00D9FE84 /* messaging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = messaging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2C774F2902689E00D9FE84 /* messagingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messagingApp.swift; sourceTree = "<group>"; };
 		EE2C77512902689E00D9FE84 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +68,10 @@
 		EE320D2B290313C80083FF2D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EE320D2D290364BF0083FF2D /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE96A1792906DE89005E10DB /* RoundedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLine.swift; sourceTree = "<group>"; };
+		EE96A17B29071B8C005E10DB /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		EE96A17D29071CE9005E10DB /* LineCaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCaps.swift; sourceTree = "<group>"; };
+		EE96A17F2907205A005E10DB /* FlexibleRoundedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleRoundedLine.swift; sourceTree = "<group>"; };
 		EE97DD2D2905538B006C86AD /* FoodDetailMicrosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailMicrosView.swift; sourceTree = "<group>"; };
 		EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailMacrosView.swift; sourceTree = "<group>"; };
 		EE97DD31290553AC006C86AD /* FoodItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemCellView.swift; sourceTree = "<group>"; };
@@ -68,6 +83,8 @@
 		EE97DD3D2905A88B006C86AD /* Nutrients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrients.swift; sourceTree = "<group>"; };
 		EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleVerticalLine.swift; sourceTree = "<group>"; };
 		EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleHorizontalLine.swift; sourceTree = "<group>"; };
+		EEB2462829098C5300C08012 /* RequiredIntakesII.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequiredIntakesII.swift; sourceTree = "<group>"; };
+		EEB2462A29098D3900C08012 /* Intakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intakes.swift; sourceTree = "<group>"; };
 		EEC26E8B2904A50D002BCF97 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,10 +93,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE96A183290747D3005E10DB /* Collections in Frameworks */,
 				EE320D262902E9A00083FF2D /* Kingfisher in Frameworks */,
 				EE4042D82904CA6F005714A9 /* FirebaseAuth in Frameworks */,
 				EE4042DE2904CA6F005714A9 /* FirebaseMessaging in Frameworks */,
 				EE4042DA2904CA6F005714A9 /* FirebaseFirestoreSwift in Frameworks */,
+				EE96A187290747D3005E10DB /* OrderedCollections in Frameworks */,
+				EE96A185290747D3005E10DB /* DequeModule in Frameworks */,
 				EE4042DC2904CA6F005714A9 /* FirebaseFunctions in Frameworks */,
 				EE4042E02904CA6F005714A9 /* FirebaseStorage in Frameworks */,
 			);
@@ -169,6 +189,9 @@
 			children = (
 				EE97DD35290553FA006C86AD /* User.swift */,
 				EE97DD3D2905A88B006C86AD /* Nutrients.swift */,
+				EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */,
+				EEB2462829098C5300C08012 /* RequiredIntakesII.swift */,
+				EEB2462A29098D3900C08012 /* Intakes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,6 +216,10 @@
 				EE97DD392905967D006C86AD /* HorizontalLine.swift */,
 				EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */,
 				EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */,
+				EE96A1792906DE89005E10DB /* RoundedLine.swift */,
+				EE96A17B29071B8C005E10DB /* Line.swift */,
+				EE96A17D29071CE9005E10DB /* LineCaps.swift */,
+				EE96A17F2907205A005E10DB /* FlexibleRoundedLine.swift */,
 			);
 			path = Styling;
 			sourceTree = "<group>";
@@ -240,6 +267,9 @@
 				EE4042DB2904CA6F005714A9 /* FirebaseFunctions */,
 				EE4042DD2904CA6F005714A9 /* FirebaseMessaging */,
 				EE4042DF2904CA6F005714A9 /* FirebaseStorage */,
+				EE96A182290747D3005E10DB /* Collections */,
+				EE96A184290747D3005E10DB /* DequeModule */,
+				EE96A186290747D3005E10DB /* OrderedCollections */,
 			);
 			productName = messaging;
 			productReference = EE2C774C2902689E00D9FE84 /* messaging.app */;
@@ -272,6 +302,7 @@
 			packageReferences = (
 				EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				EE4042D62904CA6E005714A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = EE2C774D2902689E00D9FE84 /* Products */;
 			projectDirPath = "";
@@ -303,10 +334,13 @@
 				EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */,
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
+				EEB2462B29098D3900C08012 /* Intakes.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
+				EE96A17C29071B8C005E10DB /* Line.swift in Sources */,
 				EE97DD34290553B9006C86AD /* FoodItemsListView.swift in Sources */,
 				EE320D232902E9320083FF2D /* Labels.swift in Sources */,
 				EE97DD3829058FE7006C86AD /* VerticalLine.swift in Sources */,
+				EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */,
 				EE320D28290313390083FF2D /* ViewModifiers.swift in Sources */,
 				EE320D1829029CF70083FF2D /* SignInView.swift in Sources */,
 				EE97DD36290553FA006C86AD /* User.swift in Sources */,
@@ -320,7 +354,11 @@
 				EE97DD32290553AC006C86AD /* FoodItemCellView.swift in Sources */,
 				EE97DD2E2905538B006C86AD /* FoodDetailMicrosView.swift in Sources */,
 				EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */,
+				EEB2462929098C5300C08012 /* RequiredIntakesII.swift in Sources */,
+				EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */,
 				EE97DD3A2905967D006C86AD /* HorizontalLine.swift in Sources */,
+				EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */,
+				EE96A17A2906DE89005E10DB /* RoundedLine.swift in Sources */,
 				EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */,
 				EE320D2E290364BF0083FF2D /* Shapes.swift in Sources */,
 			);
@@ -545,6 +583,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -577,6 +623,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE4042D62904CA6E005714A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		EE96A182290747D3005E10DB /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		EE96A184290747D3005E10DB /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		EE96A186290747D3005E10DB /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

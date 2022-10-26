@@ -85,6 +85,35 @@ struct Constants {
             static let vitaminD = "Vitamin D"
             static let vitaminE = "Vitamin E"
             static let vitaminK = "Vitamin K"
+            
+            static let calcium = "Mineral Ca"
+            static let chloride = "Mineral Cl"
+            static let chromium = "Mineral Cr"
+            static let copper = "Mineral Cu"
+            static let fluoride = "Mineral F"
+            static let iodine = "Mineral I"
+            static let iron = "Mineral Fe"
+            static let magnesium = "Mineral Mg"
+            static let manganese = "Mineral Mn"
+            static let molybdenum = "Mineral Mo"
+            static let phosphorous = "Mineral P"
+            static let potassium = "Mineral K"
+            static let selenium = "Mineral Se"
+            static let sodium = "Mineral Na"
+            static let zinc = "Mineral Zn"
+            
+            static let energy = "Calories"
+            static let sugar = "Sugar"
+            static let water = "Water"
+            static let carbs = "Carbohydrates"
+            static let fiber = "Total Fiber"
+            static let fat = "Fat"
+            static let linoleicAcid = "Linoleic Acid"
+            static let aLinoleicAcid = "alpha-Linoleic Acid"
+            static let protein = "Protein"
+            static let saturatedFat = "Saturated Fat"
+            static let transFat = "Trans Fat"
+            static let cholesterol = "Cholesterol"
         }
         
         struct Compound {
@@ -93,7 +122,7 @@ struct Constants {
             static let vitaminB2 = "Riboflavin"
             static let vitaminB3 = "Niacin"
             static let vitaminB4 = "Choline"
-            static let vitaminB5 = "Pantothenic Acid"
+            static let vitaminB5 = "Pantothenic"
             static let vitaminB6 = "Pyridoxine"
             static let vitaminB7 = "Biotin"
             static let vitaminB9 = "Folate"
@@ -102,6 +131,31 @@ struct Constants {
             static let vitaminD = "Calciferol"
             static let vitaminE = "Tocoferol"
             static let vitaminK = "Phylloquinone"
+            
+            static let calcium = "Calcium"
+            static let chloride = "Chloride"
+            static let chromium = "Chromium"
+            static let copper = "Copper"
+            static let fluoride = "Fluoride"
+            static let iodine = "Iodine"
+            static let iron = "Iron"
+            static let magnesium = "Magnesium"
+            static let manganese = "Manganese"
+            static let molybdenum = "Molybdenum"
+            static let phosphorous = "Phosphorous"
+            static let potassium = "Potassium"
+            static let selenium = "Selenium"
+            static let sodium = "Sodium"
+            static let zinc = "Zinc"
         }
     }
+    
+    struct Food {
+        static let boostHighProteinDrink = "Boost High Protein Drink"
+        static let boostVeryHighEnergyDrink = "Boost Very High Energy Drink"
+        static let boostMaxMenShake = "Boost Max Men Shake"
+    }
 }
+
+let abc = Constants.Nutrients.Compound()
+

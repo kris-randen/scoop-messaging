@@ -15,7 +15,6 @@ struct Demography {
         case preteen, teen
         case adult, middle
         case old, senior
-        case ghost
         
         static func calculate(fromAgeInMonths age: Int) -> AgeGroup {
             switch age {
@@ -37,40 +36,29 @@ struct Demography {
                 return .middle
             case 601...(70*12):
                 return .old
-            case 841...Int.max:
-                return .senior
             default:
-                return .ghost
+                return .senior
             }
         }
     }
     
-    enum LifeStage: Equatable, Codable {
-        case normal
-        case pregnant
-        case lactating
-    }
-    
-    enum Gender: Equatable, Codable {
+    enum GenderAndLifeStage: Equatable, Codable {
         case male
         case female
-        case other(specify: String)
+        case pregnant
+        case lactating
     }
 }
 
 protocol Genderizable {
-    var gender: Demography.Gender { get }
+    var gender: Demography.GenderAndLifeStage { get }
 }
 
 protocol AgeGroupable: Equatable, Codable {
     var ageGroup: Demography.AgeGroup { get }
 }
 
-protocol LifeStageable: Equatable, Codable {
-    var lifeStage: Demography.LifeStage { get }
-}
-
-protocol Demographable: Genderizable, AgeGroupable, LifeStageable {}
+protocol Demographable: Genderizable, AgeGroupable {}
 
 protocol Nameable {
     var username: String { get set }
@@ -135,11 +123,9 @@ struct User: Equatable, Identifiable, Codable, Addressable, Birthable, Demograph
         Age(days: Int(Date.now.timeIntervalSince(dateOfBirth) / 86400))
     }
     
-    var gender: Demography.Gender
+    var gender: Demography.GenderAndLifeStage
     
     var ageGroup: Demography.AgeGroup {
         Demography.AgeGroup.calculate(fromAgeInMonths: age.months.int)
     }
-    
-    var lifeStage: Demography.LifeStage = .normal
 }
