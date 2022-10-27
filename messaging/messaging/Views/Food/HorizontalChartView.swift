@@ -48,12 +48,14 @@ struct HorizontalChartView: View {
             HStack(alignment: .center) {
                 axisTitles(for: chart)
                     .padding(.leading, 10)
-                    .frame(width: size.width/3.5)
+                    .frame(width: size.width/3.5, alignment: .trailing)
+                    .multilineTextAlignment(.trailing)
                 yAxis()
-                    .padding(.trailing)
+                    .padding(.horizontal, 5)
                     .foregroundColor(Colors.scoopRed)
                 bars(for: chart, withSize: size)
                     .foregroundColor(Colors.scoopGreen)
+                    .frame(alignment: .leading)
             }
         }
     }
@@ -87,6 +89,7 @@ struct HorizontalChartView: View {
                         .padding(.bottom, 5)
                     Spacer()
                 }
+                .multilineTextAlignment(.trailing)
             }
         }
     }

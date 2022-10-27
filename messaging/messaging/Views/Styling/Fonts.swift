@@ -54,5 +54,5 @@ struct Fonts {
     static let googleButtonIconFont = Font.custom("Georgia", size: 28, relativeTo: .largeTitle).weight(.black)
     
     static let CardNutrient = Font.custom("Avenir Next", size: 16, relativeTo: .body).weight(.bold)
-    static let CardNutrientSubtitle = Font.custom("Avenir", size: 12, relativeTo: .body).weight(.light)
+    static let CardNutrientSubtitle = Font.custom("Avenir", size: 14, relativeTo: .body).weight(.light)
 }

@@ -38,7 +38,7 @@ struct CardView: View {
     }
     
     func opacity(line: Int) -> Double {
-        line % 4 == 0 ? 0.1 : 0.05
+        line % 4 == 0 ? 0.07 : 0.05
     }
     
     func color(line: Int) -> Color {
