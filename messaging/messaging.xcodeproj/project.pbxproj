@@ -28,6 +28,7 @@
 		EE4042DE2904CA6F005714A9 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = EE4042DD2904CA6F005714A9 /* FirebaseMessaging */; };
 		EE4042E02904CA6F005714A9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EE4042DF2904CA6F005714A9 /* FirebaseStorage */; };
 		EE4042E22904CCD4005714A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */; };
+		EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4B61AA2909EF89004E50E3 /* Chart.swift */; };
 		EE96A17A2906DE89005E10DB /* RoundedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A1792906DE89005E10DB /* RoundedLine.swift */; };
 		EE96A17C29071B8C005E10DB /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17B29071B8C005E10DB /* Line.swift */; };
 		EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17D29071CE9005E10DB /* LineCaps.swift */; };
@@ -35,7 +36,7 @@
 		EE96A183290747D3005E10DB /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = EE96A182290747D3005E10DB /* Collections */; };
 		EE96A185290747D3005E10DB /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = EE96A184290747D3005E10DB /* DequeModule */; };
 		EE96A187290747D3005E10DB /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = EE96A186290747D3005E10DB /* OrderedCollections */; };
-		EE97DD2E2905538B006C86AD /* FoodDetailMicrosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD2D2905538B006C86AD /* FoodDetailMicrosView.swift */; };
+		EE97DD2E2905538B006C86AD /* HorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD2D2905538B006C86AD /* HorizontalChartView.swift */; };
 		EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */; };
 		EE97DD32290553AC006C86AD /* FoodItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD31290553AC006C86AD /* FoodItemCellView.swift */; };
 		EE97DD34290553B9006C86AD /* FoodItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD33290553B9006C86AD /* FoodItemsListView.swift */; };
@@ -46,8 +47,6 @@
 		EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3D2905A88B006C86AD /* Nutrients.swift */; };
 		EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */; };
 		EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */; };
-		EEB2462929098C5300C08012 /* RequiredIntakesII.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB2462829098C5300C08012 /* RequiredIntakesII.swift */; };
-		EEB2462B29098D3900C08012 /* Intakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB2462A29098D3900C08012 /* Intakes.swift */; };
 		EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC26E8B2904A50D002BCF97 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,11 +67,12 @@
 		EE320D2B290313C80083FF2D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EE320D2D290364BF0083FF2D /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE4B61AA2909EF89004E50E3 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		EE96A1792906DE89005E10DB /* RoundedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLine.swift; sourceTree = "<group>"; };
 		EE96A17B29071B8C005E10DB /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		EE96A17D29071CE9005E10DB /* LineCaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCaps.swift; sourceTree = "<group>"; };
 		EE96A17F2907205A005E10DB /* FlexibleRoundedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleRoundedLine.swift; sourceTree = "<group>"; };
-		EE97DD2D2905538B006C86AD /* FoodDetailMicrosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailMicrosView.swift; sourceTree = "<group>"; };
+		EE97DD2D2905538B006C86AD /* HorizontalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalChartView.swift; sourceTree = "<group>"; };
 		EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailMacrosView.swift; sourceTree = "<group>"; };
 		EE97DD31290553AC006C86AD /* FoodItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemCellView.swift; sourceTree = "<group>"; };
 		EE97DD33290553B9006C86AD /* FoodItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemsListView.swift; sourceTree = "<group>"; };
@@ -83,8 +83,6 @@
 		EE97DD3D2905A88B006C86AD /* Nutrients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrients.swift; sourceTree = "<group>"; };
 		EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleVerticalLine.swift; sourceTree = "<group>"; };
 		EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleHorizontalLine.swift; sourceTree = "<group>"; };
-		EEB2462829098C5300C08012 /* RequiredIntakesII.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequiredIntakesII.swift; sourceTree = "<group>"; };
-		EEB2462A29098D3900C08012 /* Intakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intakes.swift; sourceTree = "<group>"; };
 		EEC26E8B2904A50D002BCF97 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,8 +188,7 @@
 				EE97DD35290553FA006C86AD /* User.swift */,
 				EE97DD3D2905A88B006C86AD /* Nutrients.swift */,
 				EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */,
-				EEB2462829098C5300C08012 /* RequiredIntakesII.swift */,
-				EEB2462A29098D3900C08012 /* Intakes.swift */,
+				EE4B61AA2909EF89004E50E3 /* Chart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -227,7 +224,7 @@
 		EE97DD2A29055301006C86AD /* Food */ = {
 			isa = PBXGroup;
 			children = (
-				EE97DD2D2905538B006C86AD /* FoodDetailMicrosView.swift */,
+				EE97DD2D2905538B006C86AD /* HorizontalChartView.swift */,
 				EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */,
 				EE97DD31290553AC006C86AD /* FoodItemCellView.swift */,
 				EE97DD33290553B9006C86AD /* FoodItemsListView.swift */,
@@ -334,8 +331,8 @@
 				EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */,
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
-				EEB2462B29098D3900C08012 /* Intakes.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
+				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
 				EE96A17C29071B8C005E10DB /* Line.swift in Sources */,
 				EE97DD34290553B9006C86AD /* FoodItemsListView.swift in Sources */,
 				EE320D232902E9320083FF2D /* Labels.swift in Sources */,
@@ -352,9 +349,8 @@
 				EE320D2C290313C80083FF2D /* Extensions.swift in Sources */,
 				EE97DD3C290599B6006C86AD /* CardView.swift in Sources */,
 				EE97DD32290553AC006C86AD /* FoodItemCellView.swift in Sources */,
-				EE97DD2E2905538B006C86AD /* FoodDetailMicrosView.swift in Sources */,
+				EE97DD2E2905538B006C86AD /* HorizontalChartView.swift in Sources */,
 				EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */,
-				EEB2462929098C5300C08012 /* RequiredIntakesII.swift in Sources */,
 				EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */,
 				EE97DD3A2905967D006C86AD /* HorizontalLine.swift in Sources */,
 				EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */,

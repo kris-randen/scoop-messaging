@@ -10,13 +10,13 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
 //        SignInView()
-        FoodDetailMicrosView()
+        HorizontalChartView(chart: Chart(profile: Profiles.boostHighProteinDrink, kind: .vitamin, nqi: -47)!)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 //        SignInView()
-        FoodDetailMicrosView()
+        HorizontalChartView(chart: Chart(profile: Profiles.boostHighProteinDrink, kind: .vitamin, nqi: -47)!)
     }
 }

@@ -8,7 +8,12 @@
 import SwiftUI
 import Foundation
 import UIKit
+import OrderedCollections
 
+extension OrderedDictionary where Value: Comparable {
+    var descending: [(key: Key, value: Value)]  { sorted { $0.value > $1.value } }
+    var ascending:  [(key: Key, value: Value)]  { sorted { $0.value < $1.value} }
+}
 
 extension Int {
     var double: Double { Double(self) }

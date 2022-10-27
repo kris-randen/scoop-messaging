@@ -113,6 +113,17 @@ struct Nutrients {
         case macro
         case vitamin
         case mineral
+        
+        var chartTitle: (title: String, subtitle: String) {
+            switch self {
+            case .macro:
+                return ("Macros", "Carbs, Protein, Fat")
+            case .vitamin:
+                return ("Micros", "Vitamin")
+            case .mineral:
+                return ("Micros", "Mineral")
+            }
+        }
     }
     
     enum Macro: String, CaseIterable, NutrientType {
