@@ -105,9 +105,13 @@ struct Constants {
             static let energy = "Calories"
             static let sugar = "Sugar"
             static let water = "Water"
-            static let carbs = "Carbohydrates"
-            static let fiber = "Total Fiber"
-            static let fat = "Fat"
+            static let carbs = "Carbs"
+            static let carbsGood = "Good Carbs"
+            static let carbsBad = "Bad Carbs"
+            static let fiber = "Fiber"
+            static let fats = "Fats"
+            static let fatsGood = "Good Fats"
+            static let fatsBad = "Bad Fats"
             static let linoleicAcid = "Linoleic Acid"
             static let aLinoleicAcid = "alpha-Linoleic Acid"
             static let protein = "Protein"
@@ -154,6 +158,11 @@ struct Constants {
         static let boostHighProteinDrink = "Boost High Protein Drink"
         static let boostVeryHighEnergyDrink = "Boost Very High Energy Drink"
         static let boostMaxMenShake = "Boost Max Men Shake"
+        static let sugarWhite = "White Sugar 🍯"
+        static let sugarBrown = "Brown Sugar 🍯"
+        static let arugula = "Arugula ☘️"
+        static let carrot = "Carrot 🥕"
+        static let kale = "Kale 🥬"
     }
 }
 

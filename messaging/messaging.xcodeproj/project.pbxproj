@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0AFF5A290A88F700C5B899 /* RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0AFF59290A88F700C5B899 /* RoundedRect.swift */; };
+		EE0AFF5C290A8E3700C5B899 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0AFF5B290A8E3700C5B899 /* Protocols.swift */; };
+		EE0AFF5E290A90BB00C5B899 /* RoundedRectCaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0AFF5D290A90BB00C5B899 /* RoundedRectCaps.swift */; };
+		EE0AFF60290ACD6B00C5B899 /* RoundedRectTopRightCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0AFF5F290ACD6B00C5B899 /* RoundedRectTopRightCap.swift */; };
+		EE0AFF62290ACE8900C5B899 /* RoundedRectTopLeftCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0AFF61290ACE8900C5B899 /* RoundedRectTopLeftCap.swift */; };
+		EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0AFF63290ACF3600C5B899 /* RoundedRectBottomRightCap.swift */; };
+		EE0AFF66290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0AFF65290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift */; };
 		EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */; };
 		EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C774F2902689E00D9FE84 /* messagingApp.swift */; };
 		EE2C77522902689E00D9FE84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C77512902689E00D9FE84 /* ContentView.swift */; };
@@ -29,7 +36,12 @@
 		EE4042E02904CA6F005714A9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EE4042DF2904CA6F005714A9 /* FirebaseStorage */; };
 		EE4042E22904CCD4005714A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */; };
 		EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4B61AA2909EF89004E50E3 /* Chart.swift */; };
-		EE96A17A2906DE89005E10DB /* RoundedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A1792906DE89005E10DB /* RoundedLine.swift */; };
+		EE5623FC290E373E00C17B20 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */; };
+		EE5623FF290E39D400C17B20 /* AlgoliaSetupExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */; };
+		EE7B1864290C2D1B006C20EA /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1863290C2D1B006C20EA /* BadgeView.swift */; };
+		EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1865290C2D5B006C20EA /* Badge.swift */; };
+		EE7B1868290C4875006C20EA /* VerticalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1867290C4875006C20EA /* VerticalChartView.swift */; };
+		EE96A17A2906DE89005E10DB /* RoundedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A1792906DE89005E10DB /* RoundedLineView.swift */; };
 		EE96A17C29071B8C005E10DB /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17B29071B8C005E10DB /* Line.swift */; };
 		EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17D29071CE9005E10DB /* LineCaps.swift */; };
 		EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17F2907205A005E10DB /* FlexibleRoundedLine.swift */; };
@@ -48,9 +60,19 @@
 		EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */; };
 		EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */; };
 		EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC26E8B2904A50D002BCF97 /* ProfileView.swift */; };
+		EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */; };
+		EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */; };
+		EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE0AFF59290A88F700C5B899 /* RoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRect.swift; sourceTree = "<group>"; };
+		EE0AFF5B290A8E3700C5B899 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		EE0AFF5D290A90BB00C5B899 /* RoundedRectCaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectCaps.swift; sourceTree = "<group>"; };
+		EE0AFF5F290ACD6B00C5B899 /* RoundedRectTopRightCap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectTopRightCap.swift; sourceTree = "<group>"; };
+		EE0AFF61290ACE8900C5B899 /* RoundedRectTopLeftCap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectTopLeftCap.swift; sourceTree = "<group>"; };
+		EE0AFF63290ACF3600C5B899 /* RoundedRectBottomRightCap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectBottomRightCap.swift; sourceTree = "<group>"; };
+		EE0AFF65290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectBottomLeftCap.swift; sourceTree = "<group>"; };
 		EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredIntakes.swift; sourceTree = "<group>"; };
 		EE2C774C2902689E00D9FE84 /* messaging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = messaging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2C774F2902689E00D9FE84 /* messagingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messagingApp.swift; sourceTree = "<group>"; };
@@ -68,7 +90,11 @@
 		EE320D2D290364BF0083FF2D /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE4B61AA2909EF89004E50E3 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
-		EE96A1792906DE89005E10DB /* RoundedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLine.swift; sourceTree = "<group>"; };
+		EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSetupExample.swift; sourceTree = "<group>"; };
+		EE7B1863290C2D1B006C20EA /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		EE7B1865290C2D5B006C20EA /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		EE7B1867290C4875006C20EA /* VerticalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalChartView.swift; sourceTree = "<group>"; };
+		EE96A1792906DE89005E10DB /* RoundedLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLineView.swift; sourceTree = "<group>"; };
 		EE96A17B29071B8C005E10DB /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		EE96A17D29071CE9005E10DB /* LineCaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCaps.swift; sourceTree = "<group>"; };
 		EE96A17F2907205A005E10DB /* FlexibleRoundedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleRoundedLine.swift; sourceTree = "<group>"; };
@@ -84,6 +110,9 @@
 		EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleVerticalLine.swift; sourceTree = "<group>"; };
 		EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleHorizontalLine.swift; sourceTree = "<group>"; };
 		EEC26E8B2904A50D002BCF97 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleRoundedRect.swift; sourceTree = "<group>"; };
+		EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
+		EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE5623FC290E373E00C17B20 /* InstantSearchSwiftUI in Frameworks */,
 				EE96A183290747D3005E10DB /* Collections in Frameworks */,
 				EE320D262902E9A00083FF2D /* Kingfisher in Frameworks */,
 				EE4042D82904CA6F005714A9 /* FirebaseAuth in Frameworks */,
@@ -152,6 +182,8 @@
 			children = (
 				EE320D292903137C0083FF2D /* Constants.swift */,
 				EE320D2B290313C80083FF2D /* Extensions.swift */,
+				EE0AFF5B290A8E3700C5B899 /* Protocols.swift */,
+				EE320D222902E9320083FF2D /* Labels.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -173,11 +205,11 @@
 		EE2C776929026ACC00D9FE84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EE5623FD290E39BB00C17B20 /* Search */,
 				EE97DD2A29055301006C86AD /* Food */,
 				EEC26E8A2904A4FA002BCF97 /* Profile */,
 				EE320D1B2902A0F20083FF2D /* Styling */,
 				EE320D1629029CE00083FF2D /* Authentication */,
-				EE320D222902E9320083FF2D /* Labels.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +221,8 @@
 				EE97DD3D2905A88B006C86AD /* Nutrients.swift */,
 				EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */,
 				EE4B61AA2909EF89004E50E3 /* Chart.swift */,
+				EE0AFF59290A88F700C5B899 /* RoundedRect.swift */,
+				EE7B1865290C2D5B006C20EA /* Badge.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,25 +243,51 @@
 				EE320D202902DAA70083FF2D /* Dimensions.swift */,
 				EE320D27290313390083FF2D /* ViewModifiers.swift */,
 				EE320D2D290364BF0083FF2D /* Shapes.swift */,
+				EE7B1860290C0498006C20EA /* Lines and Chart Bars */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
+		EE5623FD290E39BB00C17B20 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		EE7B1860290C0498006C20EA /* Lines and Chart Bars */ = {
+			isa = PBXGroup;
+			children = (
 				EE97DD3729058FE6006C86AD /* VerticalLine.swift */,
 				EE97DD392905967D006C86AD /* HorizontalLine.swift */,
 				EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */,
 				EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */,
-				EE96A1792906DE89005E10DB /* RoundedLine.swift */,
+				EE96A1792906DE89005E10DB /* RoundedLineView.swift */,
 				EE96A17B29071B8C005E10DB /* Line.swift */,
 				EE96A17D29071CE9005E10DB /* LineCaps.swift */,
 				EE96A17F2907205A005E10DB /* FlexibleRoundedLine.swift */,
+				EE0AFF5D290A90BB00C5B899 /* RoundedRectCaps.swift */,
+				EE0AFF5F290ACD6B00C5B899 /* RoundedRectTopRightCap.swift */,
+				EE0AFF61290ACE8900C5B899 /* RoundedRectTopLeftCap.swift */,
+				EE0AFF63290ACF3600C5B899 /* RoundedRectBottomRightCap.swift */,
+				EE0AFF65290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift */,
+				EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */,
+				EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */,
+				EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */,
 			);
-			path = Styling;
+			path = "Lines and Chart Bars";
 			sourceTree = "<group>";
 		};
 		EE97DD2A29055301006C86AD /* Food */ = {
 			isa = PBXGroup;
 			children = (
+				EE7B1867290C4875006C20EA /* VerticalChartView.swift */,
 				EE97DD2D2905538B006C86AD /* HorizontalChartView.swift */,
 				EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */,
 				EE97DD31290553AC006C86AD /* FoodItemCellView.swift */,
 				EE97DD33290553B9006C86AD /* FoodItemsListView.swift */,
+				EE7B1863290C2D1B006C20EA /* BadgeView.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -267,6 +327,7 @@
 				EE96A182290747D3005E10DB /* Collections */,
 				EE96A184290747D3005E10DB /* DequeModule */,
 				EE96A186290747D3005E10DB /* OrderedCollections */,
+				EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */,
 			);
 			productName = messaging;
 			productReference = EE2C774C2902689E00D9FE84 /* messaging.app */;
@@ -300,6 +361,7 @@
 				EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				EE4042D62904CA6E005714A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */,
+				EE5623FA290E373E00C17B20 /* XCRemoteSwiftPackageReference "instantsearch-ios" */,
 			);
 			productRefGroup = EE2C774D2902689E00D9FE84 /* Products */;
 			projectDirPath = "";
@@ -332,6 +394,8 @@
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
+				EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */,
+				EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */,
 				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
 				EE96A17C29071B8C005E10DB /* Line.swift in Sources */,
 				EE97DD34290553B9006C86AD /* FoodItemsListView.swift in Sources */,
@@ -342,21 +406,33 @@
 				EE320D1829029CF70083FF2D /* SignInView.swift in Sources */,
 				EE97DD36290553FA006C86AD /* User.swift in Sources */,
 				EE320D2A2903137C0083FF2D /* Constants.swift in Sources */,
+				EE7B1864290C2D1B006C20EA /* BadgeView.swift in Sources */,
 				EE2C77522902689E00D9FE84 /* ContentView.swift in Sources */,
+				EE0AFF5A290A88F700C5B899 /* RoundedRect.swift in Sources */,
+				EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */,
 				EE320D1F2902CBAA0083FF2D /* Fonts.swift in Sources */,
+				EE0AFF62290ACE8900C5B899 /* RoundedRectTopLeftCap.swift in Sources */,
+				EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */,
 				EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */,
 				EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */,
 				EE320D2C290313C80083FF2D /* Extensions.swift in Sources */,
 				EE97DD3C290599B6006C86AD /* CardView.swift in Sources */,
 				EE97DD32290553AC006C86AD /* FoodItemCellView.swift in Sources */,
+				EE0AFF5E290A90BB00C5B899 /* RoundedRectCaps.swift in Sources */,
 				EE97DD2E2905538B006C86AD /* HorizontalChartView.swift in Sources */,
 				EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */,
 				EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */,
+				EE0AFF66290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift in Sources */,
+				EE7B1868290C4875006C20EA /* VerticalChartView.swift in Sources */,
 				EE97DD3A2905967D006C86AD /* HorizontalLine.swift in Sources */,
 				EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */,
-				EE96A17A2906DE89005E10DB /* RoundedLine.swift in Sources */,
+				EE96A17A2906DE89005E10DB /* RoundedLineView.swift in Sources */,
+				EE0AFF5C290A8E3700C5B899 /* Protocols.swift in Sources */,
 				EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */,
 				EE320D2E290364BF0083FF2D /* Shapes.swift in Sources */,
+				EE5623FF290E39D400C17B20 /* AlgoliaSetupExample.swift in Sources */,
+				EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */,
+				EE0AFF60290ACD6B00C5B899 /* RoundedRectTopRightCap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +655,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		EE5623FA290E373E00C17B20 /* XCRemoteSwiftPackageReference "instantsearch-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/algolia/instantsearch-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
@@ -619,6 +703,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE4042D62904CA6E005714A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE5623FA290E373E00C17B20 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchSwiftUI;
 		};
 		EE96A182290747D3005E10DB /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;

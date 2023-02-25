@@ -1,25 +1,26 @@
 //
-//  FlexibleRoundedLine.swift
+//  FlexibleRoundedRect.swift
 //  messaging
 //
-//  Created by Krishnaswami Rajendren on 10/25/22.
+//  Created by Krishnaswami Rajendren on 10/27/22.
 //
 
 import SwiftUI
 
-struct FlexibleRoundedLine: View {
+struct FlexibleRoundedRect: View {
     var orientation: CGRect.Orientation
-    var alignment: Alignment = .center
+    var alignment: Alignment = .leading
     var scaling: CGFloat = 0.8
     var width = CGFloat(50)
+    var radiusScaling: CGFloat
     
     var body: some View {
         GeometryReader { geo in
-            RoundedLine(line: line(geo: geo), orientation: orientation)
+            RoundedRectView(line: line(geo: geo))
         }
     }
 
-    fileprivate func line(geo: GeometryProxy) -> CGRect {
+    fileprivate func line(geo: GeometryProxy) -> RoundedRect {
         var scalingDim: CGFloat {
             switch orientation {
             case .vertical:
@@ -36,13 +37,29 @@ struct FlexibleRoundedLine: View {
         var lineHeight: CGFloat
         switch orientation {
         case .vertical:
-            let centerX = geo.center.x - width / 2
-            let centerY = geo.center.y - length / 2
             lineWidth = width
             lineHeight = length
+            let centerX = geo.center.x - lineWidth / 2
+            let centerY = geo.center.y - lineHeight / 2
             
             // Currently only handling leading alignment as I need that for the horizontal chart bars but need to handle all other cases too for completion
             
+            switch alignment {
+            case .leading:
+                x = geo.origin.x
+                y = centerY
+            case .bottom:
+                x = centerX
+                y = geo.origin.y + geo.height - lineHeight
+            default:
+                x = centerX
+                y = centerY
+            }
+        case .horizontal:
+            lineWidth = length
+            lineHeight = width
+            let centerX = geo.center.x - lineWidth / 2
+            let centerY = geo.center.y - lineHeight / 2
             switch alignment {
             case .leading:
                 x = geo.origin.x
@@ -51,26 +68,14 @@ struct FlexibleRoundedLine: View {
                 x = centerX
                 y = centerY
             }
-        case .horizontal:
-            let centerX = geo.center.x - length / 2
-            let centerY = geo.center.y - width / 2
-            lineWidth = length
-            lineHeight = width
-            switch alignment {
-            case .leading:
-                x = geo.origin.x + width/2
-                y = centerY
-            default:
-                x = centerX
-                y = centerY
-            }
         }
-        return CGRect(x: x, y: y, width: lineWidth, height: lineHeight)
+        return RoundedRect(x: x, y: y, width: lineWidth, height: lineHeight, radiusScaling: radiusScaling, orientation: orientation)
     }
 }
 
-struct FlexibleRoundedLine_Previews: PreviewProvider {
+struct FlexibleRoundedRect_Previews: PreviewProvider {
     static var previews: some View {
-        FlexibleRoundedLine(orientation: .horizontal, alignment: .leading)
+        FlexibleRoundedRect(orientation: .vertical, alignment: .bottom, radiusScaling: 0.4)
+            .padding()
     }
 }

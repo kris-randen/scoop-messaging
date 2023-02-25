@@ -39,6 +39,158 @@ extension CGPoint {
     }
 }
 
+extension RectangleProperties {
+    var minDim: CGFloat { min(width, height) }
+    var originLocal: CGPoint { CGPoint.zero }
+    var originGlobal: CGPoint { origin }
+    
+    var topLeft: CGPoint { CGPoint.zero }
+    var topRight: CGPoint { CGPoint(x: width, y: 0) }
+    var bottomLeft: CGPoint { CGPoint(x: 0, y: height) }
+    var bottomRight: CGPoint { CGPoint(x: width, y: height) }
+    
+    var center: CGPoint { CGPoint(x: width / 2, y: height / 2) }
+    var topCenter: CGPoint { CGPoint(x: width / 2, y: 0) }
+    var bottomCenter: CGPoint { CGPoint(x: width / 2, y: height)}
+    var leftCenter: CGPoint { CGPoint(x: 0, y: height / 2) }
+    var rightCenter: CGPoint { CGPoint(x: width, y: height / 2) }
+    
+    var topLeftGlobal: CGPoint { topLeft.offset(to: originGlobal) }
+    var topRightGlobal: CGPoint { topRight.offset(to: originGlobal) }
+    var bottomLeftGlobal: CGPoint { bottomLeft.offset(to: originGlobal) }
+    var bottomRightGlobal: CGPoint { bottomRight.offset(to: originGlobal) }
+    
+    var centerGlobal: CGPoint { center.offset(to: originGlobal) }
+    var topCenterGlobal: CGPoint { topCenter.offset(to: originGlobal) }
+    var bottomCenterGlobal: CGPoint { bottomCenter.offset(to: originGlobal) }
+    var leftCenterGlobal: CGPoint { leftCenter.offset(to: originGlobal) }
+    var rightCenterGlobal: CGPoint { rightCenter.offset(to: originGlobal) }
+    
+    var naturalOrientation: CGRect.Orientation {
+        return height > width ? .vertical : .horizontal
+    }
+}
+
+extension RoundedRectProperties {
+    var origin: CGPoint { CGPoint.zero }
+    var originGlobal: CGPoint { CGPoint(x: x, y: y) }
+    var width: CGFloat { width }
+    var height: CGFloat { height }
+    
+    var majorDim: CGFloat {
+        switch orientation {
+        case .horizontal:
+            return width
+        case .vertical:
+            return height
+        }
+    }
+    
+    var minorDim: CGFloat {
+        switch orientation {
+        case .horizontal:
+            return height
+        case .vertical:
+            return width
+        }
+    }
+    
+    func scaling(factor: CGFloat) -> CGFloat {
+        if majorDim >= minorDim { return factor }
+        else { return 0.5 }
+    }
+    
+    var radius: CGFloat { scaling(factor: radiusScaling) * minDim }
+    
+    var topLeftLeft: CGPoint { CGPoint(x: 0, y: radius) }
+    var topLeftCenter: CGPoint { CGPoint(x: radius, y: radius) }
+    var topLeftRight: CGPoint { CGPoint(x: radius, y: 0) }
+    
+    var topRightLeft: CGPoint { CGPoint(x: width - radius, y: 0) }
+    var topRightCenter: CGPoint { CGPoint(x: width - radius, y: radius) }
+    var topRightRight: CGPoint { CGPoint(x: width, y: radius) }
+    
+    var bottomLeftLeft: CGPoint { CGPoint(x: 0, y: height - radius) }
+    var bottomLeftCenter: CGPoint { CGPoint(x: radius, y: height - radius) }
+    var bottomLeftRight: CGPoint { CGPoint(x: radius, y: height) }
+    
+    var bottomRightLeft: CGPoint { CGPoint(x: width - radius, y: height) }
+    var bottomRightCenter: CGPoint { CGPoint(x: width - radius, y: height - radius) }
+    var bottomRightRight: CGPoint { CGPoint(x: width, y: height - radius) }
+    
+    var center: CGPoint { CGPoint(x: width / 2, y: height / 2) }
+    
+    var topOuterCenter: CGPoint { CGPoint(x: width / 2, y: 0) }
+    var topInnerCenter: CGPoint { CGPoint(x: width / 2, y: radius) }
+    var bottomInnerCenter: CGPoint { CGPoint(x: width / 2, y: height - radius)}
+    var bottomOuterCenter: CGPoint { CGPoint(x: width / 2, y: height)}
+    var leftOuterCenter: CGPoint { CGPoint(x: 0, y: height / 2) }
+    var leftInnerCenter: CGPoint { CGPoint(x: radius, y: height / 2) }
+    var rightInnerCenter: CGPoint { CGPoint(x: width - radius, y: height / 2) }
+    var rightOuterCenter: CGPoint { CGPoint(x: width, y: height / 2) }
+    
+    var topLeftLeftGlobal: CGPoint { topLeftLeft.offset(to: originGlobal) }
+    var topLeftCenterGlobal: CGPoint { topLeftCenter.offset(to: originGlobal) }
+    var topLeftRightGlobal: CGPoint { topLeftRight.offset(to: originGlobal) }
+    
+    var topRightLeftGlobal: CGPoint { topRightLeft.offset(to: originGlobal) }
+    var topRightCenterGlobal: CGPoint { topRightCenter.offset(to: originGlobal) }
+    var topRightRightGlobal: CGPoint { topRightRight.offset(to: originGlobal) }
+    
+    var bottomLeftLeftGlobal: CGPoint { bottomLeftLeft.offset(to: originGlobal) }
+    var bottomLeftCenterGlobal: CGPoint { bottomLeftCenter.offset(to: originGlobal) }
+    var bottomLeftRightGlobal: CGPoint { bottomLeftRight.offset(to: originGlobal) }
+    
+    var bottomRightLeftGlobal: CGPoint { bottomRightLeft.offset(to: originGlobal) }
+    var bottomRightCenterGlobal: CGPoint { bottomRightCenter.offset(to: originGlobal) }
+    var bottomRightRightGlobal: CGPoint { bottomRightRight.offset(to: originGlobal) }
+    
+    
+    var centerGlobal: CGPoint { center.offset(to: originGlobal) }
+    
+    var topOuterCenterGlobal: CGPoint { topOuterCenter.offset(to: originGlobal) }
+    var topInnerCenterGlobal: CGPoint { topInnerCenter.offset(to: originGlobal) }
+    var bottomInnerCenterGlobal: CGPoint { bottomInnerCenter.offset(to: originGlobal)}
+    var bottomOuterCenterGlobal: CGPoint { bottomOuterCenter.offset(to: originGlobal)}
+    var leftOuterCenterGlobal: CGPoint { leftOuterCenter.offset(to: originGlobal) }
+    var leftInnerCenterGlobal: CGPoint { leftInnerCenter.offset(to: originGlobal) }
+    var rightInnerCenterGlobal: CGPoint { rightInnerCenter.offset(to: originGlobal) }
+    var rightOuterCenterGlobal: CGPoint { rightOuterCenter.offset(to: originGlobal) }
+    
+    var leftFlank: CGRect {
+        CGRect(
+            x: topLeftLeftGlobal.x,
+            y: topLeftLeftGlobal.y,
+            width: radius,
+            height: height - (2 * radius)
+        )
+    }
+    var rightFlank: CGRect {
+        CGRect(
+            x: topRightCenterGlobal.x,
+            y: topRightCenterGlobal.y,
+            width: radius,
+            height: height - (2 * radius)
+        )
+    }
+    var topFlank: CGRect {
+        CGRect(
+            x: topLeftRightGlobal.x,
+            y: topLeftRightGlobal.y,
+            width: width - (2 * radius),
+            height: radius
+        )
+    }
+    var bottomFlank: CGRect {
+        CGRect(
+            x: bottomLeftCenterGlobal.x,
+            y: bottomLeftCenterGlobal.y,
+            width: width - (2 * radius),
+            height: radius
+        )
+    }
+}
+
 extension CGRect {
     enum Orientation {
         case vertical
@@ -74,6 +226,11 @@ extension CGRect {
         return height > width ? .vertical : .horizontal
     }
 }
+
+extension RoundedRect {
+    
+}
+
 
 extension Path {
     
@@ -145,9 +302,9 @@ extension View {
 }
 
 extension CGRect {
-    var minDim: CGFloat {
-        min(width, height)
-    }
+    var minDim: CGFloat { min(width, height) }
+    
+    var maxDim: CGFloat { max(width, height) }
 }
 
 //#if canImport(UIKit)

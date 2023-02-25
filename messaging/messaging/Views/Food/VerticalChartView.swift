@@ -1,36 +1,32 @@
 //
-//  FoodDetailMicrosView.swift
+//  VerticalChartView.swift
 //  messaging
 //
-//  Created by Krishnaswami Rajendren on 10/23/22.
+//  Created by Krishnaswami Rajendren on 10/28/22.
 //
 
 import SwiftUI
-import Foundation
-import OrderedCollections
 
-struct HorizontalChartView: View {
-    var profileName: String
+struct VerticalChartView: View {
+    var profile: String
     @Binding var kind: Nutrients.Kind
-    
-    var profile: NutrientProfile { Profiles.dict[profileName.lowercased()]!
+    var nutrientProfile: NutrientProfile {
+        Profiles.dict[profile.lowercased()]!
     }
     
     var chart: Chart {
-        Chart(profile: profile, kind: kind, nqi: profile.nqi)
+        Chart(profile: nutrientProfile, kind: kind, nqi: nutrientProfile.nqi)
     }
     
     var body: some View {
         ZStack {
             GeometryReader { geo in
                 CardView()
-                ScrollView {
-                    VStack {
-                        itemDescription(name: chart.item, nqi: chart.nqi)
-                            .padding(.top)
-                            .padding(.horizontal)
-                        chartView(for: chart, withSize: geo.size)
-                    }
+                VStack(alignment: .center) {
+                    itemDescription(name: chart.item, nqi: chart.nqi)
+                        .padding(.top)
+                        .padding(.horizontal)
+                    chartView(for: chart, withSize: geo.size)
                 }
             }
             .padding()
@@ -39,9 +35,10 @@ struct HorizontalChartView: View {
     }
     
     fileprivate func chartView(for chart: Chart, withSize size: CGSize) -> some View {
-        return VStack {
+        VStack {
             charTitle(for: chart)
-            HStack(alignment: .center) {
+            Spacer()
+            HStack(alignment: .bottom) {
                 axisTitles(for: chart)
                     .padding(.leading, 10)
                     .frame(width: size.width/3.5, alignment: .trailing)
@@ -51,6 +48,8 @@ struct HorizontalChartView: View {
                     .foregroundColor(Colors.scoopRed)
                 bars(for: chart, withSize: size)
             }
+            .frame(height: 0.8 * Constants.Width)
+            .rotationEffect(270.degrees)
         }
     }
     
@@ -108,12 +107,37 @@ struct HorizontalChartView: View {
         VStack(alignment: .trailing) {
             Text(bar.name)
                 .font(Fonts.CardNutrient)
-            Text("(\(bar.compound))")
-                .font(Fonts.CardNutrientSubtitle)
-                .padding(.bottom, 5)
+            if chart.kind == .macro {
+                HStack {
+                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: bar.value)))
+                        .fontWeight(.black)
+                    Text("\(bar.unit)")
+                        .padding(.leading, -3)
+                }
+                    .font(Fonts.nutrientValue)
+                    .padding(.bottom, 5)
+            } else {
+                Text("(\(bar.compound))")
+                    .font(Fonts.CardNutrientSubtitle)
+                    .padding(.bottom, 5)
+            }
             Spacer()
         }
         .multilineTextAlignment(.trailing)
+    }
+    
+    fileprivate func value(forNutrient nutrient: any NutrientType, ofKind kind: Nutrients.Kind, withNQI nqi: Double) -> Double {
+        switch kind {
+        case .macro:
+            let intakes = (Profiles.profile.intakes.intakes[kind] as! MacroIntakes).intakes
+            return nqi * intakes[nutrient as! MacroIntakes.Nutrient]!
+        case .vitamin:
+            let intakes = (Profiles.profile.intakes.intakes[kind] as! VitaminIntakes).intakes
+            return nqi * intakes[nutrient as! VitaminIntakes.Nutrient]!
+        case .mineral:
+            let intakes = (Profiles.profile.intakes.intakes[kind] as! MineralIntakes).intakes
+            return nqi * intakes[nutrient as! MineralIntakes.Nutrient]!
+        }
     }
     
     fileprivate func yAxis() -> some View {
@@ -130,21 +154,20 @@ struct HorizontalChartView: View {
     }
     
     fileprivate func barView(for bar: Chart.Bar, in chart: Chart, with size: CGSize) -> some View {
-        VStack(alignment: .leading, spacing: 12){
+        VStack(alignment: .leading){
             figure(for: bar, in: chart, with: size)
             legend(for: bar)
                 .foregroundColor(Colors.scoopRed)
                 .padding(.bottom, 5)
-//            Spacer()
+            Spacer()
         }
-//        .minimumScaleFactor(0.7)
     }
     
     fileprivate func figure(for bar: Chart.Bar, in chart: Chart, with size: CGSize) -> some View {
         FlexibleRoundedRect(
             orientation: .horizontal,
             alignment: .leading,
-            scaling: bar.value < 0.6 ? 0.03 : 0.05 * (bar.value <= 18 ? bar.value : 18),
+            scaling: bar.value < 0.6 ? 0.03 : 0.08 * bar.value,
             width: chart.barWidth(for: size),
             radiusScaling: 0.4
         )
@@ -161,28 +184,31 @@ struct HorizontalChartView: View {
                 .fixedSize(horizontal: true, vertical: false)
             if bar.value >= 8 {
                 badge(kind: .nutrient, forNQI: 8)
-//                .padding(.horizontal, 5)
+                    .padding(.horizontal, 5)
             }
         }
         .foregroundColor(bar.legendColor)
-        .padding(.bottom, 5)
+        .padding(5)
     }
     
     func description(for value: Double) -> String {
-        guard value > 1 else { return String(format: "%.0f", (value * 100)) + "%" }
         switch (value - floor(value)) {
-        case 0...0.5:
+        case 0.25...0.75:
+            return String(format: "%.1fX", (floor(value) + 0.5))
+        case 0...0.25:
             return String(format: "%.0fX", floor(value))
-        case 0.5...1:
+        case 0.75...1:
             return String(format: "%.0fX", ceil(value))
         default:
-            return String(format: "%.0fX", value)
+            return String(format: "%.1fX", value)
         }
     }
 }
 
-struct HorizontalChartView_Previews: PreviewProvider {
+struct VerticalChartView_Previews: PreviewProvider {
     static var previews: some View {
-        HorizontalChartView(profileName: "sugar", kind: .constant(.mineral))
+        VerticalChartView(profile: "sugar", kind: .constant(.macro))
+//        VerticalChartView(profile: .constant("boost high protein drink"), kind: .constant(.macro))
+//        VerticalChartView(profile: .constant("sugar"), kind: .constant(.macro))
     }
 }

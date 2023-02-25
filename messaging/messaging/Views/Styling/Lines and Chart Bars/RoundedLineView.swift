@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-struct RoundedLine: View {
+struct RoundedLineView: View {
     var line: CGRect
     var orientation: CGRect.Orientation
-//    var orientation: CGRect.Orientation {
-//        line.orientation
-//    }
+    
     var radius: CGFloat {
         switch orientation {
         case .vertical:
@@ -21,6 +19,7 @@ struct RoundedLine: View {
             return line.height/2
         }
     }
+    
     var body: some View {
         ZStack {
             Line(line: line)
@@ -31,6 +30,6 @@ struct RoundedLine: View {
 
 struct RoundedLine_Previews: PreviewProvider {
     static var previews: some View {
-        RoundedLine(line: CGRect(x: 100, y: 0, width: 30, height: 10), orientation: .vertical)
+        RoundedLineView(line: CGRect(x: 100, y: 0, width: 30, height: 10), orientation: .vertical)
     }
 }

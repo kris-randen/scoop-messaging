@@ -138,6 +138,14 @@ struct SignInView: View {
         }
     }
     
+    fileprivate func signInButton() -> some View {
+        Button {
+            //
+        } label: {
+            signInButtonLabel()
+        }
+    }
+    
     fileprivate func signInButtonLabel(with shape: Modifiers.Shapes = Shapes.textField) -> some View {
         Text(isSignInScreen ? "Sign in" : "Sign up")
             .foregroundColor(Colors.scoopRed)
@@ -263,14 +271,6 @@ struct SignInView: View {
         HStack {
             Spacer()
             forgotPasswordButton()
-        }
-    }
-    
-    fileprivate func signInButton() -> some View {
-        Button {
-            //
-        } label: {
-            signInButtonLabel()
         }
     }
 }
