@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 
 struct Demography {
     enum AgeGroup: Equatable, Codable {
@@ -102,8 +102,10 @@ protocol Addressable: Nameable, Emailable, Callable, Imageable {
     var address: Address { get set }
 }
 
-struct User: Equatable, Identifiable, Codable, Addressable, Birthable, Demographable {
-    @DocumentID var id: String?
+//struct User: Equatable, Identifiable, Codable, Addressable, Birthable, Demographable {
+    
+struct User: Equatable, Codable, Addressable, Birthable, Demographable {
+//    @DocumentID var id: String?
     
     var username: String
     var firstname: String

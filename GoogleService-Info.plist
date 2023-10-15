@@ -19,15 +19,15 @@
 	<key>STORAGE_BUCKET</key>
 	<string>scoop-messaging.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<false/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<false/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:914316582274:ios:0c1c77d73938323e43839b</string>
 </dict>

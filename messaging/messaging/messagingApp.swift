@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import Firebase
+//import Firebase
 
 @main
 struct messagingApp: App {
     
     init() {
-        FirebaseApp.configure()
+//        FirebaseApp.configure()
     }
     
     var body: some Scene {
