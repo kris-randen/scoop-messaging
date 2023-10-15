@@ -8,6 +8,7 @@
 import Foundation
 import Collections
 import OrderedCollections
+import InstantSearchCore
 
 enum Level: CaseIterable, Codable, Equatable {
     case ai
@@ -181,6 +182,7 @@ protocol NutrientProfileable {
     var description: String { get }
     var type: NutrientValueType { get }
     var intakes: Intakeables { get }
+    var serving: any Serveable { get }
     
     var nqi: Double { get }
 }
@@ -199,6 +201,7 @@ struct NutrientProfile: NutrientProfileable {
     var intakes: Intakeables
     var description: String
     var type: NutrientValueType
+    var serving: any Serveable = MassServing(unit: .gm, value: 100)
 }
 
 struct NutrientProfileServed: ServeableNutrientProfile {

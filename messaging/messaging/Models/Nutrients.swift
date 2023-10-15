@@ -11,6 +11,10 @@ protocol Nourishment: Codable, Hashable {
     
 }
 
+protocol FDCable: Codable, Hashable {
+    var fdcID: Int { get }
+}
+
 protocol Measured: Codable, Hashable {
     var value: Double   { get set }
     var unit: Unit.Mass { get set }
@@ -155,7 +159,47 @@ struct Nutrients {
         }
     }
     
-    enum Macro: String, CaseIterable, NutrientType {
+    static let FDCmap: [Int: any NutrientType] = [
+        1003: Nutrients.Macro.protein,
+        1004: Nutrients.Macro.fats,
+        1005: Nutrients.Macro.carbs,
+        1235: Nutrients.Macro.sugar,
+        2033: Nutrients.Macro.fiber,
+        
+        1106: Nutrients.Micro.Vitamin.a,
+        1162: Nutrients.Micro.Vitamin.c,
+        1114: Nutrients.Micro.Vitamin.d,
+        1109: Nutrients.Micro.Vitamin.e,
+        1185: Nutrients.Micro.Vitamin.k,
+        1165: Nutrients.Micro.Vitamin.b1,
+        1166: Nutrients.Micro.Vitamin.b2,
+        1167: Nutrients.Micro.Vitamin.b3,
+        1180: Nutrients.Micro.Vitamin.b4,
+        1170: Nutrients.Micro.Vitamin.b5,
+        1175: Nutrients.Micro.Vitamin.b6,
+        1176: Nutrients.Micro.Vitamin.b7,
+        1177: Nutrients.Micro.Vitamin.b9,
+        1178: Nutrients.Micro.Vitamin.b12,
+        
+        1087: Nutrients.Micro.Mineral.Ca,
+        1088: Nutrients.Micro.Mineral.Cl,
+        1089: Nutrients.Micro.Mineral.Fe,
+        1090: Nutrients.Micro.Mineral.Mg,
+        1091: Nutrients.Micro.Mineral.P,
+        1092: Nutrients.Micro.Mineral.K,
+        1093: Nutrients.Micro.Mineral.Na,
+        1094: Nutrients.Micro.Mineral.S,
+        1095: Nutrients.Micro.Mineral.Zn,
+        1096: Nutrients.Micro.Mineral.Cr,
+        1098: Nutrients.Micro.Mineral.Cu,
+        1099: Nutrients.Micro.Mineral.F,
+        1100: Nutrients.Micro.Mineral.I,
+        1101: Nutrients.Micro.Mineral.Mn,
+        1102: Nutrients.Micro.Mineral.Mo,
+        1103: Nutrients.Micro.Mineral.Se
+    ]
+    
+    enum Macro: String, CaseIterable, NutrientType, FDCable {
         case energy = "Energy"
         case water = "Water"
         case carbs = "Carbs"
@@ -208,6 +252,25 @@ struct Nutrients {
         
         var compound: String { "" }
         
+        var fdcID: Int {
+            switch self {
+            case .protein:
+                return 1003
+            case .fats:
+                return 1004
+            case .carbs:
+                return 1005
+            case .energy:
+                return 1008
+            case .sugar:
+                return 1235
+            case .fiber:
+                return 2033
+            default:
+                return -1
+            }
+        }
+        
         enum Sugar: Glycemic, CaseIterable, NutrientType {
             case sucrose
             case glucose
@@ -253,13 +316,29 @@ struct Nutrients {
             var compound: String { "" }
             var unit: Unit.Mass { .gm }
         }
+        
+        enum Fat: CaseIterable, NutrientType {
+            case sfa
+            case mufa
+            case pufa
+            case trans
+            case cholesterol
+            
+            var name: String { "" }
+            
+            var compound: String { "" }
+            
+            var unit: Unit.Mass { .gm }
+            
+            var fdcID: Int { 1 }
+        }
     }
     
     typealias Micrograms = Double
     typealias Milligrams = Double
     
     enum Micro: CaseIterable {
-        enum Vitamin: CaseIterable, NutrientType {
+        enum Vitamin: CaseIterable, NutrientType, FDCable {
             case a      //(total: Micrograms, retinol: Micrograms? = nil, betaCarotene: Micrograms? = nil)
             case b1     //(thiamin: Milligrams)
             case b2     //(riboflavin: Milligrams)
@@ -350,12 +429,47 @@ struct Nutrients {
                 }
             }
             
+            var fdcID: Int {
+                switch self {
+                case .a:
+                    return 1106
+                case .c:
+                    return 1162
+                case .d:
+                    return 1114
+                case .e:
+                    return 1109
+                case .k:
+                    return 1185
+                case .b1:
+                    return 1165
+                case .b2:
+                    return 1166
+                case .b3:
+                    return 1167
+                case .b4:
+                    return 1180
+                case .b5:
+                    return 1170
+                case .b6:
+                    return 1175
+                case .b7:
+                    return 1176
+                case .b9:
+                    return 1177
+                case .b12:
+                    return 1178
+                default:
+                    return -1
+                }
+            }
+            
             func DRI(nutrient: Nutrients.Micro.Vitamin, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
                 0
             }
         }
         
-        enum Mineral: CaseIterable, NutrientType {
+        enum Mineral: CaseIterable, NutrientType, FDCable {
             case Ca
             case Cl
             case Cr
@@ -368,13 +482,14 @@ struct Nutrients {
             case Mo
             case P
             case K
+            case S
             case Se
             case Na
             case Zn
             
             var unit: Unit.Mass {
                 switch self {
-                case .Ca, .F, .Fe, .Mg, .Mn, .P, .Zn, .K, .Na:
+                case .Ca, .F, .Fe, .Mg, .Mn, .P, .Zn, .K, .Na, .S:
                     return .mg
                 case .Cr, .Cu, .I, .Mo, .Se:
                     return .ug
@@ -409,6 +524,8 @@ struct Nutrients {
                     return Constants.Nutrients.Name.iodine
                 case .K:
                     return Constants.Nutrients.Name.potassium
+                case .S:
+                    return Constants.Nutrients.Name.sulfur
                 case .Se:
                     return Constants.Nutrients.Name.selenium
                 case .Na:
@@ -444,12 +561,53 @@ struct Nutrients {
                     return Constants.Nutrients.Compound.phosphorous
                 case .K:
                     return Constants.Nutrients.Compound.potassium
+                case .S:
+                    return Constants.Nutrients.Compound.sulfur
                 case .Se:
                     return Constants.Nutrients.Compound.selenium
                 case .Na:
                     return Constants.Nutrients.Compound.sodium
                 case .Zn:
                     return Constants.Nutrients.Compound.zinc
+                }
+            }
+            
+            var fdcID: Int {
+                switch self {
+                case .Ca:
+                    return 1087
+                case .Cl:
+                    return 1088
+                case .Fe:
+                    return 1089
+                case .Mg:
+                    return 1090
+                case .P:
+                    return 1091
+                case .K:
+                    return 1092
+                case .Na:
+                    return 1093
+                case .S:
+                    return 1094
+                case .Zn:
+                    return 1095
+                case .Cr:
+                    return 1096
+                case .Cu:
+                    return 1098
+                case .F:
+                    return 1099
+                case .I:
+                    return 1100
+                case .Mn:
+                    return 1101
+                case .Mo:
+                    return 1102
+                case .Se:
+                    return 1103
+                default:
+                    return -1
                 }
             }
             

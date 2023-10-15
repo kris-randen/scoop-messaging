@@ -36,6 +36,8 @@
 		EE4042E02904CA6F005714A9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EE4042DF2904CA6F005714A9 /* FirebaseStorage */; };
 		EE4042E22904CCD4005714A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */; };
 		EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4B61AA2909EF89004E50E3 /* Chart.swift */; };
+		EE55CB6629B0BD4800634CB4 /* FDCresponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55CB6529B0BD4800634CB4 /* FDCresponse.swift */; };
+		EE55CB6829B0BE4D00634CB4 /* FDCService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55CB6729B0BE4D00634CB4 /* FDCService.swift */; };
 		EE5623FC290E373E00C17B20 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */; };
 		EE5623FF290E39D400C17B20 /* AlgoliaSetupExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */; };
 		EE7B1864290C2D1B006C20EA /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1863290C2D1B006C20EA /* BadgeView.swift */; };
@@ -59,6 +61,7 @@
 		EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3D2905A88B006C86AD /* Nutrients.swift */; };
 		EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */; };
 		EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */; };
+		EEB017CF29AF7DD500B4E4E1 /* AlgoliaSearchClient in Frameworks */ = {isa = PBXBuildFile; productRef = EEB017CE29AF7DD500B4E4E1 /* AlgoliaSearchClient */; };
 		EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC26E8B2904A50D002BCF97 /* ProfileView.swift */; };
 		EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */; };
 		EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */; };
@@ -90,6 +93,8 @@
 		EE320D2D290364BF0083FF2D /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE4B61AA2909EF89004E50E3 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
+		EE55CB6529B0BD4800634CB4 /* FDCresponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCresponse.swift; sourceTree = "<group>"; };
+		EE55CB6729B0BE4D00634CB4 /* FDCService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCService.swift; sourceTree = "<group>"; };
 		EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSetupExample.swift; sourceTree = "<group>"; };
 		EE7B1863290C2D1B006C20EA /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		EE7B1865290C2D5B006C20EA /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
@@ -124,6 +129,7 @@
 				EE96A183290747D3005E10DB /* Collections in Frameworks */,
 				EE320D262902E9A00083FF2D /* Kingfisher in Frameworks */,
 				EE4042D82904CA6F005714A9 /* FirebaseAuth in Frameworks */,
+				EEB017CF29AF7DD500B4E4E1 /* AlgoliaSearchClient in Frameworks */,
 				EE4042DE2904CA6F005714A9 /* FirebaseMessaging in Frameworks */,
 				EE4042DA2904CA6F005714A9 /* FirebaseFirestoreSwift in Frameworks */,
 				EE96A187290747D3005E10DB /* OrderedCollections in Frameworks */,
@@ -191,6 +197,7 @@
 		EE2C776729026AB200D9FE84 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				EE55CB6729B0BE4D00634CB4 /* FDCService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 				EE4B61AA2909EF89004E50E3 /* Chart.swift */,
 				EE0AFF59290A88F700C5B899 /* RoundedRect.swift */,
 				EE7B1865290C2D5B006C20EA /* Badge.swift */,
+				EE55CB6529B0BD4800634CB4 /* FDCresponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -328,6 +336,7 @@
 				EE96A184290747D3005E10DB /* DequeModule */,
 				EE96A186290747D3005E10DB /* OrderedCollections */,
 				EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */,
+				EEB017CE29AF7DD500B4E4E1 /* AlgoliaSearchClient */,
 			);
 			productName = messaging;
 			productReference = EE2C774C2902689E00D9FE84 /* messaging.app */;
@@ -362,6 +371,7 @@
 				EE4042D62904CA6E005714A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */,
 				EE5623FA290E373E00C17B20 /* XCRemoteSwiftPackageReference "instantsearch-ios" */,
+				EEB017CD29AF7DD500B4E4E1 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */,
 			);
 			productRefGroup = EE2C774D2902689E00D9FE84 /* Products */;
 			projectDirPath = "";
@@ -391,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */,
+				EE55CB6829B0BE4D00634CB4 /* FDCService.swift in Sources */,
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
@@ -414,6 +425,7 @@
 				EE0AFF62290ACE8900C5B899 /* RoundedRectTopLeftCap.swift in Sources */,
 				EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */,
 				EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */,
+				EE55CB6629B0BD4800634CB4 /* FDCresponse.swift in Sources */,
 				EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */,
 				EE320D2C290313C80083FF2D /* Extensions.swift in Sources */,
 				EE97DD3C290599B6006C86AD /* CardView.swift in Sources */,
@@ -671,6 +683,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		EEB017CD29AF7DD500B4E4E1 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/algolia/algoliasearch-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -723,6 +743,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		EEB017CE29AF7DD500B4E4E1 /* AlgoliaSearchClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EEB017CD29AF7DD500B4E4E1 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */;
+			productName = AlgoliaSearchClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

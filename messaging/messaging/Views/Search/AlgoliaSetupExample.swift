@@ -25,9 +25,11 @@ class AlgoliaController {
     
     init() {
         self.searcher = HitsSearcher(
-            appID: "latency",
-            apiKey:"1f6fd3a6fb973cb08419fe7d288fa4db",
-            indexName: "bestbuy")
+            appID: "1IVHD013XT",
+            apiKey:"7a4b938353c09132f6cb45d55ef58cf4",
+            indexName: "scoop_raw_foods")
+        let client = SearchClient(appID: "1IVHD013XT", apiKey: "YourWriteAPIKey")
+        let index = client.index(withName: "your_index_name")
         self.searchBoxInteractor = .init()
         self.searchBoxController = .init()
         self.hitsInteractor = .init()

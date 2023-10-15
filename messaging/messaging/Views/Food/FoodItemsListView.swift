@@ -68,7 +68,7 @@ struct FoodItemsListView: View {
             Text("").foregroundColor(Colors.scoopRedPlaceholder)
         }
         .foregroundColor(Colors.scoopRed)
-        .disableAutocorrection(true)
+//        .disableAutocorrection(true)
         .textInputAutocapitalization(.never)
         .textFieldify(heightScaling: Dimensions.HeightScaling.textField)
         .font(Fonts.signInTextField)

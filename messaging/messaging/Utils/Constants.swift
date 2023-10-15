@@ -99,6 +99,7 @@ struct Constants {
             static let phosphorous = "Mineral P"
             static let potassium = "Mineral K"
             static let selenium = "Mineral Se"
+            static let sulfur = "Sulfur, S"
             static let sodium = "Mineral Na"
             static let zinc = "Mineral Zn"
             
@@ -149,6 +150,7 @@ struct Constants {
             static let phosphorous = "Phosphorous"
             static let potassium = "Potassium"
             static let selenium = "Selenium"
+            static let sulfur = "Sulfur"
             static let sodium = "Sodium"
             static let zinc = "Zinc"
         }
