@@ -41,8 +41,18 @@ struct FoodItemsListView: View {
         .accentColor(Colors.scoopRed)
     }
     
+    fileprivate func abc(barcode: String) {
+        print("hello")
+    }
+    
     fileprivate func valid(item name: String) -> Bool {
         Profiles.dict.contains{$0.key == name}
+//        do {
+//            try await FDCService().getNutrients(for: text)
+//        }
+//        catch {
+//            print("haha")
+//        }
     }
     
     fileprivate func signInButton() -> some View {

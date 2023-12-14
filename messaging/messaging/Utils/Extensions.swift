@@ -15,6 +15,11 @@ extension OrderedDictionary where Value: Comparable {
     var ascending:  [(key: Key, value: Value)]  { sorted { $0.value < $1.value} }
 }
 
+extension OrderedDictionary where Key: Comparable {
+    var keyAscending: [(key: Key, value: Value)] { sorted { $0.key < $1.key } }
+    var keyDescending: [(key: Key, value: Value)] { sorted { $0.key > $1.key } }
+}
+
 extension Int {
     var double: Double { Double(self) }
     

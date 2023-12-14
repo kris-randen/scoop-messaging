@@ -29,15 +29,23 @@
 		EE320D2A2903137C0083FF2D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D292903137C0083FF2D /* Constants.swift */; };
 		EE320D2C290313C80083FF2D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D2B290313C80083FF2D /* Extensions.swift */; };
 		EE320D2E290364BF0083FF2D /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE320D2D290364BF0083FF2D /* Shapes.swift */; };
+		EE3FEB3F2B28746A0081E17A /* FDCFoodDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3FEB3E2B28746A0081E17A /* FDCFoodDataResponse.swift */; };
+		EE3FEB412B2874B00081E17A /* FDCFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3FEB402B2874B00081E17A /* FDCFood.swift */; };
+		EE3FEB432B2874D90081E17A /* FDCfoodNutrientIntake.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3FEB422B2874D90081E17A /* FDCfoodNutrientIntake.swift */; };
+		EE3FEB452B28755B0081E17A /* FDCService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3FEB442B28755B0081E17A /* FDCService.swift */; };
 		EE4042E22904CCD4005714A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */; };
 		EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4B61AA2909EF89004E50E3 /* Chart.swift */; };
-		EE55CB6629B0BD4800634CB4 /* FDCresponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55CB6529B0BD4800634CB4 /* FDCresponse.swift */; };
-		EE55CB6829B0BE4D00634CB4 /* FDCService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55CB6729B0BE4D00634CB4 /* FDCService.swift */; };
-		EE5623FC290E373E00C17B20 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */; };
-		EE5623FF290E39D400C17B20 /* AlgoliaSetupExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */; };
 		EE7B1864290C2D1B006C20EA /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1863290C2D1B006C20EA /* BadgeView.swift */; };
 		EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1865290C2D5B006C20EA /* Badge.swift */; };
 		EE7B1868290C4875006C20EA /* VerticalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1867290C4875006C20EA /* VerticalChartView.swift */; };
+		EE9690212B2AD80F006A30DC /* FDCnutrientsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690202B2AD80F006A30DC /* FDCnutrientsMapper.swift */; };
+		EE9690232B2ADAF5006A30DC /* FDCfoodNutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690222B2ADAF5006A30DC /* FDCfoodNutrient.swift */; };
+		EE9690252B2B0B5D006A30DC /* FDCUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690242B2B0B5D006A30DC /* FDCUnits.swift */; };
+		EE9690272B2B0C54006A30DC /* FDCMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690262B2B0C54006A30DC /* FDCMeasure.swift */; };
+		EE9690292B2B20B8006A30DC /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690282B2B20B8006A30DC /* Units.swift */; };
+		EE96902D2B2B21ED006A30DC /* Measures.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96902C2B2B21ED006A30DC /* Measures.swift */; };
+		EE96902F2B2B28CC006A30DC /* NutrientIntakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96902E2B2B28CC006A30DC /* NutrientIntakes.swift */; };
+		EE9690312B2B2965006A30DC /* NutrientProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690302B2B2965006A30DC /* NutrientProfile.swift */; };
 		EE96A17A2906DE89005E10DB /* RoundedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A1792906DE89005E10DB /* RoundedLineView.swift */; };
 		EE96A17C29071B8C005E10DB /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17B29071B8C005E10DB /* Line.swift */; };
 		EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE96A17D29071CE9005E10DB /* LineCaps.swift */; };
@@ -56,7 +64,6 @@
 		EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3D2905A88B006C86AD /* Nutrients.swift */; };
 		EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */; };
 		EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */; };
-		EEB017CF29AF7DD500B4E4E1 /* AlgoliaSearchClient in Frameworks */ = {isa = PBXBuildFile; productRef = EEB017CE29AF7DD500B4E4E1 /* AlgoliaSearchClient */; };
 		EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC26E8B2904A50D002BCF97 /* ProfileView.swift */; };
 		EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */; };
 		EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */; };
@@ -86,14 +93,23 @@
 		EE320D292903137C0083FF2D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EE320D2B290313C80083FF2D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EE320D2D290364BF0083FF2D /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		EE3FEB3E2B28746A0081E17A /* FDCFoodDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCFoodDataResponse.swift; sourceTree = "<group>"; };
+		EE3FEB402B2874B00081E17A /* FDCFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCFood.swift; sourceTree = "<group>"; };
+		EE3FEB422B2874D90081E17A /* FDCfoodNutrientIntake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCfoodNutrientIntake.swift; sourceTree = "<group>"; };
+		EE3FEB442B28755B0081E17A /* FDCService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCService.swift; sourceTree = "<group>"; };
 		EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE4B61AA2909EF89004E50E3 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
-		EE55CB6529B0BD4800634CB4 /* FDCresponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCresponse.swift; sourceTree = "<group>"; };
-		EE55CB6729B0BE4D00634CB4 /* FDCService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCService.swift; sourceTree = "<group>"; };
-		EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSetupExample.swift; sourceTree = "<group>"; };
 		EE7B1863290C2D1B006C20EA /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		EE7B1865290C2D5B006C20EA /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		EE7B1867290C4875006C20EA /* VerticalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalChartView.swift; sourceTree = "<group>"; };
+		EE9690202B2AD80F006A30DC /* FDCnutrientsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCnutrientsMapper.swift; sourceTree = "<group>"; };
+		EE9690222B2ADAF5006A30DC /* FDCfoodNutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCfoodNutrient.swift; sourceTree = "<group>"; };
+		EE9690242B2B0B5D006A30DC /* FDCUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCUnits.swift; sourceTree = "<group>"; };
+		EE9690262B2B0C54006A30DC /* FDCMeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCMeasure.swift; sourceTree = "<group>"; };
+		EE9690282B2B20B8006A30DC /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		EE96902C2B2B21ED006A30DC /* Measures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measures.swift; sourceTree = "<group>"; };
+		EE96902E2B2B28CC006A30DC /* NutrientIntakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientIntakes.swift; sourceTree = "<group>"; };
+		EE9690302B2B2965006A30DC /* NutrientProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientProfile.swift; sourceTree = "<group>"; };
 		EE96A1792906DE89005E10DB /* RoundedLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLineView.swift; sourceTree = "<group>"; };
 		EE96A17B29071B8C005E10DB /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		EE96A17D29071CE9005E10DB /* LineCaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCaps.swift; sourceTree = "<group>"; };
@@ -120,10 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE5623FC290E373E00C17B20 /* InstantSearchSwiftUI in Frameworks */,
 				EE96A183290747D3005E10DB /* Collections in Frameworks */,
 				EE320D262902E9A00083FF2D /* Kingfisher in Frameworks */,
-				EEB017CF29AF7DD500B4E4E1 /* AlgoliaSearchClient in Frameworks */,
 				EE96A187290747D3005E10DB /* OrderedCollections in Frameworks */,
 				EE96A185290747D3005E10DB /* DequeModule in Frameworks */,
 			);
@@ -187,7 +201,7 @@
 		EE2C776729026AB200D9FE84 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				EE55CB6729B0BE4D00634CB4 /* FDCService.swift */,
+				EE3FEB442B28755B0081E17A /* FDCService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -214,13 +228,17 @@
 		EE2C776A29026AD100D9FE84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EE97DD35290553FA006C86AD /* User.swift */,
+				EE9690282B2B20B8006A30DC /* Units.swift */,
+				EE96902C2B2B21ED006A30DC /* Measures.swift */,
 				EE97DD3D2905A88B006C86AD /* Nutrients.swift */,
+				EE96902E2B2B28CC006A30DC /* NutrientIntakes.swift */,
+				EE9690302B2B2965006A30DC /* NutrientProfile.swift */,
 				EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */,
 				EE4B61AA2909EF89004E50E3 /* Chart.swift */,
 				EE0AFF59290A88F700C5B899 /* RoundedRect.swift */,
 				EE7B1865290C2D5B006C20EA /* Badge.swift */,
-				EE55CB6529B0BD4800634CB4 /* FDCresponse.swift */,
+				EE97DD35290553FA006C86AD /* User.swift */,
+				EE3FEB462B2875990081E17A /* FDC */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,10 +264,23 @@
 			path = Styling;
 			sourceTree = "<group>";
 		};
+		EE3FEB462B2875990081E17A /* FDC */ = {
+			isa = PBXGroup;
+			children = (
+				EE3FEB3E2B28746A0081E17A /* FDCFoodDataResponse.swift */,
+				EE3FEB402B2874B00081E17A /* FDCFood.swift */,
+				EE3FEB422B2874D90081E17A /* FDCfoodNutrientIntake.swift */,
+				EE9690222B2ADAF5006A30DC /* FDCfoodNutrient.swift */,
+				EE9690202B2AD80F006A30DC /* FDCnutrientsMapper.swift */,
+				EE9690242B2B0B5D006A30DC /* FDCUnits.swift */,
+				EE9690262B2B0C54006A30DC /* FDCMeasure.swift */,
+			);
+			path = FDC;
+			sourceTree = "<group>";
+		};
 		EE5623FD290E39BB00C17B20 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				EE5623FE290E39D400C17B20 /* AlgoliaSetupExample.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -320,8 +351,6 @@
 				EE96A182290747D3005E10DB /* Collections */,
 				EE96A184290747D3005E10DB /* DequeModule */,
 				EE96A186290747D3005E10DB /* OrderedCollections */,
-				EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */,
-				EEB017CE29AF7DD500B4E4E1 /* AlgoliaSearchClient */,
 			);
 			productName = messaging;
 			productReference = EE2C774C2902689E00D9FE84 /* messaging.app */;
@@ -353,10 +382,7 @@
 			mainGroup = EE2C77432902689E00D9FE84;
 			packageReferences = (
 				EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				EE4042D62904CA6E005714A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */,
-				EE5623FA290E373E00C17B20 /* XCRemoteSwiftPackageReference "instantsearch-ios" */,
-				EEB017CD29AF7DD500B4E4E1 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */,
 			);
 			productRefGroup = EE2C774D2902689E00D9FE84 /* Products */;
 			projectDirPath = "";
@@ -386,19 +412,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */,
-				EE55CB6829B0BE4D00634CB4 /* FDCService.swift in Sources */,
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
+				EE96902D2B2B21ED006A30DC /* Measures.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
 				EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */,
+				EE3FEB452B28755B0081E17A /* FDCService.swift in Sources */,
 				EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */,
 				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
 				EE96A17C29071B8C005E10DB /* Line.swift in Sources */,
 				EE97DD34290553B9006C86AD /* FoodItemsListView.swift in Sources */,
 				EE320D232902E9320083FF2D /* Labels.swift in Sources */,
 				EE97DD3829058FE7006C86AD /* VerticalLine.swift in Sources */,
+				EE9690252B2B0B5D006A30DC /* FDCUnits.swift in Sources */,
 				EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */,
 				EE320D28290313390083FF2D /* ViewModifiers.swift in Sources */,
+				EE9690312B2B2965006A30DC /* NutrientProfile.swift in Sources */,
+				EE3FEB432B2874D90081E17A /* FDCfoodNutrientIntake.swift in Sources */,
+				EE96902F2B2B28CC006A30DC /* NutrientIntakes.swift in Sources */,
 				EE320D1829029CF70083FF2D /* SignInView.swift in Sources */,
 				EE97DD36290553FA006C86AD /* User.swift in Sources */,
 				EE320D2A2903137C0083FF2D /* Constants.swift in Sources */,
@@ -410,7 +441,6 @@
 				EE0AFF62290ACE8900C5B899 /* RoundedRectTopLeftCap.swift in Sources */,
 				EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */,
 				EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */,
-				EE55CB6629B0BD4800634CB4 /* FDCresponse.swift in Sources */,
 				EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */,
 				EE320D2C290313C80083FF2D /* Extensions.swift in Sources */,
 				EE97DD3C290599B6006C86AD /* CardView.swift in Sources */,
@@ -418,17 +448,22 @@
 				EE0AFF5E290A90BB00C5B899 /* RoundedRectCaps.swift in Sources */,
 				EE97DD2E2905538B006C86AD /* HorizontalChartView.swift in Sources */,
 				EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */,
+				EE9690292B2B20B8006A30DC /* Units.swift in Sources */,
 				EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */,
 				EE0AFF66290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift in Sources */,
 				EE7B1868290C4875006C20EA /* VerticalChartView.swift in Sources */,
+				EE9690212B2AD80F006A30DC /* FDCnutrientsMapper.swift in Sources */,
 				EE97DD3A2905967D006C86AD /* HorizontalLine.swift in Sources */,
 				EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */,
+				EE3FEB3F2B28746A0081E17A /* FDCFoodDataResponse.swift in Sources */,
+				EE3FEB412B2874B00081E17A /* FDCFood.swift in Sources */,
 				EE96A17A2906DE89005E10DB /* RoundedLineView.swift in Sources */,
 				EE0AFF5C290A8E3700C5B899 /* Protocols.swift in Sources */,
 				EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */,
 				EE320D2E290364BF0083FF2D /* Shapes.swift in Sources */,
-				EE5623FF290E39D400C17B20 /* AlgoliaSetupExample.swift in Sources */,
 				EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */,
+				EE9690232B2ADAF5006A30DC /* FDCfoodNutrient.swift in Sources */,
+				EE9690272B2B0C54006A30DC /* FDCMeasure.swift in Sources */,
 				EE0AFF60290ACD6B00C5B899 /* RoundedRectTopRightCap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,36 +679,12 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		EE4042D62904CA6E005714A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-		EE5623FA290E373E00C17B20 /* XCRemoteSwiftPackageReference "instantsearch-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/algolia/instantsearch-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		EEB017CD29AF7DD500B4E4E1 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/algolia/algoliasearch-client-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -683,11 +694,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		EE5623FB290E373E00C17B20 /* InstantSearchSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EE5623FA290E373E00C17B20 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchSwiftUI;
 		};
 		EE96A182290747D3005E10DB /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -703,11 +709,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
-		};
-		EEB017CE29AF7DD500B4E4E1 /* AlgoliaSearchClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EEB017CD29AF7DD500B4E4E1 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */;
-			productName = AlgoliaSearchClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

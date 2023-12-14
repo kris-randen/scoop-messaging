@@ -17,26 +17,28 @@ protocol FDCable: Codable, Hashable {
 
 protocol Measured: Codable, Hashable {
     var value: Double   { get set }
-    var unit: Unit.Mass { get set }
+    var unit: Units.Mass { get set }
 }
 
 struct Value: Measured {
     var value: Double
-    var unit: Unit.Mass
+    var unit: Units.Mass
 }
 
-protocol NutrientType: Codable, Hashable, Equatable {
+protocol NutrientType: Comparable, Codable, Hashable, Equatable {
     var name: String { get }
     var compound: String { get }
-    var unit: Unit.Mass { get }
-    
-    static func ==(lhs: Self, rhs: Self) -> Bool
+    var unit: Units.Mass { get }
+    var compareKey: Int8 { get }
 }
 
 extension NutrientType {
     var required: Bool { Nutrients.required.contains(nutrient: self) }
     var nqiMultiplier: Double { required ? 1 : -1 }
     static func ==(lhs: Self, rhs: Self) -> Bool { lhs.name == rhs.name }
+    static func < (lhs: Self, rhs: Self) -> Bool {
+        return lhs.compareKey < rhs.compareKey
+    }
 }
 
 extension Array where Element == any NutrientType {
@@ -45,83 +47,8 @@ extension Array where Element == any NutrientType {
     }
 }
 
-protocol Measureable {}
-
-enum Unit {
-    enum Mass: Int8, Measureable, Interconvertible, Codable, Hashable {
-        case pg = 0
-        case ng = 3
-        case ug = 6
-        case mg = 9
-        case gm = 12
-        case kg = 15
-        
-        var description: String {
-            switch self {
-            case .pg:
-                return "pg"
-            case .ng:
-                return "ng"
-            case .ug:
-                return "ug"
-            case .mg:
-                return "mg"
-            case .gm:
-                return "gm"
-            case .kg:
-                return "kg"
-            }
-        }
-        
-        func conversionExp(from: Unit.Mass, to: Unit.Mass) -> Int8 {
-            from.rawValue - to.rawValue
-        }
-    }
-    
-    enum Length: Int8, Measureable, Interconvertible, Codable, Hashable {
-        case pm = 0
-        case ag = 2
-        case nm = 3
-        case um = 6
-        case mm = 9
-        case cm = 10
-        case m = 12
-        case km = 15
-        
-        func conversionExp(from: Unit.Length, to: Unit.Length) -> Int8 {
-            from.rawValue - to.rawValue
-        }
-    }
-    
-    enum Volume: Int8, Measureable, Interconvertible, Codable, Hashable {
-        case pl = 0
-        case nl = 3
-        case ul = 6
-        case ml = 9
-        case cl = 10
-        case dl = 11
-        case l = 12
-        case kl = 15
-        
-        func conversionExp(from: Unit.Volume, to: Unit.Volume) -> Int8 {
-            from.rawValue - to.rawValue
-        }
-    }
-    
-    enum Ratio: Interconvertible, Codable, Hashable {
-        case density(mass: Mass, volume: Volume)
-        
-        var logBase: Int8 {
-            switch self {
-            case .density(let mass, let volume):
-                return mass.rawValue - volume.rawValue
-            }
-        }
-        
-        func conversionExp(from: Unit.Ratio, to: Unit.Ratio) -> Int8 {
-            from.logBase - to.logBase
-        }
-    }
+protocol Glycemic {
+    var glycemicIndex: UInt { get }
 }
 
 struct Nutrients {
@@ -134,12 +61,9 @@ struct Nutrients {
         
         var chartTitle: (title: String, subtitle: String) {
             switch self {
-            case .macro:
-                return ("Macros", "Carbs, Protein, Fat")
-            case .vitamin:
-                return ("Micros", "Vitamin")
-            case .mineral:
-                return ("Micros", "Mineral")
+            case .macro: ("Macros", "Carbs, Protein, Fat")
+            case .vitamin: ("Micros", "Vitamin")
+            case .mineral: ("Micros", "Mineral")
             }
         }
         
@@ -149,12 +73,9 @@ struct Nutrients {
         
         func toggle() -> Kind {
             switch self {
-            case .vitamin:
-                return .mineral
-            case .mineral:
-                return .macro
-            case .macro:
-                return .vitamin
+            case .vitamin: .mineral
+            case .mineral: .macro
+            case .macro: .vitamin
             }
         }
     }
@@ -199,54 +120,43 @@ struct Nutrients {
         1103: Nutrients.Micro.Mineral.Se
     ]
     
-    enum Macro: String, CaseIterable, NutrientType, FDCable {
-        case energy = "Energy"
-        case water = "Water"
-        case carbs = "Carbs"
-        case sugar = "Sugar"
-        case fiber = "Fiber"
-        case fats = "Fats"
-        case saturatedFat = "Saturated Fat"
-        case transFat = "Trans Fat"
-        case cholesterol = "Cholesterol"
-        case linoleicAcid = "Linoleic Acid"
-        case aLinoleicAcid = "Alpha Linoleic Acid"
-        case protein = "Protein"
+    enum Macro: Int8, CaseIterable, NutrientType, FDCable {
+        case energy
+        case water
+        case carbs
+        case sugar
+        case fiber
+        case fats
+        case saturatedFat
+        case transFat
+        case cholesterol
+        case linoleicAcid
+        case aLinoleicAcid
+        case protein
+        
+        var compareKey: Int8 { return self.rawValue }
         
         var name: String {
             switch self {
-            case .energy:
-                return Constants.Nutrients.Name.energy
-            case .sugar:
-                return Constants.Nutrients.Name.sugar
-            case .water:
-                return Constants.Nutrients.Name.water
-            case .carbs:
-                return Constants.Nutrients.Name.carbs
-            case .fiber:
-                return Constants.Nutrients.Name.fiber
-            case .fats:
-                return Constants.Nutrients.Name.fats
-            case .saturatedFat:
-                return Constants.Nutrients.Name.saturatedFat
-            case .transFat:
-                return Constants.Nutrients.Name.transFat
-            case .cholesterol:
-                return Constants.Nutrients.Name.cholesterol
-            case .linoleicAcid:
-                return Constants.Nutrients.Name.linoleicAcid
-            case .aLinoleicAcid:
-                return Constants.Nutrients.Name.aLinoleicAcid
-            case .protein:
-                return Constants.Nutrients.Name.protein
+            case .energy:       Constants.Nutrients.Name.energy
+            case .sugar:        Constants.Nutrients.Name.sugar
+            case .water:        Constants.Nutrients.Name.water
+            case .carbs:        Constants.Nutrients.Name.carbs
+            case .fiber:        Constants.Nutrients.Name.fiber
+            case .fats:         Constants.Nutrients.Name.fats
+            case .saturatedFat: Constants.Nutrients.Name.saturatedFat
+            case .transFat:     Constants.Nutrients.Name.transFat
+            case .cholesterol:  Constants.Nutrients.Name.cholesterol
+            case .linoleicAcid: Constants.Nutrients.Name.linoleicAcid
+            case .aLinoleicAcid:Constants.Nutrients.Name.aLinoleicAcid
+            case .protein:      Constants.Nutrients.Name.protein
             }
         }
-        var unit: Unit.Mass {
+        
+        var unit: Units.Mass {
             switch self {
-            case .water:
-                return .kg
-            default:
-                return .gm
+            case .water: .kg
+            default: .gm
             }
         }
         
@@ -254,24 +164,17 @@ struct Nutrients {
         
         var fdcID: Int {
             switch self {
-            case .protein:
-                return 1003
-            case .fats:
-                return 1004
-            case .carbs:
-                return 1005
-            case .energy:
-                return 1008
-            case .sugar:
-                return 1235
-            case .fiber:
-                return 2033
-            default:
-                return -1
+            case .protein: 1003
+            case .fats: 1004
+            case .carbs: 1005
+            case .energy: 1008
+            case .sugar: 1235
+            case .fiber: 2033
+            default: -1
             }
         }
         
-        enum Sugar: Glycemic, CaseIterable, NutrientType {
+        enum Sugar: Int8, Glycemic, CaseIterable, NutrientType {
             case sucrose
             case glucose
             case fructose
@@ -283,6 +186,8 @@ struct Nutrients {
             case agave
             case maple
             
+            var compareKey: Int8 { return self.rawValue }
+            
             var glycemicIndex: UInt {
                 switch self {
                 case .glucose: return 100
@@ -292,12 +197,12 @@ struct Nutrients {
             
             var name: String { "" }
             
-            var unit: Unit.Mass { .gm }
+            var unit: Units.Mass { .gm }
             
             var compound: String { "" }
         }
         
-        enum Carb: CaseIterable, NutrientType {
+        enum Carb: Int8, CaseIterable, NutrientType {
             enum Rice: CaseIterable {
                 case white
                 case brown
@@ -312,23 +217,27 @@ struct Nutrients {
             case rice
             case wheat
             
+            
+            var compareKey: Int8 { return self.rawValue }
             var name: String { "" }
             var compound: String { "" }
-            var unit: Unit.Mass { .gm }
+            var unit: Units.Mass { .gm }
         }
         
-        enum Fat: CaseIterable, NutrientType {
+        enum Fat: Int8, CaseIterable, NutrientType {
             case sfa
             case mufa
             case pufa
             case trans
             case cholesterol
             
+            var compareKey: Int8 { return self.rawValue }
+            
             var name: String { "" }
             
             var compound: String { "" }
             
-            var unit: Unit.Mass { .gm }
+            var unit: Units.Mass { .gm }
             
             var fdcID: Int { 1 }
         }
@@ -338,7 +247,7 @@ struct Nutrients {
     typealias Milligrams = Double
     
     enum Micro: CaseIterable {
-        enum Vitamin: CaseIterable, NutrientType, FDCable {
+        enum Vitamin: Int8, Comparable, CaseIterable, NutrientType, FDCable {
             case a      //(total: Micrograms, retinol: Micrograms? = nil, betaCarotene: Micrograms? = nil)
             case b1     //(thiamin: Milligrams)
             case b2     //(riboflavin: Milligrams)
@@ -354,7 +263,9 @@ struct Nutrients {
             case e      //(alphaTocopherol: Milligrams)
             case k      //(total: Micrograms, phylloquinone: Micrograms? = nil, menadione: Micrograms? = nil)
             
-            var unit: Unit.Mass {
+            var compareKey: Int8 { return self.rawValue }
+            
+            var unit: Units.Mass {
                 switch self {
                 case .a, .b7, .b9, .b12, .d, .k:
                     return .ug
@@ -365,102 +276,58 @@ struct Nutrients {
             
             var name: String {
                 switch self {
-                case .a:
-                    return Constants.Nutrients.Name.vitaminA
-                case .b1:
-                    return Constants.Nutrients.Name.vitaminB1
-                case .b2:
-                    return Constants.Nutrients.Name.vitaminB2
-                case .b3:
-                    return Constants.Nutrients.Name.vitaminB3
-                case .b4:
-                    return Constants.Nutrients.Name.vitaminB4
-                case .b5:
-                    return Constants.Nutrients.Name.vitaminB5
-                case .b6:
-                    return Constants.Nutrients.Name.vitaminB6
-                case .b7:
-                    return Constants.Nutrients.Name.vitaminB7
-                case.b9:
-                    return Constants.Nutrients.Name.vitaminB9
-                case .b12:
-                    return Constants.Nutrients.Name.vitaminB12
-                case .c:
-                    return Constants.Nutrients.Name.vitaminC
-                case .d:
-                    return Constants.Nutrients.Name.vitaminD
-                case .e:
-                    return Constants.Nutrients.Name.vitaminE
-                case .k:
-                    return Constants.Nutrients.Name.vitaminK
+                case .a:    Constants.Nutrients.Name.vitaminA
+                case .b1:   Constants.Nutrients.Name.vitaminB1
+                case .b2:   Constants.Nutrients.Name.vitaminB2
+                case .b3:   Constants.Nutrients.Name.vitaminB3
+                case .b4:   Constants.Nutrients.Name.vitaminB4
+                case .b5:   Constants.Nutrients.Name.vitaminB5
+                case .b6:   Constants.Nutrients.Name.vitaminB6
+                case .b7:   Constants.Nutrients.Name.vitaminB7
+                case.b9:    Constants.Nutrients.Name.vitaminB9
+                case .b12:  Constants.Nutrients.Name.vitaminB12
+                case .c:    Constants.Nutrients.Name.vitaminC
+                case .d:    Constants.Nutrients.Name.vitaminD
+                case .e:    Constants.Nutrients.Name.vitaminE
+                case .k:    Constants.Nutrients.Name.vitaminK
                 }
             }
             
             var compound: String {
                 switch self {
-                case .a:
-                    return Constants.Nutrients.Compound.vitaminA
-                case .b1:
-                    return Constants.Nutrients.Compound.vitaminB1
-                case .b2:
-                    return Constants.Nutrients.Compound.vitaminB2
-                case .b3:
-                    return Constants.Nutrients.Compound.vitaminB3
-                case .b4:
-                    return Constants.Nutrients.Compound.vitaminB4
-                case .b5:
-                    return Constants.Nutrients.Compound.vitaminB5
-                case .b6:
-                    return Constants.Nutrients.Compound.vitaminB6
-                case .b7:
-                    return Constants.Nutrients.Compound.vitaminB7
-                case.b9:
-                    return Constants.Nutrients.Compound.vitaminB9
-                case .b12:
-                    return Constants.Nutrients.Compound.vitaminB12
-                case .c:
-                    return Constants.Nutrients.Compound.vitaminC
-                case .d:
-                    return Constants.Nutrients.Compound.vitaminD
-                case .e:
-                    return Constants.Nutrients.Compound.vitaminE
-                case .k:
-                    return Constants.Nutrients.Compound.vitaminK
+                case .a:    Constants.Nutrients.Compound.vitaminA
+                case .b1:   Constants.Nutrients.Compound.vitaminB1
+                case .b2:   Constants.Nutrients.Compound.vitaminB2
+                case .b3:   Constants.Nutrients.Compound.vitaminB3
+                case .b4:   Constants.Nutrients.Compound.vitaminB4
+                case .b5:   Constants.Nutrients.Compound.vitaminB5
+                case .b6:   Constants.Nutrients.Compound.vitaminB6
+                case .b7:   Constants.Nutrients.Compound.vitaminB7
+                case.b9:    Constants.Nutrients.Compound.vitaminB9
+                case .b12:  Constants.Nutrients.Compound.vitaminB12
+                case .c:    Constants.Nutrients.Compound.vitaminC
+                case .d:    Constants.Nutrients.Compound.vitaminD
+                case .e:    Constants.Nutrients.Compound.vitaminE
+                case .k:    Constants.Nutrients.Compound.vitaminK
                 }
             }
             
             var fdcID: Int {
                 switch self {
-                case .a:
-                    return 1106
-                case .c:
-                    return 1162
-                case .d:
-                    return 1114
-                case .e:
-                    return 1109
-                case .k:
-                    return 1185
-                case .b1:
-                    return 1165
-                case .b2:
-                    return 1166
-                case .b3:
-                    return 1167
-                case .b4:
-                    return 1180
-                case .b5:
-                    return 1170
-                case .b6:
-                    return 1175
-                case .b7:
-                    return 1176
-                case .b9:
-                    return 1177
-                case .b12:
-                    return 1178
-                default:
-                    return -1
+                case .a:    1106
+                case .c:    1162
+                case .d:    1114
+                case .e:    1109
+                case .k:    1185
+                case .b1:   1165
+                case .b2:   1166
+                case .b3:   1167
+                case .b4:   1180
+                case .b5:   1170
+                case .b6:   1175
+                case .b7:   1176
+                case .b9:   1177
+                case .b12:  1178
                 }
             }
             
@@ -469,7 +336,7 @@ struct Nutrients {
             }
         }
         
-        enum Mineral: CaseIterable, NutrientType, FDCable {
+        enum Mineral: Int8, CaseIterable, NutrientType, FDCable {
             case Ca
             case Cl
             case Cr
@@ -487,7 +354,9 @@ struct Nutrients {
             case Na
             case Zn
             
-            var unit: Unit.Mass {
+            var compareKey: Int8 { return self.rawValue }
+            
+            var unit: Units.Mass {
                 switch self {
                 case .Ca, .F, .Fe, .Mg, .Mn, .P, .Zn, .K, .Na, .S:
                     return .mg
@@ -500,114 +369,64 @@ struct Nutrients {
             
             var name: String {
                 switch self {
-                case .Ca:
-                    return Constants.Nutrients.Name.calcium
-                case .Cl:
-                    return Constants.Nutrients.Name.chloride
-                case .Cr:
-                    return Constants.Nutrients.Name.chromium
-                case .Cu:
-                    return Constants.Nutrients.Name.copper
-                case .F:
-                    return Constants.Nutrients.Name.fluoride
-                case .Fe:
-                    return Constants.Nutrients.Name.iron
-                case .Mg:
-                    return Constants.Nutrients.Name.magnesium
-                case .Mn:
-                    return Constants.Nutrients.Name.manganese
-                case .Mo:
-                    return Constants.Nutrients.Name.molybdenum
-                case .P:
-                    return Constants.Nutrients.Name.phosphorous
-                case .I:
-                    return Constants.Nutrients.Name.iodine
-                case .K:
-                    return Constants.Nutrients.Name.potassium
-                case .S:
-                    return Constants.Nutrients.Name.sulfur
-                case .Se:
-                    return Constants.Nutrients.Name.selenium
-                case .Na:
-                    return Constants.Nutrients.Name.sodium
-                case .Zn:
-                    return Constants.Nutrients.Name.zinc
+                case .Ca:   Constants.Nutrients.Name.calcium
+                case .Cl:   Constants.Nutrients.Name.chloride
+                case .Cr:   Constants.Nutrients.Name.chromium
+                case .Cu:   Constants.Nutrients.Name.copper
+                case .F:    Constants.Nutrients.Name.fluoride
+                case .Fe:   Constants.Nutrients.Name.iron
+                case .Mg:   Constants.Nutrients.Name.magnesium
+                case .Mn:   Constants.Nutrients.Name.manganese
+                case .Mo:   Constants.Nutrients.Name.molybdenum
+                case .P:    Constants.Nutrients.Name.phosphorous
+                case .I:    Constants.Nutrients.Name.iodine
+                case .K:    Constants.Nutrients.Name.potassium
+                case .S:    Constants.Nutrients.Name.sulfur
+                case .Se:   Constants.Nutrients.Name.selenium
+                case .Na:   Constants.Nutrients.Name.sodium
+                case .Zn:   Constants.Nutrients.Name.zinc
                 }
             }
             
             var compound: String {
                 switch self {
-                case .Ca:
-                    return Constants.Nutrients.Compound.calcium
-                case .Cl:
-                    return Constants.Nutrients.Compound.chloride
-                case .Cr:
-                    return Constants.Nutrients.Compound.chromium
-                case .Cu:
-                    return Constants.Nutrients.Compound.copper
-                case .F:
-                    return Constants.Nutrients.Compound.fluoride
-                case .I:
-                    return Constants.Nutrients.Compound.iodine
-                case .Fe:
-                    return Constants.Nutrients.Compound.iron
-                case .Mg:
-                    return Constants.Nutrients.Compound.magnesium
-                case .Mn:
-                    return Constants.Nutrients.Compound.manganese
-                case .Mo:
-                    return Constants.Nutrients.Compound.molybdenum
-                case .P:
-                    return Constants.Nutrients.Compound.phosphorous
-                case .K:
-                    return Constants.Nutrients.Compound.potassium
-                case .S:
-                    return Constants.Nutrients.Compound.sulfur
-                case .Se:
-                    return Constants.Nutrients.Compound.selenium
-                case .Na:
-                    return Constants.Nutrients.Compound.sodium
-                case .Zn:
-                    return Constants.Nutrients.Compound.zinc
+                case .Ca:   Constants.Nutrients.Compound.calcium
+                case .Cl:   Constants.Nutrients.Compound.chloride
+                case .Cr:   Constants.Nutrients.Compound.chromium
+                case .Cu:   Constants.Nutrients.Compound.copper
+                case .F:    Constants.Nutrients.Compound.fluoride
+                case .I:    Constants.Nutrients.Compound.iodine
+                case .Fe:   Constants.Nutrients.Compound.iron
+                case .Mg:   Constants.Nutrients.Compound.magnesium
+                case .Mn:   Constants.Nutrients.Compound.manganese
+                case .Mo:   Constants.Nutrients.Compound.molybdenum
+                case .P:    Constants.Nutrients.Compound.phosphorous
+                case .K:    Constants.Nutrients.Compound.potassium
+                case .S:    Constants.Nutrients.Compound.sulfur
+                case .Se:   Constants.Nutrients.Compound.selenium
+                case .Na:   Constants.Nutrients.Compound.sodium
+                case .Zn:   Constants.Nutrients.Compound.zinc
                 }
             }
             
             var fdcID: Int {
                 switch self {
-                case .Ca:
-                    return 1087
-                case .Cl:
-                    return 1088
-                case .Fe:
-                    return 1089
-                case .Mg:
-                    return 1090
-                case .P:
-                    return 1091
-                case .K:
-                    return 1092
-                case .Na:
-                    return 1093
-                case .S:
-                    return 1094
-                case .Zn:
-                    return 1095
-                case .Cr:
-                    return 1096
-                case .Cu:
-                    return 1098
-                case .F:
-                    return 1099
-                case .I:
-                    return 1100
-                case .Mn:
-                    return 1101
-                case .Mo:
-                    return 1102
-                case .Se:
-                    return 1103
-                default:
-                    return -1
+                case .Ca:   1087
+                case .Cl:   1088
+                case .Fe:   1089
+                case .Mg:   1090
+                case .P:    1091
+                case .K:    1092
+                case .Na:   1093
+                case .S:    1094
+                case .Zn:   1095
+                case .Cr:   1096
+                case .Cu:   1098
+                case .F:    1099
+                case .I:    1100
+                case .Mn:   1101
+                case .Mo:   1102
+                case .Se:   1103
                 }
             }
             
@@ -624,13 +443,5 @@ struct Nutrients {
     static var restricted: [any NutrientType] {
         [Macro.sugar, Macro.carbs, Macro.transFat, Macro.cholesterol, Macro.saturatedFat, Macro.fats, Micro.Mineral.Na]
     }
-}
-
-protocol Interconvertible {
-    func conversionExp(from: Self, to: Self) -> Int8
-}
-
-protocol Glycemic {
-    var glycemicIndex: UInt { get }
 }
 

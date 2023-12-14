@@ -16,6 +16,9 @@ struct Constants {
     static let SUCESS = "SUCCESS"
     static let FAILURE = "FAILURE"
     
+    static let APIkeyFDC = "DEMO_KEY"
+    static let APIurlstringFDC = "https://api.nal.usda.gov/fdc/v1/foods/search"
+    
     static let screen = UIScreen.main.bounds
     static let screenWidth = screen.width
     static let screenHeight = screen.height
@@ -68,6 +71,44 @@ struct Constants {
     static let likes = "likes"
     static let posts = "posts"
     static let userPosts = "user-posts"
+    
+    struct Units {
+        struct Energy {
+            static let cal = "cal"
+            static let kcal = "kcal"
+        }
+        
+        struct Mass {
+            static let pg = "pg"
+            static let ng = "ng"
+            static let ug = "ug"
+            static let mg = "mg"
+            static let gm = "gm"
+            static let kg = "kg"
+        }
+        
+        struct Length {
+            static let pm = "pm"
+            static let ag = "ag"
+            static let nm = "nm"
+            static let um = "um"
+            static let mm = "mm"
+            static let cm = "cm"
+            static let m = "m"
+            static let km = "km"
+        }
+        
+        struct Volume {
+            static let pl = "pl"
+            static let nl = "nl"
+            static let ul = "ul"
+            static let ml = "ml"
+            static let cl = "cl"
+            static let dl = "dl"
+            static let l = "l"
+            static let kl = "kl"
+        }
+    }
     
     struct Nutrients {
         struct Name {
