@@ -15,6 +15,16 @@ struct FDCService {
         return try parseFoodNutrients(from: data)
     }
     
+    func nutrientProfile(for foodItem: String) async throws -> NutrientProfile? {
+        do {
+            guard let fdcIntakes = try await fetchFDCfoodNutrientIntakes(for: foodItem) else { return nil }
+            return FDCUnits.nutrientProfile(from: fdcIntakes)
+        } catch {
+            print("error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
     private func parseFoodNutrients(from data: Data) throws -> [FDCfoodNutrientIntake]? {
         let decodedData = try JSONDecoder().decode(FDCFoodDataResponse.self, from: data)
         guard let food = decodedData.foods.first else { return nil }

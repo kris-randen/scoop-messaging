@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Collections
+import OrderedCollections
 
 protocol Nourishment: Codable, Hashable {
     
@@ -53,6 +55,7 @@ protocol Glycemic {
 
 struct Nutrients {
     typealias Grams = Double
+    typealias FDCMap = [Int: any NutrientType]
     
     enum Kind: String {
         case macro = "Macro"
@@ -80,47 +83,27 @@ struct Nutrients {
         }
     }
     
-    static let FDCmap: [Int: any NutrientType] = [
-        1003: Nutrients.Macro.protein,
-        1004: Nutrients.Macro.fats,
-        1005: Nutrients.Macro.carbs,
-        1235: Nutrients.Macro.sugar,
-        2033: Nutrients.Macro.fiber,
-        
-        1106: Nutrients.Micro.Vitamin.a,
-        1162: Nutrients.Micro.Vitamin.c,
-        1114: Nutrients.Micro.Vitamin.d,
-        1109: Nutrients.Micro.Vitamin.e,
-        1185: Nutrients.Micro.Vitamin.k,
-        1165: Nutrients.Micro.Vitamin.b1,
-        1166: Nutrients.Micro.Vitamin.b2,
-        1167: Nutrients.Micro.Vitamin.b3,
-        1180: Nutrients.Micro.Vitamin.b4,
-        1170: Nutrients.Micro.Vitamin.b5,
-        1175: Nutrients.Micro.Vitamin.b6,
-        1176: Nutrients.Micro.Vitamin.b7,
-        1177: Nutrients.Micro.Vitamin.b9,
-        1178: Nutrients.Micro.Vitamin.b12,
-        
-        1087: Nutrients.Micro.Mineral.Ca,
-        1088: Nutrients.Micro.Mineral.Cl,
-        1089: Nutrients.Micro.Mineral.Fe,
-        1090: Nutrients.Micro.Mineral.Mg,
-        1091: Nutrients.Micro.Mineral.P,
-        1092: Nutrients.Micro.Mineral.K,
-        1093: Nutrients.Micro.Mineral.Na,
-        1094: Nutrients.Micro.Mineral.S,
-        1095: Nutrients.Micro.Mineral.Zn,
-        1096: Nutrients.Micro.Mineral.Cr,
-        1098: Nutrients.Micro.Mineral.Cu,
-        1099: Nutrients.Micro.Mineral.F,
-        1100: Nutrients.Micro.Mineral.I,
-        1101: Nutrients.Micro.Mineral.Mn,
-        1102: Nutrients.Micro.Mineral.Mo,
-        1103: Nutrients.Micro.Mineral.Se
+    static let fdcMap: FDCMap = Dictionary.merge(dicts: [
+        Nutrients.Macro.fdcMap,
+        Nutrients.Micro.Vitamin.fdcMap,
+        Nutrients.Micro.Mineral.fdcMap
+    ])
+    
+    static let fdcMapper: [Nutrients.Kind: FDCMap] = [
+        Nutrients.Kind.macro : Nutrients.Macro.fdcMap,
+        Nutrients.Kind.vitamin: Nutrients.Micro.Vitamin.fdcMap,
+        Nutrients.Kind.mineral: Nutrients.Micro.Mineral.fdcMap
     ]
     
-    enum Macro: Int8, CaseIterable, NutrientType, FDCable {
+    static var zeroIntakes: NutrientIntakes {
+        NutrientIntakes(intakes: [
+            .macro : Macro.zeroIntakes,
+            .vitamin: Micro.Vitamin.zeroIntakes,
+            .mineral: Micro.Mineral.zeroIntakes
+        ])
+    }
+    
+    enum Macro: Int8, ComparableHash, CaseIterable, NutrientType, FDCable {
         case energy
         case water
         case carbs
@@ -135,6 +118,14 @@ struct Nutrients {
         case protein
         
         var compareKey: Int8 { return self.rawValue }
+        
+        static var zero: OrderedDictionary<Macro, Double> {
+            Macro.zeroOrderedDict
+        }
+        
+        static var zeroIntakes: MacroIntakes {
+            MacroIntakes(intakes: Macro.zero)
+        }
         
         var name: String {
             switch self {
@@ -174,7 +165,15 @@ struct Nutrients {
             }
         }
         
-        enum Sugar: Int8, Glycemic, CaseIterable, NutrientType {
+        static let fdcMap: FDCMap = [
+            1003: Nutrients.Macro.protein,
+            1004: Nutrients.Macro.fats,
+            1005: Nutrients.Macro.carbs,
+            1235: Nutrients.Macro.sugar,
+            2033: Nutrients.Macro.fiber
+        ]
+        
+        enum Sugar: Int8, ComparableHash, Glycemic, CaseIterable, NutrientType {
             case sucrose
             case glucose
             case fructose
@@ -247,7 +246,7 @@ struct Nutrients {
     typealias Milligrams = Double
     
     enum Micro: CaseIterable {
-        enum Vitamin: Int8, Comparable, CaseIterable, NutrientType, FDCable {
+        enum Vitamin: Int8, ComparableHash, CaseIterable, NutrientType, FDCable {
             case a      //(total: Micrograms, retinol: Micrograms? = nil, betaCarotene: Micrograms? = nil)
             case b1     //(thiamin: Milligrams)
             case b2     //(riboflavin: Milligrams)
@@ -264,6 +263,14 @@ struct Nutrients {
             case k      //(total: Micrograms, phylloquinone: Micrograms? = nil, menadione: Micrograms? = nil)
             
             var compareKey: Int8 { return self.rawValue }
+            
+            static var zero: OrderedDictionary<Vitamin, Double> {
+                Vitamin.zeroOrderedDict
+            }
+            
+            static var zeroIntakes: VitaminIntakes {
+                VitaminIntakes(intakes: Vitamin.zero)
+            }
             
             var unit: Units.Mass {
                 switch self {
@@ -331,12 +338,30 @@ struct Nutrients {
                 }
             }
             
+            static let fdcMap: FDCMap = [
+                1106: Nutrients.Micro.Vitamin.a,
+                1162: Nutrients.Micro.Vitamin.c,
+                1114: Nutrients.Micro.Vitamin.d,
+                1109: Nutrients.Micro.Vitamin.e,
+                1185: Nutrients.Micro.Vitamin.k,
+                1165: Nutrients.Micro.Vitamin.b1,
+                1166: Nutrients.Micro.Vitamin.b2,
+                1167: Nutrients.Micro.Vitamin.b3,
+                1180: Nutrients.Micro.Vitamin.b4,
+                1170: Nutrients.Micro.Vitamin.b5,
+                1175: Nutrients.Micro.Vitamin.b6,
+                1176: Nutrients.Micro.Vitamin.b7,
+                1177: Nutrients.Micro.Vitamin.b9,
+                1178: Nutrients.Micro.Vitamin.b12
+            ]
+            
+            
             func DRI(nutrient: Nutrients.Micro.Vitamin, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
                 0
             }
         }
         
-        enum Mineral: Int8, CaseIterable, NutrientType, FDCable {
+        enum Mineral: Int8, ComparableHash, CaseIterable, NutrientType, FDCable {
             case Ca
             case Cl
             case Cr
@@ -355,6 +380,14 @@ struct Nutrients {
             case Zn
             
             var compareKey: Int8 { return self.rawValue }
+            
+            static var zero: OrderedDictionary<Mineral, Double> {
+                Mineral.zeroOrderedDict
+            }
+            
+            static var zeroIntakes: MineralIntakes {
+                MineralIntakes(intakes: Mineral.zero)
+            }
             
             var unit: Units.Mass {
                 switch self {
@@ -429,6 +462,25 @@ struct Nutrients {
                 case .Se:   1103
                 }
             }
+            
+            static let fdcMap: FDCMap = [
+                1087: Nutrients.Micro.Mineral.Ca,
+                1088: Nutrients.Micro.Mineral.Cl,
+                1089: Nutrients.Micro.Mineral.Fe,
+                1090: Nutrients.Micro.Mineral.Mg,
+                1091: Nutrients.Micro.Mineral.P,
+                1092: Nutrients.Micro.Mineral.K,
+                1093: Nutrients.Micro.Mineral.Na,
+                1094: Nutrients.Micro.Mineral.S,
+                1095: Nutrients.Micro.Mineral.Zn,
+                1096: Nutrients.Micro.Mineral.Cr,
+                1098: Nutrients.Micro.Mineral.Cu,
+                1099: Nutrients.Micro.Mineral.F,
+                1100: Nutrients.Micro.Mineral.I,
+                1101: Nutrients.Micro.Mineral.Mn,
+                1102: Nutrients.Micro.Mineral.Mo,
+                1103: Nutrients.Micro.Mineral.Se
+            ]
             
             func DRI(nutrient: Nutrients.Micro.Mineral, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
                 0

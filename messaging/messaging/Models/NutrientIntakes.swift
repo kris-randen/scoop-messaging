@@ -10,6 +10,9 @@ import Collections
 import OrderedCollections
 
 typealias Intake = (any NutrientType, Double)
+typealias MacroIntake = (Nutrients.Macro, Double)
+typealias VitaminIntake = (Nutrients.Micro.Vitamin, Double)
+typealias MineralIntake = (Nutrients.Micro.Mineral, Double)
 
 protocol Intakeable {
     associatedtype Nutrient: NutrientType
@@ -111,6 +114,10 @@ struct MacroIntakes: Intakeable {
     typealias Intakes = OrderedDictionary<Nutrient, Double>
     var intakes: Intakes = Intakes()
     var kind: Nutrients.Kind = .macro
+    
+    init() {
+        
+    }
     
     var negatives: Intakes {
         var negs = self.intakes.filter {!$0.key.required}

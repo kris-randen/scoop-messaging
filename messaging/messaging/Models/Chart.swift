@@ -105,7 +105,7 @@ struct Chart {
     }
     
     static func bars(for intakes: some Intakeable, kind: Nutrients.Kind) -> [Bar] {
-        return intakes.intakes.descending.map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
+        return intakes.intakes.sortedByValues(ascending: false).map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
 //        switch kind {
 //        case .vitamin:
 //            guard let intakes = intakes as? VitaminIntakes else { return Chart.zeroVitaminBars }
@@ -189,7 +189,7 @@ struct Chart {
                 self.bars = Chart.zeroVitaminBars
                 return
             }
-            for (nutrient, intake) in intakes.intakes.descending {
+            for (nutrient, intake) in intakes.intakes.sortedByValues(ascending: false) {
                 self.bars.append(Bar(nutrient: nutrient, intake: intake))
             }
             
@@ -199,7 +199,7 @@ struct Chart {
                 return
             }
             
-            for (nutrient, intake) in intakes.intakes.descending {
+            for (nutrient, intake) in intakes.intakes.sortedByValues(ascending: false) {
                 self.bars.append(Bar(nutrient: nutrient, intake: intake))
             }
             
@@ -208,7 +208,7 @@ struct Chart {
                 self.bars = Chart.zeroMacroBars
                 return
             }
-            for (nutrient, intake) in intakes.intakes.descending {
+            for (nutrient, intake) in intakes.intakes.sortedByValues(ascending: false) {
                 if displayBars.map({$0.name}) .contains(nutrient.name) {
                     self.bars.append(Bar(nutrient: nutrient, intake: intake, kind: self.kind))
                 }
