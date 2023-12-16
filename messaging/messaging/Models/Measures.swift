@@ -7,10 +7,7 @@
 
 import Foundation
 
-protocol MeasureType: Convertible {
-    associatedtype Unit: UnitType
-    var unit: Unit { get }
-    var value: Double { get }
+protocol MeasureType: Measureable, Convertible {
 }
 
 extension MeasureType {
@@ -23,7 +20,11 @@ extension MeasureType {
     }
 }
 
-protocol Measureable {}
+protocol Measureable {
+    associatedtype Unit: UnitType
+    var unit: Unit { get }
+    var value: Double { get }
+}
 
 struct Mass: MeasureType {
     typealias Unit = Units.Mass

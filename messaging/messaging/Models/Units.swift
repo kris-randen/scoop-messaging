@@ -15,7 +15,7 @@ protocol Convertible {
     func conversion(to: Self) -> Double
 }
 
-protocol UnitType: ExponentInterconvertible, Convertible, Measureable, Codable, Hashable {
+protocol UnitType: Convertible, Codable, Hashable {
     var description: String { get }
     func conversionExponent(to: Self) -> Int8
 }
@@ -26,9 +26,31 @@ extension UnitType {
     }
 }
 
+protocol NutrientUnitType: UnitType, ExponentInterconvertible {}
+
 
 enum Units {
-    static let table: [String: any UnitType] = [
+    enum Kind: Int8, EnumTypeOrderedKey {
+        case energy
+        case mass
+        case length
+        case volume
+        
+        var fdcUnits: Set<String> {
+            switch self {
+            case .energy:   Constants.FDCunits.energy
+            case .mass:     Constants.FDCunits.mass
+            case .length:   Constants.FDCunits.length
+            case .volume:   Constants.FDCunits.volume
+            }
+        }
+        
+        static func get(from fdcUnit: String) -> Self? {
+            allCases.filter {$0.fdcUnits.contains(fdcUnit)}.first
+        }
+    }
+    
+    static let table: [String: any NutrientUnitType] = [
         "g": Units.Mass.gm,
         "mg": Units.Mass.mg,
         "ug": Units.Mass.ug,
@@ -36,7 +58,7 @@ enum Units {
         "kcal": Units.Energy.kcal
     ]
     
-    enum Energy: String, UnitType {
+    enum Energy: String, NutrientUnitType {
         case kcal = "kcal"
         case cal = "cal"
         
@@ -55,7 +77,7 @@ enum Units {
         func conversionExponent(to: Units.Energy) -> Int8 { return 0 }
     }
     
-    enum Mass: Int8, UnitType {
+    enum Mass: Int8, NutrientUnitType {
         case pg = 0
         case ng = 3
         case ug = 6
@@ -85,7 +107,7 @@ enum Units {
         }
     }
     
-    enum Length: Int8, UnitType {
+    enum Length: Int8, NutrientUnitType {
         case pm = 0
         case ag = 2
         case nm = 3
@@ -109,7 +131,7 @@ enum Units {
             case .um: Constants.Units.Length.um
             case .mm: Constants.Units.Length.mm
             case .cm: Constants.Units.Length.cm
-            case .m: Constants.Units.Length.m
+            case .m:  Constants.Units.Length.m
             case .km: Constants.Units.Length.km
             }
         }
@@ -119,7 +141,7 @@ enum Units {
         }
     }
     
-    enum Volume: Int8, UnitType {
+    enum Volume: Int8, NutrientUnitType {
         case pl = 0
         case nl = 3
         case ul = 6
@@ -143,7 +165,7 @@ enum Units {
             case .ml: Constants.Units.Volume.ml
             case .cl: Constants.Units.Volume.cl
             case .dl: Constants.Units.Volume.dl
-            case .l: Constants.Units.Volume.l
+            case .l:  Constants.Units.Volume.l
             case .kl: Constants.Units.Volume.kl
             }
         }

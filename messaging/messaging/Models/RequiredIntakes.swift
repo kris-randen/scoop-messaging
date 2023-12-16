@@ -29,30 +29,6 @@ enum NutrientValueType {
     case nmb
 }
 
-enum ServingType {
-    case mass
-    case volume
-    case energy
-}
-
-protocol Serveable {
-    associatedtype ServingUnit: Measureable
-    var unit: ServingUnit { get }
-    var value: Double { get }
-}
-
-struct VolumeServing: Serveable {
-    typealias ServingUnit = Units.Volume
-    var unit: Units.Volume
-    var value: Double
-}
-
-struct MassServing: Serveable {
-    typealias ServingUnit = Units.Mass
-    var unit: Units.Mass
-    var value: Double
-}
-
 protocol AgeGroupableIntakes {
     associatedtype Group: Hashable
     var intakes: OrderedDictionary<Group, NutrientIntakes> { get set }

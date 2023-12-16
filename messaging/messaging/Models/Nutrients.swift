@@ -27,7 +27,7 @@ struct Value: Measured {
     var unit: Units.Mass
 }
 
-protocol NutrientType: Comparable, Codable, Hashable, Equatable {
+protocol NutrientType: OrderedKey, Codable, Equatable {
     var name: String { get }
     var compound: String { get }
     var unit: Units.Mass { get }
@@ -38,9 +38,6 @@ extension NutrientType {
     var required: Bool { Nutrients.required.contains(nutrient: self) }
     var nqiMultiplier: Double { required ? 1 : -1 }
     static func ==(lhs: Self, rhs: Self) -> Bool { lhs.name == rhs.name }
-    static func < (lhs: Self, rhs: Self) -> Bool {
-        return lhs.compareKey < rhs.compareKey
-    }
 }
 
 extension Array where Element == any NutrientType {
@@ -57,10 +54,16 @@ struct Nutrients {
     typealias Grams = Double
     typealias FDCMap = [Int: any NutrientType]
     
-    enum Kind: String {
+    enum Kind: String, EnumTypeOrderedKey {
         case macro = "Macro"
         case vitamin = "Vitamin"
         case mineral = "Mineral"
+        
+        var fdcMap: FDCMap { Nutrients.fdcMapper[self]! }
+        
+        static func get(from nutrientID: Int) -> Self? {
+            allCases.filter {$0.fdcMap.keySet.contains(nutrientID)}.first
+        }
         
         var chartTitle: (title: String, subtitle: String) {
             switch self {
@@ -103,7 +106,7 @@ struct Nutrients {
         ])
     }
     
-    enum Macro: Int8, ComparableHash, CaseIterable, NutrientType, FDCable {
+    enum Macro: Int8, EnumTypeOrderedKey, NutrientType, FDCable {
         case energy
         case water
         case carbs
@@ -173,7 +176,7 @@ struct Nutrients {
             2033: Nutrients.Macro.fiber
         ]
         
-        enum Sugar: Int8, ComparableHash, Glycemic, CaseIterable, NutrientType {
+        enum Sugar: Int8, EnumTypeOrderedKey, Glycemic, NutrientType {
             case sucrose
             case glucose
             case fructose
@@ -201,7 +204,7 @@ struct Nutrients {
             var compound: String { "" }
         }
         
-        enum Carb: Int8, CaseIterable, NutrientType {
+        enum Carb: Int8, EnumTypeOrderedKey, NutrientType {
             enum Rice: CaseIterable {
                 case white
                 case brown
@@ -223,7 +226,7 @@ struct Nutrients {
             var unit: Units.Mass { .gm }
         }
         
-        enum Fat: Int8, CaseIterable, NutrientType {
+        enum Fat: Int8, EnumTypeOrderedKey, NutrientType {
             case sfa
             case mufa
             case pufa
@@ -246,7 +249,7 @@ struct Nutrients {
     typealias Milligrams = Double
     
     enum Micro: CaseIterable {
-        enum Vitamin: Int8, ComparableHash, CaseIterable, NutrientType, FDCable {
+        enum Vitamin: Int8, EnumTypeOrderedKey, NutrientType, FDCable {
             case a      //(total: Micrograms, retinol: Micrograms? = nil, betaCarotene: Micrograms? = nil)
             case b1     //(thiamin: Milligrams)
             case b2     //(riboflavin: Milligrams)
@@ -361,7 +364,7 @@ struct Nutrients {
             }
         }
         
-        enum Mineral: Int8, ComparableHash, CaseIterable, NutrientType, FDCable {
+        enum Mineral: Int8, EnumTypeOrderedKey, NutrientType, FDCable {
             case Ca
             case Cl
             case Cr

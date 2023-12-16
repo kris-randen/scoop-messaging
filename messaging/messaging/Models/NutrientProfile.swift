@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import Collections
+import OrderedCollections
 
-protocol NutrientProfileable {
+protocol NutrientProfileable: Multipliable {
     var description: String { get }
     var type: NutrientValueType { get }
-    var intakes: Intakeables { get }
+    var intakes: NutrientIntakes { get set }
     var serving: any Serveable { get }
     
     var nqi: Double { get }
@@ -18,6 +20,19 @@ protocol NutrientProfileable {
 
 extension NutrientProfileable {
     var nqi: Double { intakes.nqi }
+    
+    var energy: Double {
+        let macros = intakes.intakes[.macro] as! MacroIntakes
+        return macros.intakes[.energy]!
+    }
+    
+    var nqiFactor: Double {
+        Constants.DRI.energy / energy
+    }
+    
+    mutating func multiply(_ factor: Double) {
+        self.intakes = factor * self.intakes
+    }
 }
 
 
@@ -27,14 +42,70 @@ protocol ServeableNutrientProfile: NutrientProfileable {
 }
 
 struct NutrientProfile: NutrientProfileable {
-    var intakes: Intakeables
+    var intakes: NutrientIntakes
     var description: String
     var type: NutrientValueType
-    var serving: any Serveable = MassServing(unit: .gm, value: 100)
+    var serving: any Serveable = Serving.Mass(unit: .gm, value: 100)
+}
+
+extension NutrientProfile {
+    static func convertValueToNQI(valueProfile: NutrientProfile) -> NutrientProfile {
+        var result = valueProfile
+        result = valueProfile.nqiFactor * result
+        result.type = .nqi
+        return result
+    }
+    
+    func convertedToNQI() -> NutrientProfile {
+        guard self.type == .value else { return self }
+        return NutrientProfile.convertValueToNQI(valueProfile: self)
+    }
+    
+    
+}
+
+protocol Multipliable {
+    mutating func multiply(_ factor: Double)
+    func multiplied(by factor: Double) -> Self
+    static func *(lhs: Double, rhs: Self) -> Self
+    static func *(lhs: Self, rhs: Double) -> Self
+}
+extension Multipliable {
+    func multiplied(by factor: Double) -> Self {
+        var result = self
+        result.multiply(factor)
+        return result
+    }
+    static func *(lhs: Double, rhs: Self) -> Self {
+        rhs.multiplied(by: lhs)
+    }
+    static func *(lhs: Self, rhs: Double) -> Self {
+        lhs.multiplied(by: rhs)
+    }
+}
+
+extension Double: Multipliable {
+    mutating func multiply(_ factor: Double) { self = self * factor }
+}
+
+extension OrderedDictionary: Multipliable where Value: Multipliable {
+    mutating func multiply(_ factor: Double) {
+        for (key, value) in self {
+            self[key] = value.multiplied(by: factor)
+        }
+    }
+}
+
+extension Dictionary: Multipliable where Value: Multipliable {
+    mutating func multiply(_ factor: Double) {
+        for (key, value) in self {
+            self[key] = value.multiplied(by: factor)
+        }
+    }
 }
 
 struct NutrientProfileServed: ServeableNutrientProfile {
-    var intakes: Intakeables
+    var intakes: NutrientIntakes
     var serving: any Serveable
     var description: String
     var type: NutrientValueType

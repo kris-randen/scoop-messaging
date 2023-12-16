@@ -72,6 +72,17 @@ struct Constants {
     static let posts = "posts"
     static let userPosts = "user-posts"
     
+    struct FDCunits {
+        static let energy: Set = ["cal", "kcal"]
+        static let mass: Set = ["kg", "g", "mg", "ug"]
+        static let length: Set = ["km", "m","cm", "mm"]
+        static let volume: Set = ["l", "dl", "ml"]
+    }
+    
+    struct DRI {
+        static let energy: Double = 2000
+    }
+    
     struct Units {
         struct Energy {
             static let cal = "cal"
@@ -107,6 +118,11 @@ struct Constants {
             static let dl = "dl"
             static let l = "l"
             static let kl = "kl"
+            
+            static let tsp = "tea spoon"
+            static let tbsp = "table spoon"
+            static let oz = "ounces"
+            static let cup = "cup"
         }
     }
     

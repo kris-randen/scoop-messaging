@@ -10,7 +10,16 @@ import Foundation
 import UIKit
 import OrderedCollections
 
-protocol ComparableHash: Comparable, Hashable {}
+protocol OrderedKey: Comparable, Hashable {}
+
+extension RawRepresentable where RawValue: Comparable {
+    static func < (lhs: Self, rhs: Self) -> Bool { lhs.rawValue < rhs.rawValue }
+}
+
+protocol EnumTypeKey: Hashable, CaseIterable, RawRepresentable where RawValue: Hashable {}
+
+protocol EnumTypeOrderedKey: OrderedKey, CaseIterable, RawRepresentable where RawValue: Comparable {}
+
 
 extension Set {
     mutating func union(_ other: Self) {
@@ -203,7 +212,7 @@ extension CaseIterable where Self: Hashable {
     static var zeroDict: [Self: Double] { valuesDict(value: 0.0) }
 }
 
-extension CaseIterable where Self: ComparableHash {
+extension CaseIterable where Self: OrderedKey {
     static func valuesOrderedDict<Value>(value: Value) -> OrderedDictionary<Self, Value> {
         OrderedDictionary(uniqueKeysWithValues: self.valuesDict(value: value))
     }
@@ -225,7 +234,7 @@ extension Array where Element: Hashable {
     }
 }
 
-extension Array where Element: ComparableHash {
+extension Array where Element: OrderedKey {
     func zipOrderedDictByKeys<Value>(_ values: [Value], ascending: Bool = true) -> OrderedDictionary<Element, Value> {
         return OrderedDictionary(uniqueKeysWithValues: self.zip(values))
             .sortedByKeys(ascending: ascending)

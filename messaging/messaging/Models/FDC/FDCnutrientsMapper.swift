@@ -17,7 +17,7 @@ class FDCnutrientsMapper {
         return (map(intake.foodNutrient), FDCUnits.value(for: intake))
     }
     
-    public static func map(_ fdcUnit: FDCUnit) -> (any UnitType)? {
+    public static func map(_ fdcUnit: FDCUnit) -> (any NutrientUnitType)? {
         return Units.table[fdcUnit]
     }
 }

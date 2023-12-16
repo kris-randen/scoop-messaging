@@ -14,7 +14,7 @@ typealias MacroIntake = (Nutrients.Macro, Double)
 typealias VitaminIntake = (Nutrients.Micro.Vitamin, Double)
 typealias MineralIntake = (Nutrients.Micro.Mineral, Double)
 
-protocol Intakeable {
+protocol Intakeable: Multipliable {
     associatedtype Nutrient: NutrientType
     typealias Intakes = OrderedDictionary<Nutrient, Double>
     var intakes: Intakes { get set }
@@ -26,6 +26,12 @@ protocol Intakeable {
     
     init()
     init(intakes: Intakes)
+}
+
+extension Intakeable {
+    mutating func multiply(_ factor: Double) {
+        self.intakes = factor * self.intakes
+    }
 }
 
 extension OrderedDictionary where Key: NutrientType, Value == Double {
@@ -65,8 +71,8 @@ extension Intakeable {
     var negativeNQI: Double { negatives.nqi }
 }
 
-protocol Intakeables {
-    var intakes: OrderedDictionary<Nutrients.Kind, any Intakeable> { get }
+protocol Intakeables: Multipliable {
+    var intakes: OrderedDictionary<Nutrients.Kind, any Intakeable> { get set }
     var nqi: Double { get }
 }
 
@@ -107,6 +113,15 @@ extension Intakeables {
 
 struct NutrientIntakes: Intakeables {
     var intakes: OrderedDictionary<Nutrients.Kind, any Intakeable>
+    
+    mutating func multiply(_ factor: Double) {
+        self.intakes = [
+            .macro: factor * (self.intakes[.macro] as! MacroIntakes),
+            .vitamin: factor * (self.intakes[.vitamin] as! VitaminIntakes),
+            .mineral: factor * (self.intakes[.mineral] as! MineralIntakes)
+        ]
+    }
+    
 }
 
 struct MacroIntakes: Intakeable {

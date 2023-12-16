@@ -7,36 +7,31 @@
 
 import Foundation
 
-struct FDCService {
+struct FDCFoodService {
+    let urlPrefix: String
+    let foodItem: String
+    let apiKey: String
     
-    func fetchFDCfoodNutrientIntakes(for foodItem: String) async throws -> [FDCfoodNutrientIntake]? {
-        guard let url = fdcURL(for: foodItem) else { return nil }
-        let (data, _) = try await fetchData(from: url)
-        return try parseFoodNutrients(from: data)
+    private var urlString: String {
+        "\(urlPrefix)?query=\(foodItem)&api_key=\(apiKey)"
     }
     
-    func nutrientProfile(for foodItem: String) async throws -> NutrientProfile? {
-        do {
-            guard let fdcIntakes = try await fetchFDCfoodNutrientIntakes(for: foodItem) else { return nil }
-            return FDCUnits.nutrientProfile(from: fdcIntakes)
-        } catch {
-            print("error: \(error.localizedDescription)")
-            return nil
-        }
+    private var fdcURL: URL? {
+        URL(string: urlString)
     }
     
-    private func parseFoodNutrients(from data: Data) throws -> [FDCfoodNutrientIntake]? {
-        let decodedData = try JSONDecoder().decode(FDCFoodDataResponse.self, from: data)
-        guard let food = decodedData.foods.first else { return nil }
-        return food.foodNutrients
+    init(urlPrefix: String = Constants.APIurlstringFDC, apiKey: String = Constants.APIkeyFDC, foodItem: String) {
+        self.urlPrefix = urlPrefix
+        self.apiKey = apiKey
+        self.foodItem = foodItem
     }
     
-    private func fdcURL(for foodItem: String, using key: String = Constants.APIkeyFDC) -> URL? {
-        return URL(string: "\(Constants.APIurlstringFDC)?query=\(foodItem)&api_key=\(key)")
+    private func fetchDataAndResponse() async throws -> (data: Data, response: URLResponse) {
+        try await URLSession.shared.data(from: fdcURL!)
     }
     
-    private func fetchData(from url: URL) async throws -> (Data, URLResponse) {
-        return try await URLSession.shared.data(from: url)
+    private func fetchData() async throws -> Data {
+        try await fetchDataAndResponse().data
     }
 }
     
@@ -46,7 +41,21 @@ struct FDCService {
     
     
     
-    
+//    func fetchFDCfoodNutrientIntakes(for foodItem: String) async throws -> [FDCfoodNutrientIntake]? {
+//        guard let url = fdcURL(for: foodItem) else { return nil }
+//        let (data, _) = try await fetchData(from: url)
+//        return try parseFoodNutrients(from: data)
+//    }
+//
+//    func nutrientProfile(for foodItem: String) async throws -> NutrientProfile? {
+//        do {
+//            guard let fdcIntakes = try await fetchFDCfoodNutrientIntakes(for: foodItem) else { return nil }
+//            return FDCUnits.nutrientProfile(from: fdcIntakes)
+//        } catch {
+//            print("error: \(error.localizedDescription)")
+//            return nil
+//        }
+//    }
 //    private func fetchJSONobject(url: URL) async throws -> Any {
 //        let (data, _) = try await URLSession.shared.data(from: url)
 //        return try JSONSerialization.jsonObject(with: data, options: [])

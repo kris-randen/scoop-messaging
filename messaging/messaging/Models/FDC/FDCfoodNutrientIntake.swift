@@ -20,7 +20,7 @@ struct FDCfoodNutrientIntake: Decodable {
     var nutrient: any NutrientType {
         return foodNutrient.nutrient
     }
-    var unit: any UnitType {
+    var unit: any NutrientUnitType {
         return Units.table[unitName.lowercased()]!
     }
     var measure: FDCMeasure {

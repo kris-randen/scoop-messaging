@@ -16,7 +16,6 @@ struct FDCUnits {
     static let lengths: Set = ["km", "m","cm", "mm"]
     static let volumes: Set = ["l", "dl", "ml"]
     
-    
     static func conversion(for intake: FDCfoodNutrientIntake) -> Double {
         let (name, unit) = (intake.unitName, intake.unit)
         let desc = unit.description
@@ -60,10 +59,6 @@ struct FDCUnits {
     static func macros(from intakes: [FDCfoodNutrientIntake]) -> [MacroIntake] {
         convert(intakes.filter {isAmacro($0)}) as! [MacroIntake]
     }
-    
-//    static func macrosAll(from intakes: [FDCfoodNutrientIntake]) -> [MacroIntake] {
-//        Nutrients.Macro.zeroOrderedDict.updated(with: macros(from: intakes))
-//    }
     
     static func vitamins(from intakes: [FDCfoodNutrientIntake]) -> [VitaminIntake] {
         convert(intakes.filter {isAvitamin($0)}) as! [VitaminIntake]
