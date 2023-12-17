@@ -9,22 +9,26 @@ import Foundation
 import Collections
 import OrderedCollections
 
-protocol Nourishment: Codable, Hashable {
-    
-}
 
-protocol FDCable: Codable, Hashable {
+
+/// A protocol representing entities with a FoodData Central (FDC) identifier.
+/// - Conforms To: Typically used by food items or nutrients with a unique identifier in the FDC database.
+/// - Example Usage: `struct Vitamin: FDCable { var fdcID: Int ... }`
+/// - Conforming Types: `Vitamin`, `Mineral`, `FoodProduct`, etc.
+
+protocol FDCidAble: Codable, Hashable {
     var fdcID: Int { get }
 }
 
-protocol Measured: Codable, Hashable {
-    var value: Double   { get set }
-    var unit: Units.Mass { get set }
-}
+/// Represents a measurable value with a unit, typically used for nutrient content or ingredient measurements.
+/// - Conforms To: `ConvertibleMeasure` protocol for quantifiable elements that are interconvertible to different units
+/// - Example Usage: `let sugarContent = Value(value: 5.0, unit: .grams)`
+/// - Conforming Types: Used as a base structure for representing measurable quantities in various contexts.
 
-struct Value: Measured {
+struct Value: ConvertibleMeasure {
+    typealias Unit = Units.Mass
+    var unit: Unit
     var value: Double
-    var unit: Units.Mass
 }
 
 protocol NutrientType: ComparableHash, Codable, Equatable {
@@ -106,7 +110,7 @@ struct Nutrients {
         ])
     }
     
-    enum Macro: Int8, EnumTypeOrderedKey, NutrientType, FDCable {
+    enum Macro: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
         case energy
         case water
         case carbs
@@ -249,7 +253,7 @@ struct Nutrients {
     typealias Milligrams = Double
     
     enum Micro: CaseIterable {
-        enum Vitamin: Int8, EnumTypeOrderedKey, NutrientType, FDCable {
+        enum Vitamin: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
             case a      //(total: Micrograms, retinol: Micrograms? = nil, betaCarotene: Micrograms? = nil)
             case b1     //(thiamin: Milligrams)
             case b2     //(riboflavin: Milligrams)
@@ -364,7 +368,7 @@ struct Nutrients {
             }
         }
         
-        enum Mineral: Int8, EnumTypeOrderedKey, NutrientType, FDCable {
+        enum Mineral: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
             case Ca
             case Cl
             case Cr

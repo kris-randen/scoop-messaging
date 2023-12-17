@@ -13,7 +13,7 @@ protocol NutrientProfileable: Multipliable {
     var description: String { get }
     var type: NutrientValueType { get }
     var intakes: NutrientIntakes { get set }
-    var serving: any Serveable { get }
+    var serving: any ConvertibleMeasure { get }
     
     var nqi: Double { get }
 }
@@ -38,14 +38,14 @@ extension NutrientProfileable {
 
 
 protocol ServeableNutrientProfile: NutrientProfileable {
-    var serving: any Serveable { get }
+    var serving: any ConvertibleMeasure { get }
 }
 
 struct NutrientProfile: NutrientProfileable {
     var intakes: NutrientIntakes
     var description: String
     var type: NutrientValueType
-    var serving: any Serveable = Serving.Mass(unit: .gm, value: 100)
+    var serving: any ConvertibleMeasure = Serving.Mass(unit: .gm, value: 100)
 }
 
 extension NutrientProfile {
@@ -106,7 +106,7 @@ extension Dictionary: Multipliable where Value: Multipliable {
 
 struct NutrientProfileServed: ServeableNutrientProfile {
     var intakes: NutrientIntakes
-    var serving: any Serveable
+    var serving: any ConvertibleMeasure
     var description: String
     var type: NutrientValueType
 }

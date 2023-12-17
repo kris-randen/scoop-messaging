@@ -243,6 +243,7 @@
 		EE2C776A29026AD100D9FE84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE9372402B2F0C09006A18B2 /* Protocols */,
 				EE9690282B2B20B8006A30DC /* Units.swift */,
 				EE96902C2B2B21ED006A30DC /* Measures.swift */,
 				EEB6AE7B2B2D921900C8EBE5 /* Serving.swift */,
@@ -322,6 +323,13 @@
 				EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */,
 			);
 			path = "Lines and Chart Bars";
+			sourceTree = "<group>";
+		};
+		EE9372402B2F0C09006A18B2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		EE97DD2A29055301006C86AD /* Food */ = {

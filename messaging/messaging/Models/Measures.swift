@@ -7,10 +7,16 @@
 
 import Foundation
 
-protocol MeasureType: Measureable, Convertible {
+protocol Measureable {
+    associatedtype Unit: UnitType
+    var unit: Unit { get }
+    var value: Double { get set }
 }
 
-extension MeasureType {
+protocol ConvertibleMeasure: Measureable, Convertible {
+}
+
+extension ConvertibleMeasure {
     func conversion(to: Unit) -> Double {
         return self.value * self.unit.conversion(to: to)
     }
@@ -20,32 +26,26 @@ extension MeasureType {
     }
 }
 
-protocol Measureable {
-    associatedtype Unit: UnitType
-    var unit: Unit { get }
-    var value: Double { get }
-}
-
-struct Mass: MeasureType {
+struct Mass: ConvertibleMeasure {
     typealias Unit = Units.Mass
     let unit: Units.Mass
-    let value: Double
+    var value: Double
 }
 
-struct Length: MeasureType {
+struct Length: ConvertibleMeasure {
     typealias Unit = Units.Length
     let unit: Units.Length
-    let value: Double
+    var value: Double
 }
 
-struct Volume: MeasureType {
+struct Volume: ConvertibleMeasure {
     typealias Unit = Units.Volume
     let unit: Units.Volume
-    let value: Double
+    var value: Double
 }
 
-struct Energy: MeasureType {
+struct Energy: ConvertibleMeasure {
     typealias Unit = Units.Energy
     let unit: Units.Energy
-    let value: Double
+    var value: Double
 }

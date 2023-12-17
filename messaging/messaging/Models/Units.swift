@@ -7,8 +7,14 @@
 
 import Foundation
 
-protocol ExponentInterconvertible {
+protocol ExponentInterconvertible: Convertible {
     func conversionExponent(to: Self) -> Int8
+}
+
+extension ExponentInterconvertible {
+    func conversion(to: Self) -> Double {
+        pow(10, Double(conversionExponent(to: to)))
+    }
 }
 
 protocol Convertible {
@@ -17,16 +23,21 @@ protocol Convertible {
 
 protocol UnitType: Convertible, Codable, Hashable {
     var description: String { get }
-    func conversionExponent(to: Self) -> Int8
 }
 
-extension UnitType {
-    func conversion(to: Self) -> Double {
-        return pow(10, Double(conversionExponent(to: to)))
+protocol ExponentUnitType: UnitType, ExponentInterconvertible {}
+
+protocol NutrientUnitType: ExponentUnitType {}
+
+protocol NutrientUnitEnumOrderedKey: NutrientUnitType, EnumTypeOrderedKey {}
+
+protocol UnitEnumOrderedKey: UnitType, EnumTypeOrderedKey {}
+
+extension NutrientUnitEnumOrderedKey where RawValue == Int8 {
+    func conversionExponent(to: Self) -> Int8 {
+        self.rawValue - to.rawValue
     }
 }
-
-protocol NutrientUnitType: UnitType, ExponentInterconvertible {}
 
 
 enum Units {
@@ -58,9 +69,9 @@ enum Units {
         "kcal": Units.Energy.kcal
     ]
     
-    enum Energy: String, NutrientUnitType {
-        case kcal = "kcal"
-        case cal = "cal"
+    enum Energy: Int8, NutrientUnitEnumOrderedKey {
+        case cal = -3
+        case kcal = 0
         
         static var table: [String: Units.Energy] = [
             "cal" : .cal,
@@ -73,17 +84,15 @@ enum Units {
             case .kcal: Constants.Units.Energy.kcal
             }
         }
-        
-        func conversionExponent(to: Units.Energy) -> Int8 { return 0 }
     }
     
-    enum Mass: Int8, NutrientUnitType {
-        case pg = 0
-        case ng = 3
-        case ug = 6
-        case mg = 9
-        case gm = 12
-        case kg = 15
+    enum Mass: Int8, NutrientUnitEnumOrderedKey {
+        case pg = -12
+        case ng = -9
+        case ug = -6
+        case mg = -3
+        case gm = 0
+        case kg = 3
         
         static var table: [String: Units.Mass] = [
             "mg"    : .mg,
@@ -101,21 +110,17 @@ enum Units {
             case .kg: Constants.Units.Mass.kg
             }
         }
-        
-        func conversionExponent(to: Units.Mass) -> Int8 {
-            self.rawValue - to.rawValue
-        }
     }
     
-    enum Length: Int8, NutrientUnitType {
-        case pm = 0
-        case ag = 2
-        case nm = 3
-        case um = 6
-        case mm = 9
-        case cm = 10
-        case m = 12
-        case km = 15
+    enum Length: Int8, NutrientUnitEnumOrderedKey {
+        case pm = -10
+        case ag = -8
+        case nm = -7
+        case um = -4
+        case mm = -1
+        case cm = 0
+        case m = 2
+        case km = 5
         
         static var table: [String: Units.Length] = [
             "mm"    : .mm,
@@ -135,21 +140,17 @@ enum Units {
             case .km: Constants.Units.Length.km
             }
         }
-        
-        func conversionExponent(to: Units.Length) -> Int8 {
-            self.rawValue - to.rawValue
-        }
     }
     
-    enum Volume: Int8, NutrientUnitType {
-        case pl = 0
-        case nl = 3
-        case ul = 6
-        case ml = 9
-        case cl = 10
-        case dl = 11
-        case l = 12
-        case kl = 15
+    enum Volume: Int8, NutrientUnitEnumOrderedKey {
+        case pl = -9
+        case nl = -6
+        case ul = -3
+        case ml = 0
+        case cl = 1
+        case dl = 2
+        case l = 3
+        case kl = 6
         
         static var table: [String: Units.Volume] = [
             "ml" : .ml,
@@ -169,13 +170,10 @@ enum Units {
             case .kl: Constants.Units.Volume.kl
             }
         }
-        
-        func conversionExponent(to: Units.Volume) -> Int8 {
-            self.rawValue - to.rawValue
-        }
     }
     
     enum Ratio: ExponentInterconvertible, Codable, Hashable {
+
         case density(mass: Mass, volume: Volume)
         
         var logBase: Int8 {

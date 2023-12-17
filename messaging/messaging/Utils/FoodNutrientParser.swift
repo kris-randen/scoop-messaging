@@ -15,7 +15,7 @@ struct FoodNutrientParser {
     
     func select(from foods: [FDCFood]) -> FDCFood? { foods.first }
     
-    func extract(from food: FDCFood) -> any Serveable {
+    func extract(from food: FDCFood) -> any ConvertibleMeasure {
         Serving.get(from: food)
     }
     
@@ -23,7 +23,7 @@ struct FoodNutrientParser {
         FDCUnits.nutrientIntakes(from: food.foodNutrients)
     }
     
-    func extract(from food: FDCFood) -> NutrientProfile {
+    func extractNonNQIprofile(from food: FDCFood) -> NutrientProfile {
         NutrientProfile(
             intakes: extract(from: food),
             description: "",
@@ -32,7 +32,7 @@ struct FoodNutrientParser {
         )
     }
     
-    func extractNQIprofile(from food: FDCFood) -> NutrientProfile {
-        extract(from: food).convertedToNQI()
+    func extract(from food: FDCFood) -> NutrientProfile {
+        extractNonNQIprofile(from: food).convertedToNQI()
     }
 }

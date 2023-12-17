@@ -28,7 +28,7 @@ extension Array where Element: Hashable {
         set.union(other)
     }
     
-    func union(with others: [Set<Element>]) -> Set<Element> {
+    func union(with others: any Sequence<Set<Element>>) -> Set<Element> {
         set.union(with: others)
     }
     
