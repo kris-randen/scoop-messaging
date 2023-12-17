@@ -29,7 +29,9 @@ struct Serving {
     }
     
     static func get(from food: FDCFood) -> any ConvertibleMeasure {
-        var serving = mapper[Units.Kind.get(from: food.servingSizeUnit!)!]!
+        print("The food is:\n\(food)")
+        guard let unit = food.servingSizeUnit else { return Mass() }
+        var serving = mapper[Units.Kind.get(from: food.servingSizeUnit!.lowercased())!]!
         serving.value = food.servingSize!
         return serving
     }

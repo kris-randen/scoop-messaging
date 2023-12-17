@@ -38,6 +38,11 @@
 		EE7B1864290C2D1B006C20EA /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1863290C2D1B006C20EA /* BadgeView.swift */; };
 		EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1865290C2D5B006C20EA /* Badge.swift */; };
 		EE7B1868290C4875006C20EA /* VerticalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7B1867290C4875006C20EA /* VerticalChartView.swift */; };
+		EE9372422B2F20D8006A18B2 /* FoodItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372412B2F20D8006A18B2 /* FoodItemsListViewModel.swift */; };
+		EE9372442B2F2866006A18B2 /* FDCapiTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372432B2F2866006A18B2 /* FDCapiTestView.swift */; };
+		EE9372462B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372452B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift */; };
+		EE9372482B2F393F006A18B2 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372472B2F393F006A18B2 /* NetworkingManager.swift */; };
+		EE93724A2B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372492B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift */; };
 		EE9690212B2AD80F006A30DC /* FDCnutrientsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690202B2AD80F006A30DC /* FDCnutrientsMapper.swift */; };
 		EE9690232B2ADAF5006A30DC /* FDCfoodNutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690222B2ADAF5006A30DC /* FDCfoodNutrient.swift */; };
 		EE9690252B2B0B5D006A30DC /* FDCUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690242B2B0B5D006A30DC /* FDCUnits.swift */; };
@@ -109,6 +114,11 @@
 		EE7B1863290C2D1B006C20EA /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		EE7B1865290C2D5B006C20EA /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		EE7B1867290C4875006C20EA /* VerticalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalChartView.swift; sourceTree = "<group>"; };
+		EE9372412B2F20D8006A18B2 /* FoodItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemsListViewModel.swift; sourceTree = "<group>"; };
+		EE9372432B2F2866006A18B2 /* FDCapiTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCapiTestView.swift; sourceTree = "<group>"; };
+		EE9372452B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalChartViewFDCapiTest.swift; sourceTree = "<group>"; };
+		EE9372472B2F393F006A18B2 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		EE9372492B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalChartViewFDCapiTest.swift; sourceTree = "<group>"; };
 		EE9690202B2AD80F006A30DC /* FDCnutrientsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCnutrientsMapper.swift; sourceTree = "<group>"; };
 		EE9690222B2ADAF5006A30DC /* FDCfoodNutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCfoodNutrient.swift; sourceTree = "<group>"; };
 		EE9690242B2B0B5D006A30DC /* FDCUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCUnits.swift; sourceTree = "<group>"; };
@@ -209,6 +219,7 @@
 				EE0AFF5B290A8E3700C5B899 /* Protocols.swift */,
 				EE320D222902E9320083FF2D /* Labels.swift */,
 				EEB6AE7D2B2DB0D600C8EBE5 /* FoodNutrientParser.swift */,
+				EE9372472B2F393F006A18B2 /* NetworkingManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -224,6 +235,7 @@
 		EE2C776829026AB800D9FE84 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				EE9372412B2F20D8006A18B2 /* FoodItemsListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -341,6 +353,9 @@
 				EE97DD31290553AC006C86AD /* FoodItemCellView.swift */,
 				EE97DD33290553B9006C86AD /* FoodItemsListView.swift */,
 				EE7B1863290C2D1B006C20EA /* BadgeView.swift */,
+				EE9372432B2F2866006A18B2 /* FDCapiTestView.swift */,
+				EE9372452B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift */,
+				EE9372492B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -454,8 +469,10 @@
 				EE96902D2B2B21ED006A30DC /* Measures.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
+				EE93724A2B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift in Sources */,
 				EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */,
 				EE3FEB452B28755B0081E17A /* FDCFoodService.swift in Sources */,
+				EE9372482B2F393F006A18B2 /* NetworkingManager.swift in Sources */,
 				EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */,
 				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
 				EE96A17C29071B8C005E10DB /* Line.swift in Sources */,
@@ -465,12 +482,14 @@
 				EE97DD3829058FE7006C86AD /* VerticalLine.swift in Sources */,
 				EE9690252B2B0B5D006A30DC /* FDCUnits.swift in Sources */,
 				EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */,
+				EE9372422B2F20D8006A18B2 /* FoodItemsListViewModel.swift in Sources */,
 				EE320D28290313390083FF2D /* ViewModifiers.swift in Sources */,
 				EE9690312B2B2965006A30DC /* NutrientProfile.swift in Sources */,
 				EE3FEB432B2874D90081E17A /* FDCfoodNutrientIntake.swift in Sources */,
 				EE96902F2B2B28CC006A30DC /* NutrientIntakes.swift in Sources */,
 				EED1A5C62B2EE7170096CA07 /* DictionariesSetOperations.swift in Sources */,
 				EE320D1829029CF70083FF2D /* SignInView.swift in Sources */,
+				EE9372442B2F2866006A18B2 /* FDCapiTestView.swift in Sources */,
 				EE97DD36290553FA006C86AD /* User.swift in Sources */,
 				EE320D2A2903137C0083FF2D /* Constants.swift in Sources */,
 				EE7B1864290C2D1B006C20EA /* BadgeView.swift in Sources */,
@@ -508,6 +527,7 @@
 				EE9690232B2ADAF5006A30DC /* FDCfoodNutrient.swift in Sources */,
 				EED1A5CC2B2EE8F20096CA07 /* OrderedDictionary.swift in Sources */,
 				EE9690272B2B0C54006A30DC /* FDCMeasure.swift in Sources */,
+				EE9372462B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift in Sources */,
 				EE0AFF60290ACD6B00C5B899 /* RoundedRectTopRightCap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

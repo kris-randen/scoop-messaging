@@ -8,31 +8,47 @@
 import Foundation
 
 struct FoodNutrientParser {
-    func parseFoods(from data: Data) throws -> [FDCFood]? {
-        let decodedData = try JSONDecoder().decode(FDCFoodDataResponse.self, from: data)
-        return decodedData.foods
+    static func parseFoods(from data: Data) -> [FDCFood]? {
+        do {
+            let decodedData = try JSONDecoder().decode(FDCFoodDataResponse.self, from: data)
+            return decodedData.foods
+        } catch {
+            print("Error parsing foods from Data: \(error)")
+            return nil
+        }
     }
     
-    func select(from foods: [FDCFood]) -> FDCFood? { foods.first }
-    
-    func extract(from food: FDCFood) -> any ConvertibleMeasure {
-        Serving.get(from: food)
+    static func select(from foods: [FDCFood]) -> FDCFood? {
+        print("Food: \(foods.first!)")
+        return foods.first
     }
     
-    func extract(from food: FDCFood) -> NutrientIntakes {
-        FDCUnits.nutrientIntakes(from: food.foodNutrients)
+    static func extract(from food: FDCFood) -> any ConvertibleMeasure {
+        print("Extracting in FoodNutrientParser.extract from food: \(food)")
+        return Serving.get(from: food)
     }
     
-    func extractNonNQIprofile(from food: FDCFood) -> NutrientProfile {
+    static func extract(from food: FDCFood) -> NutrientIntakes {
+        print("Food: \(food)")
+        return FDCUnits.nutrientIntakes(from: food.foodNutrients)
+    }
+    
+    static func extractNonNQIprofile(from food: FDCFood) -> NutrientProfile {
         NutrientProfile(
             intakes: extract(from: food),
-            description: "",
+            description: food.description,
             type: .value,
             serving: extract(from: food)
         )
     }
     
-    func extract(from food: FDCFood) -> NutrientProfile {
-        extractNonNQIprofile(from: food).convertedToNQI()
+    static func extract(from food: FDCFood) -> NutrientProfile {
+        print("Extracting in FoodNutrientParser.extract from food: \(food)")
+        return extractNonNQIprofile(from: food).convertedToNQI()
+    }
+    
+    static func extract(from data: Data) -> NutrientProfile {
+        print("Extracting data.")
+        return extract(from: select(from: parseFoods(from: data)!)!)
     }
 }

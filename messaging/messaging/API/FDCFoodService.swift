@@ -20,18 +20,28 @@ struct FDCFoodService {
         URL(string: urlString)
     }
     
-    init(urlPrefix: String = Constants.APIurlstringFDC, apiKey: String = Constants.APIkeyFDC, foodItem: String) {
+    init(urlPrefix: String = Constants.APIurlstringFDC, apiKey: String = Constants.APIkeyFDC, foodItem: String = "broccoli") {
         self.urlPrefix = urlPrefix
         self.apiKey = apiKey
         self.foodItem = foodItem
     }
     
-    private func fetchDataAndResponse() async throws -> (data: Data, response: URLResponse) {
-        try await URLSession.shared.data(from: fdcURL!)
+    func fetchData() async -> Data? {
+        do {
+            print("Fetching in FDCFoodService food item: \(foodItem)")
+            return try await fetchDataUnhandled()
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            return nil
+        }
     }
     
-    private func fetchData() async throws -> Data {
+    func fetchDataUnhandled() async throws -> Data {
         try await fetchDataAndResponse().data
+    }
+    
+    private func fetchDataAndResponse() async throws -> (data: Data, response: URLResponse) {
+        try await URLSession.shared.data(from: fdcURL!)
     }
 }
     

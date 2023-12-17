@@ -57,7 +57,7 @@ enum Units {
         }
         
         static func get(from fdcUnit: String) -> Self? {
-            allCases.filter {$0.fdcUnits.contains(fdcUnit)}.first
+            allCases.filter {$0.fdcUnits.contains(fdcUnit.lowercased())}.first
         }
     }
     
@@ -66,6 +66,7 @@ enum Units {
         "mg": Units.Mass.mg,
         "ug": Units.Mass.ug,
         "kg": Units.Mass.kg,
+        "iu": Units.Mass.mg,
         "kcal": Units.Energy.kcal
     ]
     
@@ -95,9 +96,12 @@ enum Units {
         case kg = 3
         
         static var table: [String: Units.Mass] = [
+            "ug"    : .ug,
             "mg"    : .mg,
             "g"     : .gm,
-            "kg"    : .kg
+            "kg"    : .kg,
+            "gm"    :.gm,
+            "grm"   : .gm
         ]
         
         var description: String {
@@ -108,6 +112,73 @@ enum Units {
             case .mg: Constants.Units.Mass.mg
             case .gm: Constants.Units.Mass.gm
             case .kg: Constants.Units.Mass.kg
+            }
+        }
+    }
+    
+    enum IU: Int, UnitEnumOrderedKey {
+        case vitaminA
+        case retinol
+        case dietbetac
+        case suppbetac
+        case alphcarot
+        case betacrypt
+        case vitaminD
+        case vitaEnat
+        case vitaEsyn
+        
+        var description: String {
+            return ""
+        }
+        
+        func conversion(to: Units.IU) -> Double {
+            return 0
+        }
+        
+        func conversion(to: Units.Mass) -> Double {
+            switch self {
+            case .vitaminA, .retinol, .suppbetac:
+                switch to {
+                case .ng:
+                    return 300
+                default:
+                    return to.conversion(to: .ng) * conversion(to: .ng)
+                }
+            case .dietbetac:
+                switch to {
+                case .ng:
+                    return 50
+                default:
+                    return to.conversion(to: .ng) * conversion(to: .ng)
+                }
+            case .alphcarot, .betacrypt:
+                switch to {
+                case .ng:
+                    return 25
+                default:
+                    return to.conversion(to: .ng) * conversion(to: .ng)
+                }
+            case .vitaminD:
+                switch to {
+                case .ng:
+                    return 25
+                default:
+                    return to.conversion(to: .ng) * conversion(to: .ng)
+                }
+            case .vitaEnat:
+                switch to {
+                case .ug:
+                    return 670
+                default:
+                    return to.conversion(to: .ug) * conversion(to: .ug)
+                }
+            case .vitaEsyn:
+                switch to {
+                case .ug:
+                    return 450
+                default:
+                    return to.conversion(to: .ug) * conversion(to: .ug)
+                }
             }
         }
     }

@@ -1,18 +1,17 @@
 //
-//  VerticalChartView.swift
+//  VerticalChartViewFDCapiTest.swift
 //  messaging
 //
-//  Created by Krishnaswami Rajendren on 10/28/22.
+//  Created by Krishnaswami Rajendren on 12/17/23.
 //
+
 
 import SwiftUI
 
-struct VerticalChartView: View {
-    var profile: String
+struct VerticalChartViewFDCapiTest: View {
+//    var profile: String
     @Binding var kind: Nutrients.Kind
-    var nutrientProfile: NutrientProfile {
-        Profiles.dict[profile.lowercased()]!
-    }
+    var nutrientProfile: NutrientProfile
     
     var chart: Chart {
         Chart(profile: nutrientProfile, kind: kind, nqi: nutrientProfile.nqi)
@@ -206,10 +205,15 @@ struct VerticalChartView: View {
     }
 }
 
-struct VerticalChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        VerticalChartView(profile: "sugar", kind: .constant(.macro))
-//        VerticalChartView(profile: .constant("boost high protein drink"), kind: .constant(.macro))
-//        VerticalChartView(profile: .constant("sugar"), kind: .constant(.macro))
-    }
+//struct VerticalChartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VerticalChartView(profile: "sugar", kind: .constant(.macro))
+////        VerticalChartView(profile: .constant("boost high protein drink"), kind: .constant(.macro))
+////        VerticalChartView(profile: .constant("sugar"), kind: .constant(.macro))
+//    }
+//}
+
+
+#Preview {
+    VerticalChartViewFDCapiTest(kind: .constant(.macro), nutrientProfile: Profiles.carrot)
 }

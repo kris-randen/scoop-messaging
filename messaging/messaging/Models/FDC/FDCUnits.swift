@@ -12,22 +12,34 @@ import OrderedCollections
 typealias FDCUnit = String
 
 struct FDCUnits {
-    static let masses: Set = ["kg", "g", "mg", "ug"]
-    static let lengths: Set = ["km", "m","cm", "mm"]
-    static let volumes: Set = ["l", "dl", "ml"]
+    static let masses: Set = Constants.FDCunits.mass
+    static let ius: Set = Constants.FDCunits.iu
+    static let lengths: Set = Constants.FDCunits.length
+    static let volumes: Set = Constants.FDCunits.volume
     
     static func conversion(for intake: FDCfoodNutrientIntake) -> Double {
-        let (name, unit) = (intake.unitName, intake.unit)
-        let desc = unit.description
+        let (fdcUnitName, unit) = (intake.unitName.lowercased(), intake.unit)
+        let unitName = unit.description.lowercased()
     
-        if masses.contains(name) {
-            return Units.Mass.table[name]!.conversion(to: Units.Mass.table[desc]!)
+        if masses.contains(fdcUnitName) {
+            return Units.Mass.table[fdcUnitName]!.conversion(to: Units.Mass.table[unitName]!)
         }
-        else if lengths.contains(name) {
-            return Units.Length.table[name]!.conversion(to: Units.Length.table[desc]!)
+        else if lengths.contains(fdcUnitName) {
+            return Units.Length.table[fdcUnitName]!.conversion(to: Units.Length.table[unitName]!)
         }
-        else if volumes.contains(name) {
-            return Units.Volume.table[name]!.conversion(to: Units.Volume.table[desc]!)
+        else if volumes.contains(fdcUnitName) {
+            return Units.Volume.table[fdcUnitName]!.conversion(to: Units.Volume.table[unitName]!)
+        }
+        else if ius.contains(fdcUnitName) {
+            let nutrient = intake.nutrient
+            guard let vitamin = intake.nutrient as? Nutrients.Micro.Vitamin else { return 0 }
+            if vitamin == .aiu {
+                return Units.IU.vitaminA.conversion(to: .mg)
+            } else if vitamin == .diu {
+                return Units.IU.vitaminD.conversion(to: .mg)
+            } else if vitamin == .eiu {
+                return Units.IU.vitaEnat.conversion(to: .mg)
+            }
         }
         return 0
     }

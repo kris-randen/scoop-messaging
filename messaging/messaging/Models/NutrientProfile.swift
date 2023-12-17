@@ -28,6 +28,7 @@ extension NutrientProfileable {
     
     var nqiFactor: Double {
         Constants.DRI.energy / energy
+//        return 1.0
     }
     
     mutating func multiply(_ factor: Double) {

@@ -136,7 +136,7 @@ struct Nutrients {
         
         var name: String {
             switch self {
-            case .energy:       Constants.Nutrients.Name.energy
+            case .energy:       Constants.Nutrients.Name.calories
             case .sugar:        Constants.Nutrients.Name.sugar
             case .water:        Constants.Nutrients.Name.water
             case .carbs:        Constants.Nutrients.Name.carbs
@@ -174,6 +174,7 @@ struct Nutrients {
         
         static let fdcMap: FDCMap = [
             1003: Nutrients.Macro.protein,
+            1008: Nutrients.Macro.energy,
             1004: Nutrients.Macro.fats,
             1005: Nutrients.Macro.carbs,
             1235: Nutrients.Macro.sugar,
@@ -255,6 +256,7 @@ struct Nutrients {
     enum Micro: CaseIterable {
         enum Vitamin: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
             case a      //(total: Micrograms, retinol: Micrograms? = nil, betaCarotene: Micrograms? = nil)
+            case aiu
             case b1     //(thiamin: Milligrams)
             case b2     //(riboflavin: Milligrams)
             case b3     //(niacin: Milligrams)
@@ -266,7 +268,9 @@ struct Nutrients {
             case b12    //(cobalamin: Micrograms)
             case c      //(ascorbicAcid: Milligrams)
             case d      //(total: Micrograms, cholecalciferol: Micrograms? = nil, ergocalciferol: Micrograms? = nil)
+            case diu
             case e      //(alphaTocopherol: Milligrams)
+            case eiu
             case k      //(total: Micrograms, phylloquinone: Micrograms? = nil, menadione: Micrograms? = nil)
             
             var compareKey: Int8 { return self.rawValue }
@@ -281,9 +285,9 @@ struct Nutrients {
             
             var unit: Units.Mass {
                 switch self {
-                case .a, .b7, .b9, .b12, .d, .k:
+                case .a, .aiu, .b7, .b9, .b12, .d, .diu, .k:
                     return .ug
-                case .b1, .b2, .b3, .b4, .b5, .b6, .c, .e:
+                case .b1, .b2, .b3, .b4, .b5, .b6, .c, .e, .eiu:
                     return .mg
                 }
             }
@@ -291,6 +295,7 @@ struct Nutrients {
             var name: String {
                 switch self {
                 case .a:    Constants.Nutrients.Name.vitaminA
+                case .aiu:  Constants.Nutrients.Name.vitaminAiu
                 case .b1:   Constants.Nutrients.Name.vitaminB1
                 case .b2:   Constants.Nutrients.Name.vitaminB2
                 case .b3:   Constants.Nutrients.Name.vitaminB3
@@ -302,7 +307,9 @@ struct Nutrients {
                 case .b12:  Constants.Nutrients.Name.vitaminB12
                 case .c:    Constants.Nutrients.Name.vitaminC
                 case .d:    Constants.Nutrients.Name.vitaminD
+                case .diu:  Constants.Nutrients.Name.vitaminDiu
                 case .e:    Constants.Nutrients.Name.vitaminE
+                case .eiu:  Constants.Nutrients.Name.vitaminEiu
                 case .k:    Constants.Nutrients.Name.vitaminK
                 }
             }
@@ -310,6 +317,7 @@ struct Nutrients {
             var compound: String {
                 switch self {
                 case .a:    Constants.Nutrients.Compound.vitaminA
+                case .aiu:  Constants.Nutrients.Compound.vitaminA
                 case .b1:   Constants.Nutrients.Compound.vitaminB1
                 case .b2:   Constants.Nutrients.Compound.vitaminB2
                 case .b3:   Constants.Nutrients.Compound.vitaminB3
@@ -321,7 +329,9 @@ struct Nutrients {
                 case .b12:  Constants.Nutrients.Compound.vitaminB12
                 case .c:    Constants.Nutrients.Compound.vitaminC
                 case .d:    Constants.Nutrients.Compound.vitaminD
+                case .diu:  Constants.Nutrients.Compound.vitaminD
                 case .e:    Constants.Nutrients.Compound.vitaminE
+                case .eiu:  Constants.Nutrients.Compound.vitaminE
                 case .k:    Constants.Nutrients.Compound.vitaminK
                 }
             }
@@ -329,9 +339,12 @@ struct Nutrients {
             var fdcID: Int {
                 switch self {
                 case .a:    1106
+                case .aiu:  1104
                 case .c:    1162
                 case .d:    1114
+                case .diu:  1110
                 case .e:    1109
+                case .eiu:  1124
                 case .k:    1185
                 case .b1:   1165
                 case .b2:   1166
@@ -347,9 +360,12 @@ struct Nutrients {
             
             static let fdcMap: FDCMap = [
                 1106: Nutrients.Micro.Vitamin.a,
+                1104: Nutrients.Micro.Vitamin.aiu,
                 1162: Nutrients.Micro.Vitamin.c,
                 1114: Nutrients.Micro.Vitamin.d,
+                1110: Nutrients.Micro.Vitamin.diu,
                 1109: Nutrients.Micro.Vitamin.e,
+                1124: Nutrients.Micro.Vitamin.eiu,
                 1185: Nutrients.Micro.Vitamin.k,
                 1165: Nutrients.Micro.Vitamin.b1,
                 1166: Nutrients.Micro.Vitamin.b2,
