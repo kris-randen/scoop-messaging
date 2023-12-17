@@ -27,7 +27,7 @@ struct Value: Measured {
     var unit: Units.Mass
 }
 
-protocol NutrientType: OrderedKey, Codable, Equatable {
+protocol NutrientType: ComparableHash, Codable, Equatable {
     var name: String { get }
     var compound: String { get }
     var unit: Units.Mass { get }
