@@ -23,8 +23,8 @@ struct VerticalChartView: View {
             GeometryReader { geo in
                 CardView()
                 VStack(alignment: .center) {
-//                    itemDescription(name: chart.item, nqi: chart.nqi)
-                    itemDescription(name: chart.item, nqi: 100)
+                    itemDescription(name: chart.item, nqi: chart.nqi)
+//                    itemDescription(name: chart.item, nqi: 100)
                         .padding(.top)
                         .padding(.horizontal)
                     chartView(for: chart, withSize: geo.size)

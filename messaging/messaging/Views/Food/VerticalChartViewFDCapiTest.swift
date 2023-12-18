@@ -56,7 +56,7 @@ struct VerticalChartViewFDCapiTest: View {
     fileprivate func itemDescription(name: String, nqi: Double) -> some View {
         HStack(alignment: .lastTextBaseline) {
             VStack {
-                Text("\(name)🕵🏻")
+                Text("\(name) 🕵🏻")
                     .font(Fonts.Card.food.weight(.bold))
                 HStack {
                     Text("**NQI** = \(Int(nqi))")
@@ -109,7 +109,10 @@ struct VerticalChartViewFDCapiTest: View {
                 .font(Fonts.CardNutrient)
             if chart.kind == .macro {
                 HStack {
-                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: bar.value)))
+//                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: bar.value)))
+//                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: 1)))
+//                        .fontWeight(.black)
+                    Text(String(format: "%.2f", bar.value))
                         .fontWeight(.black)
                     Text("\(bar.unit)")
                         .padding(.leading, -3)

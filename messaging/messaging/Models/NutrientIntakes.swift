@@ -14,7 +14,7 @@ typealias MacroIntake = (Nutrients.Macro, Double)
 typealias VitaminIntake = (Nutrients.Micro.Vitamin, Double)
 typealias MineralIntake = (Nutrients.Micro.Mineral, Double)
 
-protocol Intakeable: Multipliable {
+protocol Intakeable: Multipliable, NQIconvertible {
     associatedtype Nutrient: NutrientType
     typealias Intakes = OrderedDictionary<Nutrient, Double>
     var intakes: Intakes { get set }
@@ -31,6 +31,14 @@ protocol Intakeable: Multipliable {
 extension Intakeable {
     mutating func multiply(_ factor: Double) {
         self.intakes = factor * self.intakes
+    }
+    
+    func convertedToNQI(for energy: Energy) -> Self {
+        var nqiIntakes = Intakes()
+        for (nutrient, value) in intakes {
+            nqiIntakes[nutrient] = nutrient.nqiFactor(with: energy) * value / nutrient.dailyValue
+        }
+        return Self.init(intakes: nqiIntakes)
     }
 }
 
@@ -71,12 +79,14 @@ extension Intakeable {
     var negativeNQI: Double { negatives.nqi }
 }
 
-protocol Intakeables: Multipliable {
+protocol Intakeables: Multipliable, NQIconvertible {
     var intakes: OrderedDictionary<Nutrients.Kind, any Intakeable> { get set }
     var nqi: Double { get }
 }
 
 extension Intakeables {
+    
+    
     var numPositives: Int {
         let num = intakes.reduce(0) { sum, intake in
             sum + intake.value.numPositives
@@ -112,7 +122,8 @@ extension Intakeables {
 
 
 struct NutrientIntakes: Intakeables {
-    var intakes: OrderedDictionary<Nutrients.Kind, any Intakeable>
+    typealias Intakes = OrderedDictionary<Nutrients.Kind, any Intakeable>
+    var intakes: Intakes
     
     mutating func multiply(_ factor: Double) {
         self.intakes = [
@@ -122,6 +133,18 @@ struct NutrientIntakes: Intakeables {
         ]
     }
     
+    func convertedToNQI(for energy: Energy) -> Self {
+        var nqiIntakes = Intakes()
+        nqiIntakes[.macro] = intakes[.macro]!.convertedToNQI(for: energy)
+        nqiIntakes[.vitamin] = intakes[.vitamin]!.convertedToNQI(for: energy)
+        nqiIntakes[.mineral] = intakes[.mineral]!.convertedToNQI(for: energy)
+        return Self.init(intakes: nqiIntakes)
+    }
+    
+}
+
+protocol NQIconvertible {
+    func convertedToNQI(for energy: Energy) -> Self
 }
 
 struct MacroIntakes: Intakeable {
@@ -155,4 +178,50 @@ struct MineralIntakes: Intakeable {
     typealias Intakes = OrderedDictionary<Nutrient, Double>
     var intakes: Intakes = Intakes()
     var kind: Nutrients.Kind = .mineral
+}
+
+struct SugarIntakes: Intakeable {
+    typealias Nutrient = Nutrients.Macro.Sugar
+    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    var intakes: Intakes = Intakes()
+    var kind: Nutrients.Kind = .macro
+    
+    init() {
+        
+    }
+    
+    var negatives: Intakes {
+        self.intakes.filter {!$0.key.required}
+    }
+}
+
+struct CarbIntakes: Intakeable {
+    typealias Nutrient = Nutrients.Macro.Carb
+    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    var intakes: Intakes = Intakes()
+    var kind: Nutrients.Kind = .macro
+    
+    init() {
+        
+    }
+    
+    var negatives: Intakes {
+        self.intakes.filter {!$0.key.required}
+    }
+}
+
+
+struct FatIntakes: Intakeable {
+    typealias Nutrient = Nutrients.Macro.Fat
+    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    var intakes: Intakes = Intakes()
+    var kind: Nutrients.Kind = .macro
+    
+    init() {
+        
+    }
+    
+    var negatives: Intakes {
+        self.intakes.filter {!$0.key.required}
+    }
 }

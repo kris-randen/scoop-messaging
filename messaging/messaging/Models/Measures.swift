@@ -48,4 +48,5 @@ struct Energy: ConvertibleMeasure {
     typealias Unit = Units.Energy
     let unit: Units.Energy
     var value: Double
+    static var dailyValue: Double = 2000
 }

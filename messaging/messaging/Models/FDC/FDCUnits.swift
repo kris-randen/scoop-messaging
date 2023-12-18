@@ -12,16 +12,24 @@ import OrderedCollections
 typealias FDCUnit = String
 
 struct FDCUnits {
+    static let energies: Set = Constants.FDCunits.energy
     static let masses: Set = Constants.FDCunits.mass
     static let ius: Set = Constants.FDCunits.iu
     static let lengths: Set = Constants.FDCunits.length
     static let volumes: Set = Constants.FDCunits.volume
     
+    static func unit(for intake: FDCfoodNutrientIntake) -> any NutrientUnitEnumOrderedKey {
+        intake.nutrient.unit
+    }
+    
     static func conversion(for intake: FDCfoodNutrientIntake) -> Double {
         let (fdcUnitName, unit) = (intake.unitName.lowercased(), intake.unit)
         let unitName = unit.description.lowercased()
     
-        if masses.contains(fdcUnitName) {
+        if energies.contains(fdcUnitName) {
+            return 1
+        }
+        else if masses.contains(fdcUnitName) {
             return Units.Mass.table[fdcUnitName]!.conversion(to: Units.Mass.table[unitName]!)
         }
         else if lengths.contains(fdcUnitName) {
@@ -44,6 +52,10 @@ struct FDCUnits {
         return 0
     }
     
+    static func chart(contains intake: FDCfoodNutrientIntake) -> Bool {
+        Nutrients.fdcMap.keySet.contains(intake.nutrientId)
+    }
+    
     static func value(for intake: FDCfoodNutrientIntake) -> Double {
         intake.value * conversion(for: intake)
     }
@@ -53,7 +65,7 @@ struct FDCUnits {
     }
     
     static func convert(_ intakes: [FDCfoodNutrientIntake]) -> [Intake] {
-        intakes.map { convert($0) }
+        intakes.filter{chart(contains: $0)}.map{convert($0)}
     }
     
     static func isAmacro(_ intake: FDCfoodNutrientIntake) -> Bool {

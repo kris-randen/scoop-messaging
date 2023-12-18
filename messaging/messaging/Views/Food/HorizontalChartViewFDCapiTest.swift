@@ -57,7 +57,7 @@ struct HorizontalChartViewFDCapiTest: View {
     fileprivate func itemDescription(name: String, nqi: Double) -> some View {
         HStack(alignment: .lastTextBaseline) {
             VStack {
-                Text("\(name)🕵🏻")
+                Text("\(name) 🕵🏻")
                     .font(Fonts.Card.food.weight(.bold))
                 HStack {
                     Text("**NQI** = \(Int(nqi))")

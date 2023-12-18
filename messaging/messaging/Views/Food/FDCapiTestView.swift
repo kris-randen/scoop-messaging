@@ -18,7 +18,7 @@ import SwiftUI
 
 struct FDCapiTestView: View {
     @StateObject var viewModel = FoodItemsListViewModel()
-    @State var text: String = "broccoli"
+    @State var text: String = "broccoli raw"
     @State var kind: Nutrients.Kind = .macro
     @State var profile: NutrientProfile? = Profiles.carrot
     @State private var nutritionalInfo: String = "Nutritional Info will appear here"

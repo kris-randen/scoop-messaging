@@ -30,7 +30,8 @@ struct FoodNutrientParser {
     
     static func extract(from food: FDCFood) -> NutrientIntakes {
         print("Food: \(food)")
-        return FDCUnits.nutrientIntakes(from: food.foodNutrients)
+//        return FDCUnits.nutrientIntakes(from: food.foodNutrients)
+        return FDCUnits.nutrientIntakesAll(from: food.foodNutrients)
     }
     
     static func extractNonNQIprofile(from food: FDCFood) -> NutrientProfile {
@@ -42,9 +43,13 @@ struct FoodNutrientParser {
         )
     }
     
+    static func energy(from food: FDCFood) -> Energy {
+        food.energy
+    }
+    
     static func extract(from food: FDCFood) -> NutrientProfile {
         print("Extracting in FoodNutrientParser.extract from food: \(food)")
-        return extractNonNQIprofile(from: food).convertedToNQI()
+        return extractNonNQIprofile(from: food).convertedToNQI(for: food.energy)
     }
     
     static func extract(from data: Data) -> NutrientProfile {

@@ -27,6 +27,7 @@ extension NutrientProfileable {
     }
     
     var nqiFactor: Double {
+//        energy / Constants.DRI.energy
         Constants.DRI.energy / energy
 //        return 1.0
     }
@@ -42,11 +43,12 @@ protocol ServeableNutrientProfile: NutrientProfileable {
     var serving: any ConvertibleMeasure { get }
 }
 
-struct NutrientProfile: NutrientProfileable {
+struct NutrientProfile: NutrientProfileable, NQIconvertible {
     var intakes: NutrientIntakes
     var description: String
     var type: NutrientValueType
     var serving: any ConvertibleMeasure = Serving.Mass(unit: .gm, value: 100)
+    var energy = Energy(unit: .kcal, value: 0)
 }
 
 extension NutrientProfile {
@@ -62,7 +64,12 @@ extension NutrientProfile {
         return NutrientProfile.convertValueToNQI(valueProfile: self)
     }
     
-    
+    func convertedToNQI(for energy: Energy) -> Self {
+        var nqiProfile = self
+        nqiProfile.type = .nqi
+        nqiProfile.intakes = intakes.convertedToNQI(for: energy)
+        return nqiProfile
+    }
 }
 
 protocol Multipliable {
@@ -133,7 +140,7 @@ struct Profiles {
                 .Mo: 45, .P: 1250, .Se: 55, .Zn: 11, .K: 4700, .Na: 2300, .Cl: 2.3
             ]),
             .macro: MacroIntakes(intakes: [
-                .water: 3.7, .carbs: 130, .sugar: 20, .fats: 78, .fiber: 38, .linoleicAcid: 17, .aLinoleicAcid: 1.6, .protein: 56
+                .water: 3.7, .carbs: 130, .sugar: 20, .fats: 78, .fiber: 38, .linoleicAcid: 17, .aLinoleicAcid: 1.6, .protein: 56, .energy: Constants.DRI.energy
             ])
         ]), description: "Daily Value",
         type: .value)

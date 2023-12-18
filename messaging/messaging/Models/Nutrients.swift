@@ -31,7 +31,39 @@ struct Value: ConvertibleMeasure {
     var value: Double
 }
 
-protocol NutrientType: ComparableHash, Codable, Equatable {
+protocol DailyValueable {
+    associatedtype DailyIntakes: Intakeable
+    static var dailyIntakes: DailyIntakes { get }
+    var dailyValue: Double { get }
+}
+
+extension DailyValueable {
+    var dailyValue: Double {
+        Self.dailyIntakes.intakes[self as! Self.DailyIntakes.Nutrient]!
+    }
+}
+
+protocol NQIndexable: DailyValueable {
+    var dailyValueEnergy: Double { get }
+    func nqiFactor(with energy: Energy) -> Double
+    func nqi(for value: Double, with energy: Energy) -> Double
+}
+
+extension NQIndexable {
+    var dailyValueEnergy: Double {
+        Energy.dailyValue
+    }
+    
+    func nqiFactor(with energy: Energy) -> Double {
+        dailyValueEnergy / energy.value
+    }
+    
+    func nqi(for value: Double, with energy: Energy) -> Double {
+        nqiFactor(with: energy) * value / dailyValue
+    }
+}
+
+protocol NutrientType: ComparableHash, NQIndexable, Codable, Equatable {
     var name: String { get }
     var compound: String { get }
     var unit: Units.Mass { get }
@@ -57,6 +89,8 @@ protocol Glycemic {
 struct Nutrients {
     typealias Grams = Double
     typealias FDCMap = [Int: any NutrientType]
+    
+    static let dailyValue = Profiles.profile
     
     enum Kind: String, EnumTypeOrderedKey {
         case macro = "Macro"
@@ -112,7 +146,7 @@ struct Nutrients {
     
     enum Macro: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
         case energy
-        case water
+        case protein
         case carbs
         case sugar
         case fiber
@@ -122,12 +156,18 @@ struct Nutrients {
         case cholesterol
         case linoleicAcid
         case aLinoleicAcid
-        case protein
+        case water
         
         var compareKey: Int8 { return self.rawValue }
         
+        typealias DailyIntakes = MacroIntakes
+        
+        static var dailyIntakes: MacroIntakes {
+            Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+        }
+        
         static var zero: OrderedDictionary<Macro, Double> {
-            Macro.zeroOrderedDict
+            Macro.zeroOrderedDict.filter { fdcMap.keySet.contains($0.key.fdcID) }
         }
         
         static var zeroIntakes: MacroIntakes {
@@ -151,12 +191,7 @@ struct Nutrients {
             }
         }
         
-        var unit: Units.Mass {
-            switch self {
-            case .water: .kg
-            default: .gm
-            }
-        }
+        var unit: Units.Mass { .gm }
         
         var compound: String { "" }
         
@@ -178,7 +213,7 @@ struct Nutrients {
             1004: Nutrients.Macro.fats,
             1005: Nutrients.Macro.carbs,
             1235: Nutrients.Macro.sugar,
-            2033: Nutrients.Macro.fiber
+            1079: Nutrients.Macro.fiber
         ]
         
         enum Sugar: Int8, EnumTypeOrderedKey, Glycemic, NutrientType {
@@ -194,6 +229,16 @@ struct Nutrients {
             case maple
             
             var compareKey: Int8 { return self.rawValue }
+            
+            func nqI(for value: Double, with energy: Energy) -> Double {
+                0
+            }
+            
+            typealias DailyIntakes = MacroIntakes
+            
+            static var dailyIntakes: MacroIntakes {
+                Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+            }
             
             var glycemicIndex: UInt {
                 switch self {
@@ -226,6 +271,14 @@ struct Nutrients {
             
             
             var compareKey: Int8 { return self.rawValue }
+            
+            typealias DailyIntakes = MacroIntakes
+            
+            static var dailyIntakes: MacroIntakes {
+                Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+            }
+            
+            var dailyValue: Double { 0 }
             var name: String { "" }
             var compound: String { "" }
             var unit: Units.Mass { .gm }
@@ -239,6 +292,14 @@ struct Nutrients {
             case cholesterol
             
             var compareKey: Int8 { return self.rawValue }
+            
+            typealias DailyIntakes = MacroIntakes
+            
+            static var dailyIntakes: MacroIntakes {
+                Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+            }
+            
+            var dailyValue: Double { 0 }
             
             var name: String { "" }
             
@@ -275,8 +336,14 @@ struct Nutrients {
             
             var compareKey: Int8 { return self.rawValue }
             
+            typealias DailyIntakes = VitaminIntakes
+            
+            static var dailyIntakes: VitaminIntakes {
+                Nutrients.dailyValue.intakes.intakes[.vitamin] as! VitaminIntakes
+            }
+            
             static var zero: OrderedDictionary<Vitamin, Double> {
-                Vitamin.zeroOrderedDict
+                Vitamin.zeroOrderedDict.filter{fdcMap.keySet.contains($0.key.fdcID)}
             }
             
             static var zeroIntakes: VitaminIntakes {
@@ -360,12 +427,12 @@ struct Nutrients {
             
             static let fdcMap: FDCMap = [
                 1106: Nutrients.Micro.Vitamin.a,
-                1104: Nutrients.Micro.Vitamin.aiu,
+//                1104: Nutrients.Micro.Vitamin.aiu,
                 1162: Nutrients.Micro.Vitamin.c,
                 1114: Nutrients.Micro.Vitamin.d,
-                1110: Nutrients.Micro.Vitamin.diu,
+//                1110: Nutrients.Micro.Vitamin.diu,
                 1109: Nutrients.Micro.Vitamin.e,
-                1124: Nutrients.Micro.Vitamin.eiu,
+//                1124: Nutrients.Micro.Vitamin.eiu,
                 1185: Nutrients.Micro.Vitamin.k,
                 1165: Nutrients.Micro.Vitamin.b1,
                 1166: Nutrients.Micro.Vitamin.b2,
@@ -397,15 +464,34 @@ struct Nutrients {
             case Mo
             case P
             case K
-            case S
+//            case S
             case Se
             case Na
             case Zn
             
+//        intakes: NutrientIntakes(intakes: [
+//            .vitamin: VitaminIntakes(intakes: [
+//                .a: 900, .c: 90, .d: 20, .e: 15, .k: 120, .b1: 1.2, .b2: 1.3,
+//                .b3: 16, .b6: 1.7, .b9: 400, .b12: 2.4, .b5: 5, .b7: 30, .b4: 550
+//            ]),
+//            .mineral: MineralIntakes(intakes: [
+//                .Ca: 1300, .Cr: 35, .Cu: 900, .F: 4, .I: 150, .Fe: 18, .Mg: 420, .Mn: 2.3,
+//                .Mo: 45, .P: 1250, .Se: 55, .Zn: 11, .K: 4700, .Na: 2300, .Cl: 2.3
+//            ]),
+//            .macro: MacroIntakes(intakes: [
+//                .water: 3.7, .carbs: 130, .sugar: 20, .fats: 78, .fiber: 38, .linoleicAcid: 17, .aLinoleicAcid: 1.6, .protein: 56, .energy: Constants.DRI.energy
+//            ])
+            
             var compareKey: Int8 { return self.rawValue }
             
+            typealias DailyIntakes = MineralIntakes
+            
+            static var dailyIntakes: DailyIntakes {
+                Nutrients.dailyValue.intakes.intakes[.mineral] as! MineralIntakes
+            }
+            
             static var zero: OrderedDictionary<Mineral, Double> {
-                Mineral.zeroOrderedDict
+                Mineral.zeroOrderedDict.filter{fdcMap.keySet.contains($0.key.fdcID)}
             }
             
             static var zeroIntakes: MineralIntakes {
@@ -414,12 +500,14 @@ struct Nutrients {
             
             var unit: Units.Mass {
                 switch self {
-                case .Ca, .F, .Fe, .Mg, .Mn, .P, .Zn, .K, .Na, .S:
-                    return .mg
-                case .Cr, .Cu, .I, .Mo, .Se:
-                    return .ug
                 case .Cl:
                     return .gm
+                case .Cr, .Cu, .I, .Mo, .Se:
+                    return .ug
+                default:
+                    return .mg
+                
+                
                 }
             }
             
@@ -437,7 +525,7 @@ struct Nutrients {
                 case .P:    Constants.Nutrients.Name.phosphorous
                 case .I:    Constants.Nutrients.Name.iodine
                 case .K:    Constants.Nutrients.Name.potassium
-                case .S:    Constants.Nutrients.Name.sulfur
+//                case .S:    Constants.Nutrients.Name.sulfur
                 case .Se:   Constants.Nutrients.Name.selenium
                 case .Na:   Constants.Nutrients.Name.sodium
                 case .Zn:   Constants.Nutrients.Name.zinc
@@ -458,7 +546,7 @@ struct Nutrients {
                 case .Mo:   Constants.Nutrients.Compound.molybdenum
                 case .P:    Constants.Nutrients.Compound.phosphorous
                 case .K:    Constants.Nutrients.Compound.potassium
-                case .S:    Constants.Nutrients.Compound.sulfur
+//                case .S:    Constants.Nutrients.Compound.sulfur
                 case .Se:   Constants.Nutrients.Compound.selenium
                 case .Na:   Constants.Nutrients.Compound.sodium
                 case .Zn:   Constants.Nutrients.Compound.zinc
@@ -474,7 +562,7 @@ struct Nutrients {
                 case .P:    1091
                 case .K:    1092
                 case .Na:   1093
-                case .S:    1094
+//                case .S:    1094
                 case .Zn:   1095
                 case .Cr:   1096
                 case .Cu:   1098
@@ -494,7 +582,7 @@ struct Nutrients {
                 1091: Nutrients.Micro.Mineral.P,
                 1092: Nutrients.Micro.Mineral.K,
                 1093: Nutrients.Micro.Mineral.Na,
-                1094: Nutrients.Micro.Mineral.S,
+//                1094: Nutrients.Micro.Mineral.S,
                 1095: Nutrients.Micro.Mineral.Zn,
                 1096: Nutrients.Micro.Mineral.Cr,
                 1098: Nutrients.Micro.Mineral.Cu,
