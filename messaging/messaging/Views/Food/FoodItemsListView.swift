@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct FoodItemsListView: View {
-    @State var text: String = "arugula"
+    @StateObject var viewModel = FoodItemsListViewModel()
+    @State var text: String = "broccoli raw"
     @State var kind: Nutrients.Kind = .macro
+    @State var profile: NutrientProfile? = Profiles.carrot
+    @State private var nutritionalInfo: String = "Nutritional Info will appear here"
+    @State private var shouldNavigate = false
     
     init() {
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: "Avenir Next Bold", size: 18)!, .foregroundColor: UIColor(Colors.scoopRed)]
@@ -19,20 +23,21 @@ struct FoodItemsListView: View {
         NavigationView {
             VStack {
                 loginTextField()
-                NavigationLink {
-                    if valid(item: text) {
-                        switch kind {
-                        case .macro:
-                            VerticalChartView(profile: text, kind: $kind)
-                        default:
-                            HorizontalChartView(profileName: text, kind: $kind)
-                        }
+                Button(action: {
+                    Task {
+                        profile = await fetchNutritionInfo(for: text)
+                        shouldNavigate = true
                     }
-                } label: {
+                }, label: {
                     signInButtonLabel()
+                })
+                .padding()
+                if viewModel.isLoading {
+                    ProgressView()
                 }
-                .ignoresSafeArea(.keyboard)
+                NavigationLink("", destination: chartView(), isActive: $shouldNavigate)
             }
+            .ignoresSafeArea(.keyboard)
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Food Item")
@@ -40,23 +45,37 @@ struct FoodItemsListView: View {
         .accentColor(Colors.scoopRed)
     }
     
-    fileprivate func abc(barcode: String) {
-        print("hello")
+    private func fetchNutritionInfo(for foodItem: String) async -> NutrientProfile {
+        var service = FDCFoodService()
+        return await service.fetchNutritionInfo(for: foodItem)
+    }
+    
+    private func fetchProfile() {
+        print("Button pressed.")
+        Task {
+            await viewModel.fetchNutrientProfile(for: text)
+        }
+    }
+    
+    @ViewBuilder
+    private func chartView() -> some View {
+        switch kind {
+        case .macro:
+            VerticalChartViewFDCapiTest(kind: $kind, nutrientProfile: profile!)
+        default:
+            HorizontalChartViewFDCapiTest(kind: $kind, profile: profile!)
+        }
     }
     
     fileprivate func valid(item name: String) -> Bool {
         Profiles.dict.contains{$0.key == name}
-//        do {
-//            try await FDCService().getNutrients(for: text)
-//        }
-//        catch {
-//            print("haha")
-//        }
     }
     
     fileprivate func signInButton() -> some View {
         Button {
-            //
+            Task {
+                await viewModel.fetchNutrientProfile(for: text)
+            }
         } label: {
             signInButtonLabel()
         }
@@ -77,7 +96,7 @@ struct FoodItemsListView: View {
             Text("").foregroundColor(Colors.scoopRedPlaceholder)
         }
         .foregroundColor(Colors.scoopRed)
-//        .disableAutocorrection(true)
+        //        .disableAutocorrection(true)
         .textInputAutocapitalization(.never)
         .textFieldify(heightScaling: Dimensions.HeightScaling.textField)
         .font(Fonts.signInTextField)

@@ -26,7 +26,7 @@ struct HorizontalChartViewFDCapiTest: View {
                 ScrollView {
                     VStack {
 //                        itemDescription(name: chart.item, nqi: chart.nqi)
-                        itemDescription(name: chart.item, nqi: 100)
+                        itemDescription(name: profile.food, nqi: profile.nqi)
                             .padding(.top)
                             .padding(.horizontal)
                         chartView(for: chart, withSize: geo.size)

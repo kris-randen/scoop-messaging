@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct VerticalChartViewFDCapiTest: View {
-//    var profile: String
     @Binding var kind: Nutrients.Kind
     var nutrientProfile: NutrientProfile
     
@@ -23,7 +22,7 @@ struct VerticalChartViewFDCapiTest: View {
                 CardView()
                 VStack(alignment: .center) {
 //                    itemDescription(name: chart.item, nqi: chart.nqi)
-                    itemDescription(name: chart.item, nqi: 100)
+                    itemDescription(name: nutrientProfile.food, nqi: nutrientProfile.nqi)
                         .padding(.top)
                         .padding(.horizontal)
                     chartView(for: chart, withSize: geo.size)
@@ -112,7 +111,7 @@ struct VerticalChartViewFDCapiTest: View {
 //                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: bar.value)))
 //                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: 1)))
 //                        .fontWeight(.black)
-                    Text(String(format: "%.2f", bar.value))
+                    Text(String(format: "%.0f", bar.scaled))
                         .fontWeight(.black)
                     Text("\(bar.unit)")
                         .padding(.leading, -3)

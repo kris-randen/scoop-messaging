@@ -25,7 +25,18 @@ extension OrderedDictionary where Key: Comparable {
     }
     
     var elementsKeysAscending: [(key: Key, value: Value)] { elementsSortedByKeys(ascending: true) }
+    
     var elementsKeysDescending: [(key: Key, value: Value)] { elementsSortedByKeys(ascending: false) }
+    
+    func mapD<NewKey, NewValue>(_ transform: ((key: Key, value: Value)) -> (NewKey, NewValue)) -> OrderedDictionary<NewKey, NewValue> {
+            return OrderedDictionary<NewKey, NewValue>(uniqueKeysWithValues: self.map(transform))
+        }
+}
+
+extension Dictionary {
+    func mapD<NewKey, NewValue>(_ transform: ((key: Key, value: Value)) -> (NewKey, NewValue)) -> [NewKey: NewValue] {
+            return Dictionary<NewKey, NewValue>(uniqueKeysWithValues: self.map(transform))
+        }
 }
 
 

@@ -9,39 +9,65 @@ import Foundation
 
 struct FDCFoodService {
     let urlPrefix: String
-    let foodItem: String
     let apiKey: String
+    private var cache = [String: NutrientProfile]()
     
-    private var urlString: String {
+    private func urlString(for foodItem: String) -> String {
         "\(urlPrefix)?query=\(foodItem)&api_key=\(apiKey)"
     }
     
-    private var fdcURL: URL? {
-        URL(string: urlString)
+    private func url(for foodItem: String) -> URL {
+        URL(string: urlString(for: foodItem))!
     }
     
-    init(urlPrefix: String = Constants.APIurlstringFDC, apiKey: String = Constants.APIkeyFDC, foodItem: String = "broccoli") {
-        self.urlPrefix = urlPrefix
+    init(apiKey: String = Constants.APIkeyFDC, urlPrefix: String = Constants.APIurlstringFDC) {
         self.apiKey = apiKey
-        self.foodItem = foodItem
+        self.urlPrefix = urlPrefix
     }
     
-    func fetchData() async -> Data? {
+    mutating func fetchNutritionInfo(for foodItem: String) async -> NutrientProfile {
+        if let cached = retrieve(foodItem) { return cached }
+        let profile = await fetchFromFDC(foodItem)
+        save(profile, for: foodItem)
+        return profile
+    }
+    
+    private func fetchFromFDC(_ foodItem: String) async ->  NutrientProfile {
+        await fetchProfile(for: foodItem)!
+    }
+    
+    private func fetchProfile(for foodItem: String) async -> NutrientProfile? {
         do {
-            print("Fetching in FDCFoodService food item: \(foodItem)")
-            return try await fetchDataUnhandled()
+            let data = try await fetchDataUnhandled(for: foodItem)
+            return FoodNutrientParser.extract(from: data)
         } catch {
             print("Error: \(error.localizedDescription)")
             return nil
         }
     }
     
-    func fetchDataUnhandled() async throws -> Data {
-        try await fetchDataAndResponse().data
+    private func retrieve(_ foodItem: String) -> NutrientProfile? { cache[foodItem] }
+    
+    private mutating func save(_ profile: NutrientProfile, for foodItem: String) {
+        self.cache[foodItem] = profile
     }
     
-    private func fetchDataAndResponse() async throws -> (data: Data, response: URLResponse) {
-        try await URLSession.shared.data(from: fdcURL!)
+    func fetchData(for foodItem: String) async -> Data? {
+        do {
+            print("Fetching in FDCFoodService food item: \(foodItem)")
+            return try await fetchDataUnhandled(for: foodItem)
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    func fetchDataUnhandled(for foodItem: String) async throws -> Data {
+        try await fetchDataAndResponse(for: foodItem).data
+    }
+    
+    private func fetchDataAndResponse(for foodItem: String) async throws -> (data: Data, response: URLResponse) {
+        try await URLSession.shared.data(from: url(for: foodItem))
     }
 }
     

@@ -39,7 +39,6 @@ struct FDCUnits {
             return Units.Volume.table[fdcUnitName]!.conversion(to: Units.Volume.table[unitName]!)
         }
         else if ius.contains(fdcUnitName) {
-            let nutrient = intake.nutrient
             guard let vitamin = intake.nutrient as? Nutrients.Micro.Vitamin else { return 0 }
             if vitamin == .aiu {
                 return Units.IU.vitaminA.conversion(to: .mg)

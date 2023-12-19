@@ -17,6 +17,7 @@ struct Chart {
         let value: Double
         let nutrient: any NutrientType
         var kind: Nutrients.Kind = .vitamin
+        var scaled: Double = 0
         
         init(nutrient: any NutrientType, intake: Double, kind: Nutrients.Kind) {
             self.nutrient = nutrient
@@ -27,16 +28,22 @@ struct Chart {
             self.kind = kind
         }
         
-        init(nutrient: VitaminIntakes.Nutrient, intake: Double) {
-            self.init(nutrient: nutrient as VitaminIntakes.Nutrient, intake: intake, kind: .vitamin)
+        init(nutrient: any NutrientType, intake: Double, kind: Nutrients.Kind, scaled: Double) {
+            self.init(nutrient: nutrient, intake: intake, kind: kind)
+            self.scaled = scaled
         }
         
-        init(nutrient: MineralIntakes.Nutrient, intake: Double) {
-            self.init(nutrient: nutrient as MineralIntakes.Nutrient, intake: intake, kind: .mineral)
+        
+        init(nutrient: VitaminIntakes.Nutrient, intake: Double, scaled: Double) {
+            self.init(nutrient: nutrient as VitaminIntakes.Nutrient, intake: intake, kind: .vitamin, scaled: scaled)
         }
         
-        init(nutrient: MacroIntakes.Nutrient, intake: Double) {
-            self.init(nutrient: nutrient as MacroIntakes.Nutrient, intake: intake, kind: .macro)
+        init(nutrient: MineralIntakes.Nutrient, intake: Double, scaled: Double) {
+            self.init(nutrient: nutrient as MineralIntakes.Nutrient, intake: intake, kind: .mineral, scaled: scaled)
+        }
+        
+        init(nutrient: MacroIntakes.Nutrient, intake: Double, scaled: Double) {
+            self.init(nutrient: nutrient as MacroIntakes.Nutrient, intake: intake, kind: .macro, scaled: scaled)
         }
         
         var legend: String {
@@ -57,92 +64,72 @@ struct Chart {
     }
     
     static let zeroVitaminBars = [
-        Bar(nutrient: .a, intake: 0),
-        Bar(nutrient: .d, intake: 0),
-        Bar(nutrient: .e, intake: 0),
-        Bar(nutrient: .k, intake: 0),
-        Bar(nutrient: .b9, intake: 0),
-        Bar(nutrient: .b12, intake: 0),
-        Bar(nutrient: .c, intake: 0),
-        Bar(nutrient: .b1, intake: 0),
-        Bar(nutrient: .b2, intake: 0),
-        Bar(nutrient: .b3, intake: 0),
-        Bar(nutrient: .b4, intake: 0),
-        Bar(nutrient: .b5, intake: 0),
-        Bar(nutrient: .b6, intake: 0),
-        Bar(nutrient: .b7, intake: 0)
+        Bar(nutrient: .a, intake: 0, scaled: 0),
+        Bar(nutrient: .d, intake: 0, scaled: 0),
+        Bar(nutrient: .e, intake: 0, scaled: 0),
+        Bar(nutrient: .k, intake: 0, scaled: 0),
+        Bar(nutrient: .b9, intake: 0, scaled: 0),
+        Bar(nutrient: .b12, intake: 0, scaled: 0),
+        Bar(nutrient: .c, intake: 0, scaled: 0),
+        Bar(nutrient: .b1, intake: 0, scaled: 0),
+        Bar(nutrient: .b2, intake: 0, scaled: 0),
+        Bar(nutrient: .b3, intake: 0, scaled: 0),
+        Bar(nutrient: .b4, intake: 0, scaled: 0),
+        Bar(nutrient: .b5, intake: 0, scaled: 0),
+        Bar(nutrient: .b6, intake: 0, scaled: 0),
+        Bar(nutrient: .b7, intake: 0, scaled: 0)
     ]
     
     static let zeroMineralBars = [
-        Bar(nutrient: .Na, intake: 0),
-        Bar(nutrient: .Fe, intake: 0),
-        Bar(nutrient: .Mg, intake: 0),
-        Bar(nutrient: .Ca, intake: 0),
-        Bar(nutrient: .I, intake: 0),
-        Bar(nutrient: .Se, intake: 0),
-        Bar(nutrient: .Zn, intake: 0),
-        Bar(nutrient: .Cu, intake: 0),
-        Bar(nutrient: .Mn, intake: 0),
-        Bar(nutrient: .Cr, intake: 0),
-        Bar(nutrient: .Mo, intake: 0),
-        Bar(nutrient: .P, intake: 0),
-        Bar(nutrient: .F, intake: 0),
-        Bar(nutrient: .K, intake: 0),
-        Bar(nutrient: .Cl, intake: 0)
+        Bar(nutrient: .Na, intake: 0, scaled: 0),
+        Bar(nutrient: .Fe, intake: 0, scaled: 0),
+        Bar(nutrient: .Mg, intake: 0, scaled: 0),
+        Bar(nutrient: .Ca, intake: 0, scaled: 0),
+        Bar(nutrient: .I, intake: 0, scaled: 0),
+        Bar(nutrient: .Se, intake: 0, scaled: 0),
+        Bar(nutrient: .Zn, intake: 0, scaled: 0),
+        Bar(nutrient: .Cu, intake: 0, scaled: 0),
+        Bar(nutrient: .Mn, intake: 0, scaled: 0),
+        Bar(nutrient: .Cr, intake: 0, scaled: 0),
+        Bar(nutrient: .Mo, intake: 0, scaled: 0),
+        Bar(nutrient: .P, intake: 0, scaled: 0),
+        Bar(nutrient: .F, intake: 0, scaled: 0),
+        Bar(nutrient: .K, intake: 0, scaled: 0),
+        Bar(nutrient: .Cl, intake: 0, scaled: 0)
     ]
     
     static let zeroMacroBars = [
-        Bar(nutrient: .sugar, intake: 0),
-        Bar(nutrient: .cholesterol, intake: 0),
-        Bar(nutrient: .transFat, intake: 0),
-        Bar(nutrient: .carbs, intake: 0),
-        Bar(nutrient: .fats, intake: 0),
-        Bar(nutrient: .fiber, intake: 0)
+        Bar(nutrient: .sugar, intake: 0, scaled: 0),
+        Bar(nutrient: .cholesterol, intake: 0, scaled: 0),
+        Bar(nutrient: .transFat, intake: 0, scaled: 0),
+        Bar(nutrient: .carbs, intake: 0, scaled: 0),
+        Bar(nutrient: .fats, intake: 0, scaled: 0),
+        Bar(nutrient: .fiber, intake: 0, scaled: 0)
     ]
     
     static func zeroBars(for nutrients: [any NutrientType], kind: Nutrients.Kind) -> [Bar] {
-        nutrients.map {Bar.init(nutrient: $0, intake: 0, kind: kind)}
+        nutrients.map {Bar.init(nutrient: $0, intake: 0, kind: kind, scaled: 0)}
     }
     
     static func bars(for intakes: some Intakeable, kind: Nutrients.Kind) -> [Bar] {
         return intakes.intakes.sortedByValues(ascending: false).map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
-//        switch kind {
-//        case .vitamin:
-//            guard let intakes = intakes as? VitaminIntakes else { return Chart.zeroVitaminBars }
-//            return intakes.intakes.descending.map {Bar.init(nutrient: $0, intake: $1, kind: kind)}
-//
-//        case .mineral:
-//            guard let intakes = intakes as? MineralIntakes else { return Chart.zeroMineralBars }
-//            return intakes.intakes.descending.map {Bar.init(nutrient: $0, intake: $1, kind: kind)}
-//
-//        case .macro:
-//            guard let intakes = intakes as? MineralIntakes else { return Chart.zeroMacroBars }
-//            return intakes.intakes.descending.map {Bar.init(nutrient: $0, intake: $1, kind: kind)}
-//        }
     }
     
     static func barsAll(for intakes: some Intakeable, kind: Nutrients.Kind) -> [Bar] {
         switch kind {
         case .vitamin:
             guard let intakes = intakes as? VitaminIntakes else { return Chart.zeroVitaminBars }
-            return Chart.bars(for: intakes, kind: kind) //+ Chart.bars(for: nutrientsComplement(for: intakes, kind: kind), kind: kind)
+            return Chart.bars(for: intakes, kind: kind)
             
         case .mineral:
             guard let intakes = intakes as? MineralIntakes else { return Chart.zeroMineralBars }
-            return bars(for: intakes, kind: kind) //+ bars(for: nutrientsComplement(for: intakes, kind: kind), kind: kind)
+            return bars(for: intakes, kind: kind)
             
         case .macro:
             guard let intakes = intakes as? MacroIntakes else { return Chart.zeroMacroBars }
-            return bars(for: intakes, kind: kind) //+ bars(for: nutrientsComplement(for: intakes, kind: kind), kind: kind)
+            return bars(for: intakes, kind: kind)
         }
     }
-    
-//    static func intakesComplement(for intakes: some Intakeable, kind: Nutrients.Kind) -> any Intakeable {
-//        switch kind {
-//        case .vitamin:
-//            
-//        }
-//    }
     
     static func nutrientsComplement(for intakes: some Intakeable, kind: Nutrients.Kind) -> [any NutrientType] {
         switch kind {
@@ -168,49 +155,29 @@ struct Chart {
     let energy: Int = 2000
     let title: (title: String, subtitle: String)
     var bars = [Bar]()
-//    var barsAll: OrderedDictionary<Nutrients.Kind, [Bar]>
     let kind: Nutrients.Kind
     
     init(profile: NutrientProfile, kind: Nutrients.Kind, nqi: Double = 0) {
-        self.item = profile.description
+        self.item = profile.description.capitalized
         self.nqi = profile.nqi
         self.title = kind.chartTitle
         self.kind = kind
         
-//        for kind in profile.intakes.keys {
-//            self.barsAll[kind] = profile.intakes[kind]!.intakes.descending.map({ (key: NutrientType, value: Double) in
-//                return Bar(nutrient: key, intake: value, kind: kind)
-//            })
-//        }
-        
         switch kind {
         case .vitamin:
-            guard let intakes = profile.intakes.intakes[kind] as? VitaminIntakes else {
-                self.bars = Chart.zeroVitaminBars
-                return
-            }
-            for (nutrient, intake) in intakes.intakes.sortedByValues(ascending: false) {
-                self.bars.append(Bar(nutrient: nutrient, intake: intake))
+            for (nutrient, intake, scaled) in profile.intakesAndScaledVitamin.sorted(by: {$0.value > $1.value}) {
+                self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
             
         case .mineral:
-            guard let intakes = profile.intakes.intakes[kind] as? MineralIntakes else {
-                self.bars = Chart.zeroMineralBars
-                return
-            }
-            
-            for (nutrient, intake) in intakes.intakes.sortedByValues(ascending: false) {
-                self.bars.append(Bar(nutrient: nutrient, intake: intake))
+            for (nutrient, intake, scaled) in profile.intakesAndScaledMineral.sorted(by: {$0.value > $1.value}) {
+                self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
             
         case .macro:
-            guard let intakes = profile.intakes.intakes[kind] as? MacroIntakes else {
-                self.bars = Chart.zeroMacroBars
-                return
-            }
-            for (nutrient, intake) in intakes.intakes.sortedByValues(ascending: false) {
+            for (nutrient, intake, scaled) in profile.intakesAndScaledMacro.sorted(by: {$0.value > $1.value}) {
                 if displayBars.map({$0.name}) .contains(nutrient.name) {
-                    self.bars.append(Bar(nutrient: nutrient, intake: intake, kind: self.kind))
+                    self.bars.append(Bar(nutrient: nutrient, intake: intake, kind: self.kind, scaled: scaled))
                 }
             }
         }

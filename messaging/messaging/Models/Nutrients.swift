@@ -71,7 +71,12 @@ protocol NutrientType: ComparableHash, NQIndexable, Codable, Equatable {
 }
 
 extension NutrientType {
-    var required: Bool { Nutrients.required.contains(nutrient: self) }
+    var details: (name: String, unit: String, daily: Double) {
+        (name, unit.name, dailyValue)
+    }
+    var required: Bool {
+        Nutrients.required.contains(nutrient: self)
+    }
     var nqiMultiplier: Double { required ? 1 : -1 }
     static func ==(lhs: Self, rhs: Self) -> Bool { lhs.name == rhs.name }
 }
@@ -600,11 +605,11 @@ struct Nutrients {
     }
     
     static var required: [any NutrientType] {
-        Micro.Vitamin.allCases + Micro.Mineral.allCases + [Macro.fiber, Macro.protein, Macro.fats]
+        Micro.Vitamin.allCases + Micro.Mineral.allCases + [Macro.fiber, Macro.protein, Macro.fats, Macro.carbs]
     }
     
     static var restricted: [any NutrientType] {
-        [Macro.sugar, Macro.carbs, Macro.transFat, Macro.cholesterol, Macro.saturatedFat, Macro.fats, Micro.Mineral.Na]
+        [Macro.sugar, Macro.transFat, Macro.cholesterol, Macro.saturatedFat, Macro.fats, Micro.Mineral.Na]
     }
 }
 

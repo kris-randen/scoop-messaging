@@ -25,6 +25,10 @@ protocol UnitType: Convertible, Codable, Hashable {
     var description: String { get }
 }
 
+extension UnitType {
+    var name: String { description }
+}
+
 protocol ExponentUnitType: UnitType, ExponentInterconvertible {}
 
 protocol NutrientUnitType: ExponentUnitType {}

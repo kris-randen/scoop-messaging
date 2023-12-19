@@ -19,7 +19,11 @@ protocol NutrientProfileable: Multipliable {
 }
 
 extension NutrientProfileable {
-    var nqi: Double { intakes.nqi }
+    var nqi: Double {
+        nqi(for: macroIntakes) +
+        nqi(for: vitaminIntakes) +
+        nqi(for: mineralIntakes)
+    }
     
     var energy: Double {
         let macros = intakes.intakes[.macro] as! MacroIntakes
@@ -27,13 +31,140 @@ extension NutrientProfileable {
     }
     
     var nqiFactor: Double {
-//        energy / Constants.DRI.energy
         Constants.DRI.energy / energy
-//        return 1.0
     }
     
     mutating func multiply(_ factor: Double) {
         self.intakes = factor * self.intakes
+    }
+    
+    var food: String {
+        description
+    }
+    
+    var servingDescription: String {
+        "\(serving.value) \(serving.unit.description)"
+    }
+    
+    var macroIntakes: MacroIntakes {
+        intakes.intakes[.macro]! as! MacroIntakes
+    }
+    
+    var vitaminIntakes: VitaminIntakes {
+        intakes.intakes[.vitamin]! as! VitaminIntakes
+    }
+    
+    var mineralIntakes: MineralIntakes {
+        intakes.intakes[.mineral]! as! MineralIntakes
+    }
+    
+    var intakesMacro: IntakesMacro { macroIntakes.intakes }
+    
+    var intakesVitamin: IntakesVitamin { vitaminIntakes.intakes }
+    
+    var intakesMineral: IntakesMineral { mineralIntakes.intakes }
+    
+    var intakesAndScaledMacro: [MacroIntakeAndScaled] {
+        intakesMacro.map{($0.key, $0.value, scaled(for: $0.key))}
+    }
+    
+    var intakesAndScaledVitamin: [VitaminIntakeAndScaled] {
+        intakesVitamin.map{($0.key, $0.value, scaled(for: $0.key))}
+    }
+    
+    var intakesAndScaledMineral: [MineralIntakeAndScaled] {
+        intakesMineral.map{($0.key, $0.value, scaled(for: $0.key))}
+    }
+    
+    var scaledIntakes: NutrientIntakes {
+        NutrientIntakes(intakes: [
+            .macro: scaledMacroIntakes,
+            .vitamin: scaledVitaminIntakes,
+            .mineral: scaledMineralIntakes
+        ])
+    }
+    
+    var scaledMacroIntakes: MacroIntakes {
+        MacroIntakes(intakes: intakesMacro.mapD{($0.key, scaled(for: $0.key))})
+    }
+    
+    var scaledVitaminIntakes: VitaminIntakes {
+        VitaminIntakes(intakes: intakesVitamin.mapD{($0.key, scaled(for: $0.key))})
+    }
+    
+    var scaledMineralIntakes: MineralIntakes {
+        MineralIntakes(intakes: intakesMineral.mapD{($0.key, scaled(for: $0.key))})
+    }
+    
+    func value(for nutrient: Nutrients.Macro) -> Double {
+        macroIntakes.intakes[nutrient]!
+    }
+    
+    func value(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+        vitaminIntakes.intakes[nutrient]!
+    }
+    
+    func value(for nutrient: Nutrients.Micro.Mineral) -> Double {
+        mineralIntakes.intakes[nutrient]!
+    }
+    
+    func factor(for nutrient: any NutrientType) -> Double {
+        switch type {
+        case .value: nqiFactor
+        case .nqi: nutrient.dailyValue
+        }
+    }
+    
+    func scaled(for nutrient: Nutrients.Macro) -> Double {
+        factor(for: nutrient) * value(for: nutrient)
+    }
+    
+    func scaled(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+        factor(for: nutrient) * value(for: nutrient)
+    }
+    
+    func scaled(for nutrient: Nutrients.Micro.Mineral) -> Double {
+        factor(for: nutrient) * value(for: nutrient)
+    }
+    
+    func scale(for nutrient: Nutrients.Macro) -> Double {
+        scaled(for: nutrient) / nutrient.dailyValue
+    }
+    
+    func scale(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+        scaled(for: nutrient) / nutrient.dailyValue
+    }
+    
+    func scale(for nutrient: Nutrients.Micro.Mineral) -> Double {
+        scaled(for: nutrient) / nutrient.dailyValue
+    }
+    
+    func multiple(for nutrient: any NutrientType) -> Double {
+        nutrient.required ? 1 : -29
+    }
+    
+    func nqi(for nutrient: Nutrients.Macro) -> Double {
+        multiple(for: nutrient) * scale(for: nutrient)
+    }
+    
+    func nqi(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+        multiple(for: nutrient) * scale(for: nutrient)
+    }
+    
+    func nqi(for nutrient: Nutrients.Micro.Mineral) -> Double {
+        multiple(for: nutrient) * scale(for: nutrient)
+    }
+    
+    func nqi(for intakes: MacroIntakes) -> Double {
+        intakes.intakes.reduce(0) { $0 + nqi(for: $1.key) }
+    }
+    
+    func nqi(for intakes: VitaminIntakes) -> Double {
+        intakes.intakes.reduce(0) { $0 + nqi(for: $1.key) }
+    }
+    
+    func nqi(for intakes: MineralIntakes) -> Double {
+        intakes.intakes.reduce(0) { $0 + nqi(for: $1.key) }
     }
 }
 

@@ -26,7 +26,7 @@ protocol GenderizableIntakes {
 enum NutrientValueType {
     case value
     case nqi
-    case nmb
+//    case nmb
 }
 
 protocol AgeGroupableIntakes {

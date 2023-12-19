@@ -13,6 +13,13 @@ typealias Intake = (any NutrientType, Double)
 typealias MacroIntake = (Nutrients.Macro, Double)
 typealias VitaminIntake = (Nutrients.Micro.Vitamin, Double)
 typealias MineralIntake = (Nutrients.Micro.Mineral, Double)
+typealias IntakesMacro = OrderedDictionary<Nutrients.Macro, Double>
+typealias IntakesVitamin = OrderedDictionary<Nutrients.Micro.Vitamin, Double>
+typealias IntakesMineral = OrderedDictionary<Nutrients.Micro.Mineral, Double>
+typealias MacroIntakeAndScaled = (nutrient: Nutrients.Macro, value: Double, scaled: Double)
+typealias VitaminIntakeAndScaled = (nutrient: Nutrients.Micro.Vitamin, value: Double, scaled: Double)
+typealias MineralIntakeAndScaled = (nutrient: Nutrients.Micro.Mineral, value: Double, scaled: Double)
+
 
 protocol Intakeable: Multipliable, NQIconvertible {
     associatedtype Nutrient: NutrientType

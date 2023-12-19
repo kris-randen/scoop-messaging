@@ -41,7 +41,6 @@
 		EE9372422B2F20D8006A18B2 /* FoodItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372412B2F20D8006A18B2 /* FoodItemsListViewModel.swift */; };
 		EE9372442B2F2866006A18B2 /* FDCapiTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372432B2F2866006A18B2 /* FDCapiTestView.swift */; };
 		EE9372462B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372452B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift */; };
-		EE9372482B2F393F006A18B2 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372472B2F393F006A18B2 /* NetworkingManager.swift */; };
 		EE93724A2B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9372492B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift */; };
 		EE9690212B2AD80F006A30DC /* FDCnutrientsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690202B2AD80F006A30DC /* FDCnutrientsMapper.swift */; };
 		EE9690232B2ADAF5006A30DC /* FDCfoodNutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9690222B2ADAF5006A30DC /* FDCfoodNutrient.swift */; };
@@ -69,6 +68,7 @@
 		EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3D2905A88B006C86AD /* Nutrients.swift */; };
 		EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */; };
 		EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */; };
+		EE9F2BD02B31C73F009D9683 /* FoodScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9F2BCF2B31C73F009D9683 /* FoodScoring.swift */; };
 		EEB6AE7C2B2D921900C8EBE5 /* Serving.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB6AE7B2B2D921900C8EBE5 /* Serving.swift */; };
 		EEB6AE7E2B2DB0D600C8EBE5 /* FoodNutrientParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB6AE7D2B2DB0D600C8EBE5 /* FoodNutrientParser.swift */; };
 		EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC26E8B2904A50D002BCF97 /* ProfileView.swift */; };
@@ -117,7 +117,6 @@
 		EE9372412B2F20D8006A18B2 /* FoodItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemsListViewModel.swift; sourceTree = "<group>"; };
 		EE9372432B2F2866006A18B2 /* FDCapiTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCapiTestView.swift; sourceTree = "<group>"; };
 		EE9372452B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalChartViewFDCapiTest.swift; sourceTree = "<group>"; };
-		EE9372472B2F393F006A18B2 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		EE9372492B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalChartViewFDCapiTest.swift; sourceTree = "<group>"; };
 		EE9690202B2AD80F006A30DC /* FDCnutrientsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCnutrientsMapper.swift; sourceTree = "<group>"; };
 		EE9690222B2ADAF5006A30DC /* FDCfoodNutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCfoodNutrient.swift; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		EE97DD3D2905A88B006C86AD /* Nutrients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrients.swift; sourceTree = "<group>"; };
 		EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleVerticalLine.swift; sourceTree = "<group>"; };
 		EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleHorizontalLine.swift; sourceTree = "<group>"; };
+		EE9F2BCF2B31C73F009D9683 /* FoodScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodScoring.swift; sourceTree = "<group>"; };
 		EEB6AE7B2B2D921900C8EBE5 /* Serving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serving.swift; sourceTree = "<group>"; };
 		EEB6AE7D2B2DB0D600C8EBE5 /* FoodNutrientParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodNutrientParser.swift; sourceTree = "<group>"; };
 		EEC26E8B2904A50D002BCF97 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -219,7 +219,6 @@
 				EE0AFF5B290A8E3700C5B899 /* Protocols.swift */,
 				EE320D222902E9320083FF2D /* Labels.swift */,
 				EEB6AE7D2B2DB0D600C8EBE5 /* FoodNutrientParser.swift */,
-				EE9372472B2F393F006A18B2 /* NetworkingManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -268,6 +267,7 @@
 				EE7B1865290C2D5B006C20EA /* Badge.swift */,
 				EE97DD35290553FA006C86AD /* User.swift */,
 				EE3FEB462B2875990081E17A /* FDC */,
+				EE9F2BCF2B31C73F009D9683 /* FoodScoring.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,7 +472,6 @@
 				EE93724A2B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift in Sources */,
 				EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */,
 				EE3FEB452B28755B0081E17A /* FDCFoodService.swift in Sources */,
-				EE9372482B2F393F006A18B2 /* NetworkingManager.swift in Sources */,
 				EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */,
 				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
 				EE96A17C29071B8C005E10DB /* Line.swift in Sources */,
@@ -512,6 +511,7 @@
 				EED1A5CA2B2EE8A90096CA07 /* ArraysZip.swift in Sources */,
 				EE9690292B2B20B8006A30DC /* Units.swift in Sources */,
 				EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */,
+				EE9F2BD02B31C73F009D9683 /* FoodScoring.swift in Sources */,
 				EE0AFF66290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift in Sources */,
 				EE7B1868290C4875006C20EA /* VerticalChartView.swift in Sources */,
 				EE9690212B2AD80F006A30DC /* FDCnutrientsMapper.swift in Sources */,

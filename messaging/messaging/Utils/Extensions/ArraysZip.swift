@@ -41,14 +41,6 @@ extension Array where Element: Hashable {
     }
 }
 
-func * <Element>(element: Element, count: Int) -> [Element] {
-    return Array(repeating: element, count: count)
-}
-
-func * <Element>(count: Int, element: Element) -> [Element] {
-    return Array(repeating: element, count: count)
-}
-
 extension Array {
     static func *(lhs: Int, rhs: Self) -> Self {
         (0..<lhs).reduce(into: []) { sum, _ in

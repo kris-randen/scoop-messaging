@@ -25,7 +25,7 @@ class FoodItemsListViewModel: ObservableObject {
         }
         
         do {
-            let data = try await fdcFoodService.fetchDataUnhandled()
+            let data = try await fdcFoodService.fetchDataUnhandled(for: foodItem)
             
             DispatchQueue.main.async {
                 self.nutrientProfile = FoodNutrientParser.extract(from: data)
