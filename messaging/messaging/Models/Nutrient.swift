@@ -39,7 +39,7 @@ protocol DailyValueable {
 
 extension DailyValueable {
     var dailyValue: Double {
-        Self.dailyIntakes.intakes[self as! Self.DailyIntakes.Nutrient]!
+        Self.dailyIntakes.intakes[self as! Self.DailyIntakes.NutrientKey]!
     }
 }
 
@@ -75,7 +75,7 @@ extension NutrientType {
         (name, unit.name, dailyValue)
     }
     var required: Bool {
-        Nutrients.required.contains(nutrient: self)
+        Nutrient.required.contains(nutrient: self)
     }
     var nqiMultiplier: Double { required ? 1 : -1 }
     static func ==(lhs: Self, rhs: Self) -> Bool { lhs.name == rhs.name }
@@ -91,7 +91,7 @@ protocol Glycemic {
     var glycemicIndex: UInt { get }
 }
 
-struct Nutrients {
+struct Nutrient {
     typealias Grams = Double
     typealias FDCMap = [Int: any NutrientType]
     
@@ -102,7 +102,7 @@ struct Nutrients {
         case vitamin = "Vitamin"
         case mineral = "Mineral"
         
-        var fdcMap: FDCMap { Nutrients.fdcMapper[self]! }
+        var fdcMap: FDCMap { Nutrient.fdcMapper[self]! }
         
         static func get(from nutrientID: Int) -> Self? {
             allCases.filter {$0.fdcMap.keySet.contains(nutrientID)}.first
@@ -130,15 +130,15 @@ struct Nutrients {
     }
     
     static let fdcMap: FDCMap = Dictionary.merge(dicts: [
-        Nutrients.Macro.fdcMap,
-        Nutrients.Micro.Vitamin.fdcMap,
-        Nutrients.Micro.Mineral.fdcMap
+        Nutrient.Macro.fdcMap,
+        Nutrient.Micro.Vitamin.fdcMap,
+        Nutrient.Micro.Mineral.fdcMap
     ])
     
-    static let fdcMapper: [Nutrients.Kind: FDCMap] = [
-        Nutrients.Kind.macro : Nutrients.Macro.fdcMap,
-        Nutrients.Kind.vitamin: Nutrients.Micro.Vitamin.fdcMap,
-        Nutrients.Kind.mineral: Nutrients.Micro.Mineral.fdcMap
+    static let fdcMapper: [Nutrient.Kind: FDCMap] = [
+        Nutrient.Kind.macro : Nutrient.Macro.fdcMap,
+        Nutrient.Kind.vitamin: Nutrient.Micro.Vitamin.fdcMap,
+        Nutrient.Kind.mineral: Nutrient.Micro.Mineral.fdcMap
     ]
     
     static var zeroIntakes: NutrientIntakes {
@@ -168,7 +168,7 @@ struct Nutrients {
         typealias DailyIntakes = MacroIntakes
         
         static var dailyIntakes: MacroIntakes {
-            Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+            Nutrient.dailyValue.intakes.intakes[.macro] as! MacroIntakes
         }
         
         static var zero: OrderedDictionary<Macro, Double> {
@@ -202,24 +202,17 @@ struct Nutrients {
         
         var fdcID: Int {
             switch self {
-            case .protein: 1003
-            case .fats: 1004
-            case .carbs: 1005
-            case .energy: 1008
-            case .sugar: 1235
-            case .fiber: 2033
+            case .protein: Constants.Nutrients.FDCid.protein
+            case .fats: Constants.Nutrients.FDCid.fats
+            case .carbs: Constants.Nutrients.FDCid.carbs
+            case .energy: Constants.Nutrients.FDCid.energy
+            case .sugar: Constants.Nutrients.FDCid.sugar
+            case .fiber: Constants.Nutrients.FDCid.fiber
             default: -1
             }
         }
         
-        static let fdcMap: FDCMap = [
-            1003: Nutrients.Macro.protein,
-            1008: Nutrients.Macro.energy,
-            1004: Nutrients.Macro.fats,
-            1005: Nutrients.Macro.carbs,
-            1235: Nutrients.Macro.sugar,
-            1079: Nutrients.Macro.fiber
-        ]
+        static let fdcMap: FDCMap = Constants.Nutrients.FDCmap.macro
         
         enum Sugar: Int8, EnumTypeOrderedKey, Glycemic, NutrientType {
             case sucrose
@@ -242,7 +235,7 @@ struct Nutrients {
             typealias DailyIntakes = MacroIntakes
             
             static var dailyIntakes: MacroIntakes {
-                Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+                Nutrient.dailyValue.intakes.intakes[.macro] as! MacroIntakes
             }
             
             var glycemicIndex: UInt {
@@ -280,7 +273,7 @@ struct Nutrients {
             typealias DailyIntakes = MacroIntakes
             
             static var dailyIntakes: MacroIntakes {
-                Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+                Nutrient.dailyValue.intakes.intakes[.macro] as! MacroIntakes
             }
             
             var dailyValue: Double { 0 }
@@ -301,7 +294,7 @@ struct Nutrients {
             typealias DailyIntakes = MacroIntakes
             
             static var dailyIntakes: MacroIntakes {
-                Nutrients.dailyValue.intakes.intakes[.macro] as! MacroIntakes
+                Nutrient.dailyValue.intakes.intakes[.macro] as! MacroIntakes
             }
             
             var dailyValue: Double { 0 }
@@ -344,7 +337,7 @@ struct Nutrients {
             typealias DailyIntakes = VitaminIntakes
             
             static var dailyIntakes: VitaminIntakes {
-                Nutrients.dailyValue.intakes.intakes[.vitamin] as! VitaminIntakes
+                Nutrient.dailyValue.intakes.intakes[.vitamin] as! VitaminIntakes
             }
             
             static var zero: OrderedDictionary<Vitamin, Double> {
@@ -410,48 +403,30 @@ struct Nutrients {
             
             var fdcID: Int {
                 switch self {
-                case .a:    1106
-                case .aiu:  1104
-                case .c:    1162
-                case .d:    1114
-                case .diu:  1110
-                case .e:    1109
-                case .eiu:  1124
-                case .k:    1185
-                case .b1:   1165
-                case .b2:   1166
-                case .b3:   1167
-                case .b4:   1180
-                case .b5:   1170
-                case .b6:   1175
-                case .b7:   1176
-                case .b9:   1177
-                case .b12:  1178
+                case .a:    Constants.Nutrients.FDCid.vitaminA
+                case .aiu:  Constants.Nutrients.FDCid.vitaminAiu
+                case .c:    Constants.Nutrients.FDCid.vitaminC
+                case .d:    Constants.Nutrients.FDCid.vitaminD
+                case .diu:  Constants.Nutrients.FDCid.vitaminDiu
+                case .e:    Constants.Nutrients.FDCid.vitaminE
+                case .eiu:  Constants.Nutrients.FDCid.vitaminEiu
+                case .k:    Constants.Nutrients.FDCid.vitaminK
+                case .b1:   Constants.Nutrients.FDCid.vitaminB1
+                case .b2:   Constants.Nutrients.FDCid.vitaminB2
+                case .b3:   Constants.Nutrients.FDCid.vitaminB3
+                case .b4:   Constants.Nutrients.FDCid.vitaminB4
+                case .b5:   Constants.Nutrients.FDCid.vitaminB5
+                case .b6:   Constants.Nutrients.FDCid.vitaminB6
+                case .b7:   Constants.Nutrients.FDCid.vitaminB7
+                case .b9:   Constants.Nutrients.FDCid.vitaminB9
+                case .b12:  Constants.Nutrients.FDCid.vitaminB12
                 }
             }
             
-            static let fdcMap: FDCMap = [
-                1106: Nutrients.Micro.Vitamin.a,
-//                1104: Nutrients.Micro.Vitamin.aiu,
-                1162: Nutrients.Micro.Vitamin.c,
-                1114: Nutrients.Micro.Vitamin.d,
-//                1110: Nutrients.Micro.Vitamin.diu,
-                1109: Nutrients.Micro.Vitamin.e,
-//                1124: Nutrients.Micro.Vitamin.eiu,
-                1185: Nutrients.Micro.Vitamin.k,
-                1165: Nutrients.Micro.Vitamin.b1,
-                1166: Nutrients.Micro.Vitamin.b2,
-                1167: Nutrients.Micro.Vitamin.b3,
-                1180: Nutrients.Micro.Vitamin.b4,
-                1170: Nutrients.Micro.Vitamin.b5,
-                1175: Nutrients.Micro.Vitamin.b6,
-                1176: Nutrients.Micro.Vitamin.b7,
-                1177: Nutrients.Micro.Vitamin.b9,
-                1178: Nutrients.Micro.Vitamin.b12
-            ]
+            static let fdcMap: FDCMap = Constants.Nutrients.FDCmap.vitamin
             
             
-            func DRI(nutrient: Nutrients.Micro.Vitamin, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
+            func DRI(nutrient: Nutrient.Micro.Vitamin, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
                 0
             }
         }
@@ -469,30 +444,17 @@ struct Nutrients {
             case Mo
             case P
             case K
-//            case S
             case Se
             case Na
             case Zn
-            
-//        intakes: NutrientIntakes(intakes: [
-//            .vitamin: VitaminIntakes(intakes: [
-//                .a: 900, .c: 90, .d: 20, .e: 15, .k: 120, .b1: 1.2, .b2: 1.3,
-//                .b3: 16, .b6: 1.7, .b9: 400, .b12: 2.4, .b5: 5, .b7: 30, .b4: 550
-//            ]),
-//            .mineral: MineralIntakes(intakes: [
-//                .Ca: 1300, .Cr: 35, .Cu: 900, .F: 4, .I: 150, .Fe: 18, .Mg: 420, .Mn: 2.3,
-//                .Mo: 45, .P: 1250, .Se: 55, .Zn: 11, .K: 4700, .Na: 2300, .Cl: 2.3
-//            ]),
-//            .macro: MacroIntakes(intakes: [
-//                .water: 3.7, .carbs: 130, .sugar: 20, .fats: 78, .fiber: 38, .linoleicAcid: 17, .aLinoleicAcid: 1.6, .protein: 56, .energy: Constants.DRI.energy
-//            ])
+//            case S
             
             var compareKey: Int8 { return self.rawValue }
             
             typealias DailyIntakes = MineralIntakes
             
             static var dailyIntakes: DailyIntakes {
-                Nutrients.dailyValue.intakes.intakes[.mineral] as! MineralIntakes
+                Nutrient.dailyValue.intakes.intakes[.mineral] as! MineralIntakes
             }
             
             static var zero: OrderedDictionary<Mineral, Double> {
@@ -530,10 +492,10 @@ struct Nutrients {
                 case .P:    Constants.Nutrients.Name.phosphorous
                 case .I:    Constants.Nutrients.Name.iodine
                 case .K:    Constants.Nutrients.Name.potassium
-//                case .S:    Constants.Nutrients.Name.sulfur
                 case .Se:   Constants.Nutrients.Name.selenium
                 case .Na:   Constants.Nutrients.Name.sodium
                 case .Zn:   Constants.Nutrients.Name.zinc
+//                case .S:    Constants.Nutrients.Name.sulfur
                 }
             }
             
@@ -551,61 +513,44 @@ struct Nutrients {
                 case .Mo:   Constants.Nutrients.Compound.molybdenum
                 case .P:    Constants.Nutrients.Compound.phosphorous
                 case .K:    Constants.Nutrients.Compound.potassium
-//                case .S:    Constants.Nutrients.Compound.sulfur
                 case .Se:   Constants.Nutrients.Compound.selenium
                 case .Na:   Constants.Nutrients.Compound.sodium
                 case .Zn:   Constants.Nutrients.Compound.zinc
+//                case .S:    Constants.Nutrients.Compound.sulfur
                 }
             }
             
             var fdcID: Int {
                 switch self {
-                case .Ca:   1087
-                case .Cl:   1088
-                case .Fe:   1089
-                case .Mg:   1090
-                case .P:    1091
-                case .K:    1092
-                case .Na:   1093
-//                case .S:    1094
-                case .Zn:   1095
-                case .Cr:   1096
-                case .Cu:   1098
-                case .F:    1099
-                case .I:    1100
-                case .Mn:   1101
-                case .Mo:   1102
-                case .Se:   1103
+                case .Ca:   Constants.Nutrients.FDCid.calcium
+                case .Cl:   Constants.Nutrients.FDCid.chloride
+                case .Fe:   Constants.Nutrients.FDCid.iron
+                case .Mg:   Constants.Nutrients.FDCid.magnesium
+                case .P:    Constants.Nutrients.FDCid.phosphorous
+                case .K:    Constants.Nutrients.FDCid.potassium
+                case .Na:   Constants.Nutrients.FDCid.sodium
+                case .Zn:   Constants.Nutrients.FDCid.zinc
+                case .Cr:   Constants.Nutrients.FDCid.chromium
+                case .Cu:   Constants.Nutrients.FDCid.copper
+                case .F:    Constants.Nutrients.FDCid.fluoride
+                case .I:    Constants.Nutrients.FDCid.iodine
+                case .Mn:   Constants.Nutrients.FDCid.manganese
+                case .Mo:   Constants.Nutrients.FDCid.molybdenum
+                case .Se:   Constants.Nutrients.FDCid.selenium
+//                case .S:    Constants.Nutrients.FDCid.sulphur
                 }
             }
             
-            static let fdcMap: FDCMap = [
-                1087: Nutrients.Micro.Mineral.Ca,
-                1088: Nutrients.Micro.Mineral.Cl,
-                1089: Nutrients.Micro.Mineral.Fe,
-                1090: Nutrients.Micro.Mineral.Mg,
-                1091: Nutrients.Micro.Mineral.P,
-                1092: Nutrients.Micro.Mineral.K,
-                1093: Nutrients.Micro.Mineral.Na,
-//                1094: Nutrients.Micro.Mineral.S,
-                1095: Nutrients.Micro.Mineral.Zn,
-                1096: Nutrients.Micro.Mineral.Cr,
-                1098: Nutrients.Micro.Mineral.Cu,
-                1099: Nutrients.Micro.Mineral.F,
-                1100: Nutrients.Micro.Mineral.I,
-                1101: Nutrients.Micro.Mineral.Mn,
-                1102: Nutrients.Micro.Mineral.Mo,
-                1103: Nutrients.Micro.Mineral.Se
-            ]
+            static let fdcMap: FDCMap = Constants.Nutrients.FDCmap.mineral
             
-            func DRI(nutrient: Nutrients.Micro.Mineral, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
+            func DRI(nutrient: Nutrient.Micro.Mineral, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
                 0
             }
         }
     }
     
     static var required: [any NutrientType] {
-        Micro.Vitamin.allCases + Micro.Mineral.allCases + [Macro.fiber, Macro.protein, Macro.fats, Macro.carbs]
+        Micro.Vitamin.allCases + Micro.Mineral.allCases + [Macro.energy, Macro.fiber, Macro.protein, Macro.fats]
     }
     
     static var restricted: [any NutrientType] {

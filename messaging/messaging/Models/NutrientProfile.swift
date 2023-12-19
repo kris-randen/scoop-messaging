@@ -39,7 +39,7 @@ extension NutrientProfileable {
     }
     
     var food: String {
-        description
+        description.capitalized
     }
     
     var servingDescription: String {
@@ -96,15 +96,15 @@ extension NutrientProfileable {
         MineralIntakes(intakes: intakesMineral.mapD{($0.key, scaled(for: $0.key))})
     }
     
-    func value(for nutrient: Nutrients.Macro) -> Double {
+    func value(for nutrient: Nutrient.Macro) -> Double {
         macroIntakes.intakes[nutrient]!
     }
     
-    func value(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+    func value(for nutrient: Nutrient.Micro.Vitamin) -> Double {
         vitaminIntakes.intakes[nutrient]!
     }
     
-    func value(for nutrient: Nutrients.Micro.Mineral) -> Double {
+    func value(for nutrient: Nutrient.Micro.Mineral) -> Double {
         mineralIntakes.intakes[nutrient]!
     }
     
@@ -115,43 +115,57 @@ extension NutrientProfileable {
         }
     }
     
-    func scaled(for nutrient: Nutrients.Macro) -> Double {
+    func scaled(for nutrient: Nutrient.Macro) -> Double {
         factor(for: nutrient) * value(for: nutrient)
     }
     
-    func scaled(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+    func scaled(for nutrient: Nutrient.Micro.Vitamin) -> Double {
         factor(for: nutrient) * value(for: nutrient)
     }
     
-    func scaled(for nutrient: Nutrients.Micro.Mineral) -> Double {
+    func scaled(for nutrient: Nutrient.Micro.Mineral) -> Double {
         factor(for: nutrient) * value(for: nutrient)
     }
     
-    func scale(for nutrient: Nutrients.Macro) -> Double {
+    func scale(for nutrient: Nutrient.Macro) -> Double {
         scaled(for: nutrient) / nutrient.dailyValue
     }
     
-    func scale(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+    func scale(for nutrient: Nutrient.Micro.Vitamin) -> Double {
         scaled(for: nutrient) / nutrient.dailyValue
     }
     
-    func scale(for nutrient: Nutrients.Micro.Mineral) -> Double {
+    func scale(for nutrient: Nutrient.Micro.Mineral) -> Double {
         scaled(for: nutrient) / nutrient.dailyValue
     }
     
-    func multiple(for nutrient: any NutrientType) -> Double {
+    func multiple(for nutrient: Nutrient.Macro) -> Double {
+        if nutrient == .sugar {
+            return (value(for: .fiber) > 0) ? 0 : -29
+        }
+        if nutrient == .carbs {
+            return (value(for: .fiber) > 0) ? 0 : -29
+        }
+        return nutrient.required ? 1 : -29
+    }
+    
+    func multiple(for nutrient: Nutrient.Micro.Vitamin) -> Double {
         nutrient.required ? 1 : -29
     }
     
-    func nqi(for nutrient: Nutrients.Macro) -> Double {
+    func multiple(for nutrient: Nutrient.Micro.Mineral) -> Double {
+        nutrient.required ? 1 : -29
+    }
+    
+    func nqi(for nutrient: Nutrient.Macro) -> Double {
         multiple(for: nutrient) * scale(for: nutrient)
     }
     
-    func nqi(for nutrient: Nutrients.Micro.Vitamin) -> Double {
+    func nqi(for nutrient: Nutrient.Micro.Vitamin) -> Double {
         multiple(for: nutrient) * scale(for: nutrient)
     }
     
-    func nqi(for nutrient: Nutrients.Micro.Mineral) -> Double {
+    func nqi(for nutrient: Nutrient.Micro.Mineral) -> Double {
         multiple(for: nutrient) * scale(for: nutrient)
     }
     

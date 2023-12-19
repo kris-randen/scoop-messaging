@@ -10,22 +10,22 @@ import Collections
 import OrderedCollections
 
 typealias Intake = (any NutrientType, Double)
-typealias MacroIntake = (Nutrients.Macro, Double)
-typealias VitaminIntake = (Nutrients.Micro.Vitamin, Double)
-typealias MineralIntake = (Nutrients.Micro.Mineral, Double)
-typealias IntakesMacro = OrderedDictionary<Nutrients.Macro, Double>
-typealias IntakesVitamin = OrderedDictionary<Nutrients.Micro.Vitamin, Double>
-typealias IntakesMineral = OrderedDictionary<Nutrients.Micro.Mineral, Double>
-typealias MacroIntakeAndScaled = (nutrient: Nutrients.Macro, value: Double, scaled: Double)
-typealias VitaminIntakeAndScaled = (nutrient: Nutrients.Micro.Vitamin, value: Double, scaled: Double)
-typealias MineralIntakeAndScaled = (nutrient: Nutrients.Micro.Mineral, value: Double, scaled: Double)
+typealias MacroIntake = (Nutrient.Macro, Double)
+typealias VitaminIntake = (Nutrient.Micro.Vitamin, Double)
+typealias MineralIntake = (Nutrient.Micro.Mineral, Double)
+typealias IntakesMacro = OrderedDictionary<Nutrient.Macro, Double>
+typealias IntakesVitamin = OrderedDictionary<Nutrient.Micro.Vitamin, Double>
+typealias IntakesMineral = OrderedDictionary<Nutrient.Micro.Mineral, Double>
+typealias MacroIntakeAndScaled = (nutrient: Nutrient.Macro, value: Double, scaled: Double)
+typealias VitaminIntakeAndScaled = (nutrient: Nutrient.Micro.Vitamin, value: Double, scaled: Double)
+typealias MineralIntakeAndScaled = (nutrient: Nutrient.Micro.Mineral, value: Double, scaled: Double)
 
 
 protocol Intakeable: Multipliable, NQIconvertible {
-    associatedtype Nutrient: NutrientType
-    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    associatedtype NutrientKey: NutrientType
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes { get set }
-    var kind: Nutrients.Kind { get }
+    var kind: Nutrient.Kind { get }
     var nqi: Double { get }
     
     var positives: Intakes { get }
@@ -87,7 +87,7 @@ extension Intakeable {
 }
 
 protocol Intakeables: Multipliable, NQIconvertible {
-    var intakes: OrderedDictionary<Nutrients.Kind, any Intakeable> { get set }
+    var intakes: OrderedDictionary<Nutrient.Kind, any Intakeable> { get set }
     var nqi: Double { get }
 }
 
@@ -129,7 +129,7 @@ extension Intakeables {
 
 
 struct NutrientIntakes: Intakeables {
-    typealias Intakes = OrderedDictionary<Nutrients.Kind, any Intakeable>
+    typealias Intakes = OrderedDictionary<Nutrient.Kind, any Intakeable>
     var intakes: Intakes
     
     mutating func multiply(_ factor: Double) {
@@ -155,10 +155,10 @@ protocol NQIconvertible {
 }
 
 struct MacroIntakes: Intakeable {
-    typealias Nutrient = Nutrients.Macro
-    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    typealias NutrientKey = Nutrient.Macro
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes = Intakes()
-    var kind: Nutrients.Kind = .macro
+    var kind: Nutrient.Kind = .macro
     
     init() {
         
@@ -174,24 +174,24 @@ struct MacroIntakes: Intakeable {
 }
 
 struct VitaminIntakes: Intakeable {
-    typealias Nutrient = Nutrients.Micro.Vitamin
-    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    typealias NutrientKey = Nutrient.Micro.Vitamin
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes = Intakes()
-    var kind: Nutrients.Kind = .vitamin
+    var kind: Nutrient.Kind = .vitamin
 }
 
 struct MineralIntakes: Intakeable {
-    typealias Nutrient = Nutrients.Micro.Mineral
-    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    typealias NutrientKey = Nutrient.Micro.Mineral
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes = Intakes()
-    var kind: Nutrients.Kind = .mineral
+    var kind: Nutrient.Kind = .mineral
 }
 
 struct SugarIntakes: Intakeable {
-    typealias Nutrient = Nutrients.Macro.Sugar
-    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    typealias NutrientKey = Nutrient.Macro.Sugar
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes = Intakes()
-    var kind: Nutrients.Kind = .macro
+    var kind: Nutrient.Kind = .macro
     
     init() {
         
@@ -203,10 +203,10 @@ struct SugarIntakes: Intakeable {
 }
 
 struct CarbIntakes: Intakeable {
-    typealias Nutrient = Nutrients.Macro.Carb
-    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    typealias NutrientKey = Nutrient.Macro.Carb
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes = Intakes()
-    var kind: Nutrients.Kind = .macro
+    var kind: Nutrient.Kind = .macro
     
     init() {
         
@@ -219,10 +219,10 @@ struct CarbIntakes: Intakeable {
 
 
 struct FatIntakes: Intakeable {
-    typealias Nutrient = Nutrients.Macro.Fat
-    typealias Intakes = OrderedDictionary<Nutrient, Double>
+    typealias NutrientKey = Nutrient.Macro.Fat
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes = Intakes()
-    var kind: Nutrients.Kind = .macro
+    var kind: Nutrient.Kind = .macro
     
     init() {
         

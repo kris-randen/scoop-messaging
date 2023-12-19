@@ -16,7 +16,8 @@ struct Constants {
     static let SUCESS = "SUCCESS"
     static let FAILURE = "FAILURE"
     
-    static let APIkeyFDC = "DEMO_KEY"
+//    static let APIkeyFDC = "DEMO_KEY"
+    static let APIkeyFDC = "SFGVHByt5NbrHT8I8xQyUiAXhNUJKZOAoR783a4g"
     static let APIurlstringFDC = "https://api.nal.usda.gov/fdc/v1/foods/search"
     
     static let screen = UIScreen.main.bounds
@@ -128,6 +129,53 @@ struct Constants {
     }
     
     struct Nutrients {
+        struct Macro {
+            static let protein: Nutrient.Macro = .protein
+            static let energy: Nutrient.Macro = .energy
+            static let fats: Nutrient.Macro = .fats
+            static let carbs: Nutrient.Macro = .carbs
+            static let sugar: Nutrient.Macro = .sugar
+            static let fiber: Nutrient.Macro = .fiber
+        }
+        
+        struct Micro {
+            static let vitaminA: Nutrient.Micro.Vitamin = .a
+            static let vitaminAiu: Nutrient.Micro.Vitamin = .aiu
+            static let vitaminC: Nutrient.Micro.Vitamin = .c
+            static let vitaminD: Nutrient.Micro.Vitamin = .d
+            static let vitaminDiu: Nutrient.Micro.Vitamin = .diu
+            static let vitaminE: Nutrient.Micro.Vitamin = .e
+            static let vitaminEiu: Nutrient.Micro.Vitamin = .eiu
+            static let vitaminK: Nutrient.Micro.Vitamin = .k
+            static let vitaminB1: Nutrient.Micro.Vitamin = .b1
+            static let vitaminB2: Nutrient.Micro.Vitamin = .b2
+            static let vitaminB3: Nutrient.Micro.Vitamin = .b3
+            static let vitaminB4: Nutrient.Micro.Vitamin = .b4
+            static let vitaminB5: Nutrient.Micro.Vitamin = .b5
+            static let vitaminB6: Nutrient.Micro.Vitamin = .b6
+            static let vitaminB7: Nutrient.Micro.Vitamin = .b7
+            static let vitaminB9: Nutrient.Micro.Vitamin = .b9
+            static let vitaminB12: Nutrient.Micro.Vitamin = .b12
+            
+            static let calcium: Nutrient.Micro.Mineral = .Ca
+            static let chloride: Nutrient.Micro.Mineral = .Cl
+            static let chromium: Nutrient.Micro.Mineral = .Cr
+            static let copper: Nutrient.Micro.Mineral = .Cu
+            static let fluoride: Nutrient.Micro.Mineral = .F
+            static let iodine: Nutrient.Micro.Mineral = .I
+            static let iron: Nutrient.Micro.Mineral = .Fe
+            static let magnesium: Nutrient.Micro.Mineral = .Mg
+            static let manganese: Nutrient.Micro.Mineral = .Mn
+            static let molybdenum: Nutrient.Micro.Mineral = .Mo
+            static let phosphorous: Nutrient.Micro.Mineral = .P
+            static let potassium: Nutrient.Micro.Mineral = .K
+            static let selenium: Nutrient.Micro.Mineral = .Se
+            static let sodium: Nutrient.Micro.Mineral = .Na
+            static let zinc: Nutrient.Micro.Mineral = .Zn
+//            static let sulfur: Nutrient.Micro.Mineral = .S
+        }
+        
+        
         struct Name {
             static let vitaminA = "Vitamin A"
             static let vitaminAiu = "Vitamin A, IU"
@@ -240,6 +288,100 @@ struct Constants {
                 Name.zinc
             ]
                 .map{$0.lowercased()}.set
+        }
+        
+        struct FDCmap {
+            static let macro = [
+                FDCid.protein: Macro.protein,
+                FDCid.energy: Macro.energy,
+                FDCid.fats: Macro.fats,
+                FDCid.carbs: Macro.carbs,
+                FDCid.sugar: Macro.sugar,
+                FDCid.fiber: Macro.fiber
+            ]
+            
+            static let vitamin = [
+                FDCid.vitaminA: Micro.vitaminA,
+//                FDCid.vitaminAiu: Micro.vitaminAiu,
+                FDCid.vitaminC: Micro.vitaminC,
+                FDCid.vitaminD: Micro.vitaminD,
+//                FDCid.vitaminDiu: Micro.vitaminDiu,
+                FDCid.vitaminE: Micro.vitaminE,
+//                FDCid.vitaminEiu: Micro.vitaminEiu,
+                FDCid.vitaminK: Micro.vitaminK,
+                FDCid.vitaminB1: Micro.vitaminB1,
+                FDCid.vitaminB2: Micro.vitaminB2,
+                FDCid.vitaminB3: Micro.vitaminB3,
+                FDCid.vitaminB4: Micro.vitaminB4,
+                FDCid.vitaminB5: Micro.vitaminB5,
+                FDCid.vitaminB6: Micro.vitaminB6,
+                FDCid.vitaminB7: Micro.vitaminB7,
+                FDCid.vitaminB9: Micro.vitaminB9,
+                FDCid.vitaminB12: Micro.vitaminB12
+            ]
+            
+            static let mineral = [
+                FDCid.calcium: Micro.calcium,
+                FDCid.chloride: Micro.chloride,
+                FDCid.chromium: Micro.chromium,
+                FDCid.copper: Micro.copper,
+                FDCid.fluoride: Micro.fluoride,
+                FDCid.iodine: Micro.iodine,
+                FDCid.iron: Micro.iron,
+                FDCid.magnesium: Micro.magnesium,
+                FDCid.manganese: Micro.manganese,
+                FDCid.molybdenum: Micro.molybdenum,
+                FDCid.phosphorous: Micro.phosphorous,
+                FDCid.potassium: Micro.potassium,
+                FDCid.selenium: Micro.selenium,
+                FDCid.sodium: Micro.sodium,
+                FDCid.zinc: Micro.zinc
+//                FDCid.sulfur: Micro.S
+            ]
+        }
+        
+        struct FDCid {
+            static let protein = 1003
+            static let energy = 1008
+            static let fats = 1004
+            static let carbs = 1005
+            static let sugar = 2000
+            static let fiber = 1079
+            
+            static let vitaminA = 1106
+            static let vitaminAiu = 1104
+            static let vitaminC = 1162
+            static let vitaminD = 1114
+            static let vitaminDiu = 1110
+            static let vitaminE = 1109
+            static let vitaminEiu = 1124
+            static let vitaminK = 1185
+            static let vitaminB1 = 1165
+            static let vitaminB2 = 1166
+            static let vitaminB3 = 1167
+            static let vitaminB4 = 1180
+            static let vitaminB5 = 1170
+            static let vitaminB6 = 1175
+            static let vitaminB7 = 1176
+            static let vitaminB9 = 1177
+            static let vitaminB12 = 1178
+            
+            static let calcium = 1087
+            static let chloride = 1088
+            static let iron = 1089
+            static let magnesium = 1090
+            static let phosphorous = 1091
+            static let potassium = 1092
+            static let sodium = 1093
+            static let sulphur = 1094
+            static let zinc = 1095
+            static let chromium = 1096
+            static let copper = 1098
+            static let fluoride = 1099
+            static let iodine = 1100
+            static let manganese = 1101
+            static let molybdenum = 1102
+            static let selenium = 1103
         }
         
         struct FDCname {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VerticalChartView: View {
     var profile: String
-    @Binding var kind: Nutrients.Kind
+    @Binding var kind: Nutrient.Kind
     var nutrientProfile: NutrientProfile {
         Profiles.dict[profile.lowercased()]!
     }
@@ -127,17 +127,17 @@ struct VerticalChartView: View {
         .multilineTextAlignment(.trailing)
     }
     
-    fileprivate func value(forNutrient nutrient: any NutrientType, ofKind kind: Nutrients.Kind, withNQI nqi: Double) -> Double {
+    fileprivate func value(forNutrient nutrient: any NutrientType, ofKind kind: Nutrient.Kind, withNQI nqi: Double) -> Double {
         switch kind {
         case .macro:
             let intakes = (Profiles.profile.intakes.intakes[kind] as! MacroIntakes).intakes
-            return nqi * intakes[nutrient as! MacroIntakes.Nutrient]!
+            return nqi * intakes[nutrient as! MacroIntakes.NutrientKey]!
         case .vitamin:
             let intakes = (Profiles.profile.intakes.intakes[kind] as! VitaminIntakes).intakes
-            return nqi * intakes[nutrient as! VitaminIntakes.Nutrient]!
+            return nqi * intakes[nutrient as! VitaminIntakes.NutrientKey]!
         case .mineral:
             let intakes = (Profiles.profile.intakes.intakes[kind] as! MineralIntakes).intakes
-            return nqi * intakes[nutrient as! MineralIntakes.Nutrient]!
+            return nqi * intakes[nutrient as! MineralIntakes.NutrientKey]!
         }
     }
     

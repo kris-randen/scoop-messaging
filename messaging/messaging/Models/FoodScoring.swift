@@ -17,9 +17,9 @@ struct FoodScoring {
     struct NQI {
         var profile: NutrientProfile
         var total: Score = 0
-        var macros = [Nutrients.Macro: Score]()
-        var vitamins = [Nutrients.Micro.Vitamin: Score]()
-        var minerals = [Nutrients.Micro.Mineral: Score]()
+        var macros = [Nutrient.Macro: Score]()
+        var vitamins = [Nutrient.Micro.Vitamin: Score]()
+        var minerals = [Nutrient.Micro.Mineral: Score]()
         
         var food: String { profile.food }
         var serving: String { profile.servingDescription }
@@ -61,7 +61,7 @@ struct FoodScoring {
             "\(generic)\n\(value)\n\(scale)"
         }
         
-        func reason(for macro: Nutrients.Macro) -> String {
+        func reason(for macro: Nutrient.Macro) -> String {
             let (
                 (nutrient, unit, daily),
                  value

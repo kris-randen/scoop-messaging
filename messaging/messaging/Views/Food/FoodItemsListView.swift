@@ -10,7 +10,7 @@ import SwiftUI
 struct FoodItemsListView: View {
     @StateObject var viewModel = FoodItemsListViewModel()
     @State var text: String = "broccoli raw"
-    @State var kind: Nutrients.Kind = .macro
+    @State var kind: Nutrient.Kind = .macro
     @State var profile: NutrientProfile? = Profiles.carrot
     @State private var nutritionalInfo: String = "Nutritional Info will appear here"
     @State private var shouldNavigate = false

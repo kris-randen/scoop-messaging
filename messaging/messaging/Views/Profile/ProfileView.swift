@@ -52,7 +52,7 @@ struct ProfileView: View {
     
     fileprivate func axisTitles() -> some View {
         VStack {
-            ForEach(Nutrients.Micro.Vitamin.allCases, id: \.name) { vitamin in
+            ForEach(Nutrient.Micro.Vitamin.allCases, id: \.name) { vitamin in
                 VStack{
                     Text(vitamin.name)
                         .font(Fonts.CardNutrient)
@@ -72,7 +72,7 @@ struct ProfileView: View {
     
     fileprivate func chartBars() -> some View {
         VStack {
-            ForEach(Nutrients.Micro.Vitamin.allCases, id: \.name) { vitamin in
+            ForEach(Nutrient.Micro.Vitamin.allCases, id: \.name) { vitamin in
                 VStack(alignment: .leading){
                     FlexibleHorizontalLine(offset: CGPoint(x: 0, y: 0), lengthScaling: 0.85, width: 25)
                     Text("𝟭𝟴𝗫 𝖱𝖾𝗊𝗎𝗂𝗋𝖾𝗆𝖾𝗇𝗍")

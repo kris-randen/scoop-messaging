@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct VerticalChartViewFDCapiTest: View {
-    @Binding var kind: Nutrients.Kind
+    @Binding var kind: Nutrient.Kind
     var nutrientProfile: NutrientProfile
     
     var chart: Chart {
@@ -108,9 +108,6 @@ struct VerticalChartViewFDCapiTest: View {
                 .font(Fonts.CardNutrient)
             if chart.kind == .macro {
                 HStack {
-//                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: bar.value)))
-//                    Text(String(format: "%.0f", value(forNutrient: bar.nutrient, ofKind: bar.kind, withNQI: 1)))
-//                        .fontWeight(.black)
                     Text(String(format: "%.0f", bar.scaled))
                         .fontWeight(.black)
                     Text("\(bar.unit)")
@@ -128,17 +125,17 @@ struct VerticalChartViewFDCapiTest: View {
         .multilineTextAlignment(.trailing)
     }
     
-    fileprivate func value(forNutrient nutrient: any NutrientType, ofKind kind: Nutrients.Kind, withNQI nqi: Double) -> Double {
+    fileprivate func value(forNutrient nutrient: any NutrientType, ofKind kind: Nutrient.Kind, withNQI nqi: Double) -> Double {
         switch kind {
         case .macro:
             let intakes = (Profiles.profile.intakes.intakes[kind] as! MacroIntakes).intakes
-            return nqi * intakes[nutrient as! MacroIntakes.Nutrient]!
+            return nqi * intakes[nutrient as! MacroIntakes.NutrientKey]!
         case .vitamin:
             let intakes = (Profiles.profile.intakes.intakes[kind] as! VitaminIntakes).intakes
-            return nqi * intakes[nutrient as! VitaminIntakes.Nutrient]!
+            return nqi * intakes[nutrient as! VitaminIntakes.NutrientKey]!
         case .mineral:
             let intakes = (Profiles.profile.intakes.intakes[kind] as! MineralIntakes).intakes
-            return nqi * intakes[nutrient as! MineralIntakes.Nutrient]!
+            return nqi * intakes[nutrient as! MineralIntakes.NutrientKey]!
         }
     }
     

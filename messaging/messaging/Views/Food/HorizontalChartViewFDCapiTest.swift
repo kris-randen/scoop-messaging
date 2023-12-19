@@ -11,7 +11,7 @@ import OrderedCollections
 
 struct HorizontalChartViewFDCapiTest: View {
 //    var profileName: String
-    @Binding var kind: Nutrients.Kind
+    @Binding var kind: Nutrient.Kind
     var profile: NutrientProfile
     
     

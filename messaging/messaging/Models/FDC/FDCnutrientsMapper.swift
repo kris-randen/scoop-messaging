@@ -10,7 +10,7 @@ import Foundation
 class FDCnutrientsMapper {
     
     public static func map(_ nutrient: FDCfoodNutrient) -> any NutrientType {
-        return Nutrients.fdcMap[nutrient.nutrientId]!
+        return Nutrient.fdcMap[nutrient.nutrientId]!
     }
     
     public static func map(_ intake: FDCfoodNutrientIntake) -> Intake {

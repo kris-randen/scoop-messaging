@@ -44,7 +44,7 @@ struct Badge {
     enum Kind {
         case food
         case nutrient
-        case other(kind: Nutrients.Kind)
+        case other(kind: Nutrient.Kind)
         
         var size: Size {
             switch self {

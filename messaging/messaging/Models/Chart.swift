@@ -16,10 +16,10 @@ struct Chart {
         let unit: String
         let value: Double
         let nutrient: any NutrientType
-        var kind: Nutrients.Kind = .vitamin
+        var kind: Nutrient.Kind = .vitamin
         var scaled: Double = 0
         
-        init(nutrient: any NutrientType, intake: Double, kind: Nutrients.Kind) {
+        init(nutrient: any NutrientType, intake: Double, kind: Nutrient.Kind) {
             self.nutrient = nutrient
             self.name = nutrient.name
             self.compound = nutrient.compound
@@ -28,22 +28,22 @@ struct Chart {
             self.kind = kind
         }
         
-        init(nutrient: any NutrientType, intake: Double, kind: Nutrients.Kind, scaled: Double) {
+        init(nutrient: any NutrientType, intake: Double, kind: Nutrient.Kind, scaled: Double) {
             self.init(nutrient: nutrient, intake: intake, kind: kind)
             self.scaled = scaled
         }
         
         
-        init(nutrient: VitaminIntakes.Nutrient, intake: Double, scaled: Double) {
-            self.init(nutrient: nutrient as VitaminIntakes.Nutrient, intake: intake, kind: .vitamin, scaled: scaled)
+        init(nutrient: VitaminIntakes.NutrientKey, intake: Double, scaled: Double) {
+            self.init(nutrient: nutrient as VitaminIntakes.NutrientKey, intake: intake, kind: .vitamin, scaled: scaled)
         }
         
-        init(nutrient: MineralIntakes.Nutrient, intake: Double, scaled: Double) {
-            self.init(nutrient: nutrient as MineralIntakes.Nutrient, intake: intake, kind: .mineral, scaled: scaled)
+        init(nutrient: MineralIntakes.NutrientKey, intake: Double, scaled: Double) {
+            self.init(nutrient: nutrient as MineralIntakes.NutrientKey, intake: intake, kind: .mineral, scaled: scaled)
         }
         
-        init(nutrient: MacroIntakes.Nutrient, intake: Double, scaled: Double) {
-            self.init(nutrient: nutrient as MacroIntakes.Nutrient, intake: intake, kind: .macro, scaled: scaled)
+        init(nutrient: MacroIntakes.NutrientKey, intake: Double, scaled: Double) {
+            self.init(nutrient: nutrient as MacroIntakes.NutrientKey, intake: intake, kind: .macro, scaled: scaled)
         }
         
         var legend: String {
@@ -107,15 +107,15 @@ struct Chart {
         Bar(nutrient: .fiber, intake: 0, scaled: 0)
     ]
     
-    static func zeroBars(for nutrients: [any NutrientType], kind: Nutrients.Kind) -> [Bar] {
+    static func zeroBars(for nutrients: [any NutrientType], kind: Nutrient.Kind) -> [Bar] {
         nutrients.map {Bar.init(nutrient: $0, intake: 0, kind: kind, scaled: 0)}
     }
     
-    static func bars(for intakes: some Intakeable, kind: Nutrients.Kind) -> [Bar] {
+    static func bars(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
         return intakes.intakes.sortedByValues(ascending: false).map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
     }
     
-    static func barsAll(for intakes: some Intakeable, kind: Nutrients.Kind) -> [Bar] {
+    static func barsAll(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
         switch kind {
         case .vitamin:
             guard let intakes = intakes as? VitaminIntakes else { return Chart.zeroVitaminBars }
@@ -131,20 +131,20 @@ struct Chart {
         }
     }
     
-    static func nutrientsComplement(for intakes: some Intakeable, kind: Nutrients.Kind) -> [any NutrientType] {
+    static func nutrientsComplement(for intakes: some Intakeable, kind: Nutrient.Kind) -> [any NutrientType] {
         switch kind {
         case .vitamin:
-            let allVitamins = Nutrients.Micro.Vitamin.allCases
+            let allVitamins = Nutrient.Micro.Vitamin.allCases
             guard let intakes = intakes as? VitaminIntakes else { return allVitamins }
             return allVitamins.filter { !intakes.intakes.keys.contains($0) }
             
         case .mineral:
-            let allMinerals = Nutrients.Micro.Mineral.allCases
+            let allMinerals = Nutrient.Micro.Mineral.allCases
             guard let intakes = intakes as? MineralIntakes else { return allMinerals }
             return allMinerals.filter { !intakes.intakes.keys.contains($0) }
             
         case .macro:
-            let allMacros = Nutrients.Macro.allCases
+            let allMacros = Nutrient.Macro.allCases
             guard let intakes = intakes as? MacroIntakes else { return allMacros }
             return allMacros.filter { !intakes.intakes.keys.contains($0) }
         }
@@ -152,13 +152,13 @@ struct Chart {
     
     let item: String
     let nqi: Double
-    let energy: Int = 2000
+    let energy: Int = Int(Constants.DRI.energy)
     let title: (title: String, subtitle: String)
     var bars = [Bar]()
-    let kind: Nutrients.Kind
+    let kind: Nutrient.Kind
     
-    init(profile: NutrientProfile, kind: Nutrients.Kind, nqi: Double = 0) {
-        self.item = profile.description.capitalized
+    init(profile: NutrientProfile, kind: Nutrient.Kind, nqi: Double = 0) {
+        self.item = profile.description.lowercased().capitalized
         self.nqi = profile.nqi
         self.title = kind.chartTitle
         self.kind = kind
@@ -183,7 +183,7 @@ struct Chart {
         }
     }
     
-    var displayBars: [Nutrients.Macro] {
+    var displayBars: [Nutrient.Macro] {
         [.sugar, .carbs, .fats, .protein, .fiber]
     }
     

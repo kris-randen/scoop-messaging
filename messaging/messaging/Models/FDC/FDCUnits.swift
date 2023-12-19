@@ -39,7 +39,7 @@ struct FDCUnits {
             return Units.Volume.table[fdcUnitName]!.conversion(to: Units.Volume.table[unitName]!)
         }
         else if ius.contains(fdcUnitName) {
-            guard let vitamin = intake.nutrient as? Nutrients.Micro.Vitamin else { return 0 }
+            guard let vitamin = intake.nutrient as? Nutrient.Micro.Vitamin else { return 0 }
             if vitamin == .aiu {
                 return Units.IU.vitaminA.conversion(to: .mg)
             } else if vitamin == .diu {
@@ -52,7 +52,7 @@ struct FDCUnits {
     }
     
     static func chart(contains intake: FDCfoodNutrientIntake) -> Bool {
-        Nutrients.fdcMap.keySet.contains(intake.nutrientId)
+        Nutrient.fdcMap.keySet.contains(intake.nutrientId)
     }
     
     static func value(for intake: FDCfoodNutrientIntake) -> Double {
@@ -68,15 +68,15 @@ struct FDCUnits {
     }
     
     static func isAmacro(_ intake: FDCfoodNutrientIntake) -> Bool {
-        Nutrients.Macro.fdcMap.keySet.contains(intake.nutrientId)
+        Nutrient.Macro.fdcMap.keySet.contains(intake.nutrientId)
     }
     
     static func isAvitamin(_ intake: FDCfoodNutrientIntake) -> Bool {
-        Nutrients.Micro.Vitamin.fdcMap.keySet.contains(intake.nutrientId)
+        Nutrient.Micro.Vitamin.fdcMap.keySet.contains(intake.nutrientId)
     }
     
     static func isAmineral(_ intake: FDCfoodNutrientIntake) -> Bool {
-        Nutrients.Micro.Mineral.fdcMap.keySet.contains(intake.nutrientId)
+        Nutrient.Micro.Mineral.fdcMap.keySet.contains(intake.nutrientId)
     }
     
     static func macros(from intakes: [FDCfoodNutrientIntake]) -> [MacroIntake] {
@@ -96,7 +96,7 @@ struct FDCUnits {
     }
     
     static func macroIntakesAll(from intakes: [FDCfoodNutrientIntake]) -> MacroIntakes {
-        MacroIntakes(intakes: Nutrients.Macro.zero.updated(with: macroIntakes(from: intakes).intakes))
+        MacroIntakes(intakes: Nutrient.Macro.zero.updated(with: macroIntakes(from: intakes).intakes))
     }
     
     static func vitaminIntakes(from intakes: [FDCfoodNutrientIntake]) -> VitaminIntakes {
@@ -104,7 +104,7 @@ struct FDCUnits {
     }
     
     static func vitaminIntakesAll(from intakes: [FDCfoodNutrientIntake]) -> VitaminIntakes {
-        VitaminIntakes(intakes: Nutrients.Micro.Vitamin.zero.updated(with: vitaminIntakes(from: intakes).intakes))
+        VitaminIntakes(intakes: Nutrient.Micro.Vitamin.zero.updated(with: vitaminIntakes(from: intakes).intakes))
     }
     
     static func mineralIntakes(from intakes: [FDCfoodNutrientIntake]) -> MineralIntakes {
@@ -112,7 +112,7 @@ struct FDCUnits {
     }
     
     static func mineralIntakesAll(from intakes: [FDCfoodNutrientIntake]) -> MineralIntakes {
-        MineralIntakes(intakes: Nutrients.Micro.Mineral.zero.updated(with: mineralIntakes(from: intakes).intakes))
+        MineralIntakes(intakes: Nutrient.Micro.Mineral.zero.updated(with: mineralIntakes(from: intakes).intakes))
     }
     
     static func nutrientIntakes(from intakes: [FDCfoodNutrientIntake]) -> NutrientIntakes {

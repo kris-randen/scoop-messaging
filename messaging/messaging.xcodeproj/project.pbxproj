@@ -65,7 +65,7 @@
 		EE97DD3829058FE7006C86AD /* VerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3729058FE6006C86AD /* VerticalLine.swift */; };
 		EE97DD3A2905967D006C86AD /* HorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD392905967D006C86AD /* HorizontalLine.swift */; };
 		EE97DD3C290599B6006C86AD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3B290599B6006C86AD /* CardView.swift */; };
-		EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3D2905A88B006C86AD /* Nutrients.swift */; };
+		EE97DD3E2905A88B006C86AD /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3D2905A88B006C86AD /* Nutrient.swift */; };
 		EE97DD402905BDD3006C86AD /* FlexibleVerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */; };
 		EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */; };
 		EE9F2BD02B31C73F009D9683 /* FoodScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9F2BCF2B31C73F009D9683 /* FoodScoring.swift */; };
@@ -138,7 +138,7 @@
 		EE97DD3729058FE6006C86AD /* VerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLine.swift; sourceTree = "<group>"; };
 		EE97DD392905967D006C86AD /* HorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLine.swift; sourceTree = "<group>"; };
 		EE97DD3B290599B6006C86AD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		EE97DD3D2905A88B006C86AD /* Nutrients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrients.swift; sourceTree = "<group>"; };
+		EE97DD3D2905A88B006C86AD /* Nutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
 		EE97DD3F2905BDD3006C86AD /* FlexibleVerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleVerticalLine.swift; sourceTree = "<group>"; };
 		EE97DD412905C93F006C86AD /* FlexibleHorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleHorizontalLine.swift; sourceTree = "<group>"; };
 		EE9F2BCF2B31C73F009D9683 /* FoodScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodScoring.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 				EE9690282B2B20B8006A30DC /* Units.swift */,
 				EE96902C2B2B21ED006A30DC /* Measures.swift */,
 				EEB6AE7B2B2D921900C8EBE5 /* Serving.swift */,
-				EE97DD3D2905A88B006C86AD /* Nutrients.swift */,
+				EE97DD3D2905A88B006C86AD /* Nutrient.swift */,
 				EE96902E2B2B28CC006A30DC /* NutrientIntakes.swift */,
 				EE9690302B2B2965006A30DC /* NutrientProfile.swift */,
 				EE24DC472907DFC5002AA125 /* RequiredIntakes.swift */,
@@ -499,7 +499,7 @@
 				EE0AFF62290ACE8900C5B899 /* RoundedRectTopLeftCap.swift in Sources */,
 				EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */,
 				EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */,
-				EE97DD3E2905A88B006C86AD /* Nutrients.swift in Sources */,
+				EE97DD3E2905A88B006C86AD /* Nutrient.swift in Sources */,
 				EEB6AE7C2B2D921900C8EBE5 /* Serving.swift in Sources */,
 				EE320D2C290313C80083FF2D /* Extensions.swift in Sources */,
 				EE97DD3C290599B6006C86AD /* CardView.swift in Sources */,

@@ -13,6 +13,6 @@ struct FDCfoodNutrient: Decodable {
     let nutrientName: String
     
     var nutrient: any NutrientType {
-        return Nutrients.fdcMap[nutrientId]!
+        return Nutrient.fdcMap[nutrientId]!
     }
 }
