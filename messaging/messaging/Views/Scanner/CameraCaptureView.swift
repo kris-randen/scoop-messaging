@@ -17,17 +17,25 @@ struct CameraCaptureView: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                Button("Scoop") {
+                Button {
                     // Trigger OCR and processing here
+                } label: {
+                    ScoopButtonLabelView(name: "Scoop")
                 }
+                .padding()
             } else {
-                Button("Capture") {
+                Button {
                     isCameraPresented = true
+                } label: {
+                    ScoopButtonLabelView(name: "Capture")
                 }
+                .padding()
             }
         }
         .fullScreenCover(isPresented: $isCameraPresented) {
             CameraView(isPresented: $isCameraPresented, image: $capturedImage)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
         }
     }
 }

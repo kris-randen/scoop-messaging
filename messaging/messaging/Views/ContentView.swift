@@ -10,13 +10,17 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
 //        FoodItemsListView()
-        CameraCaptureView()
+//        CameraCaptureView()
+//        CameraCaptureViewTest()
+        ScannerContentView()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 //        FoodItemsListView()
-        CameraCaptureView()
+//        CameraCaptureView()
+//        CameraCaptureViewTest()
+        ScannerContentView()
     }
 }

@@ -598,6 +598,10 @@ struct Constants {
         static let carrot = "Carrot 🥕"
         static let kale = "Kale 🥬"
     }
+    
+    struct NavigationTitle {
+        static let foodItem = "Food Item"
+    }
 }
 
 let abc = Constants.Nutrients.Compound()

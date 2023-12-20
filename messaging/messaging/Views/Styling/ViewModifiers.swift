@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import Kingfisher
+import Combine
 
 /// Common aspect ratios
 public enum AspectRatio: CGFloat {
@@ -488,7 +489,58 @@ struct TextFieldModifier: ViewModifier {
     }
 }
 
+struct VStackModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .ignoresSafeArea(.keyboard)
+            .padding(.horizontal)
+    }
+}
+
+struct NavigationInlineModifier: ViewModifier {
+    var title: String = "Title Not Set"
+    func body(content: Content) -> some View {
+        content
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(title)
+    }
+}
+
+struct KeyboardAdaptive: ViewModifier {
+    @State private var bottomPadding: CGFloat = 0
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(.bottom, bottomPadding)
+            .onReceive(Publishers.keyboardHeight) { keyboardHeight in
+                self.bottomPadding = keyboardHeight
+            }
+            .animation(.easeInOut(duration: 0.16))
+    }
+}
+
+extension Publishers {
+    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
+        let willShow = NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification).map{$0.keyboardHeight}
+        
+        let willHide = NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification).map{_ in CGFloat(0)}
+        
+        return MergeMany(willShow, willHide)
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Notification {
+    var keyboardHeight: CGFloat {
+        (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
+    }
+}
+
 extension View {
+    func keyboardAdaptive() -> some View {
+        ModifiedContent(content: self, modifier: KeyboardAdaptive())
+    }
+    
     func profileHalfButtonify() -> some View {
         modifier(ProfileHalfButton())
     }
@@ -535,6 +587,14 @@ extension View {
     
     func textFieldify(heightScaling: CGFloat = 30, backgroundColor: UIColor = UIColor.white, fontColor: Color = Colors.scoopRed, alignment: Alignment = .center) -> some View {
         modifier(TextFieldModifier(heightScaling: heightScaling, background: backgroundColor, fontColor: fontColor, alignment: alignment))
+    }
+    
+    func vStackify() -> some View {
+        modifier(VStackModifier())
+    }
+    
+    func navigationInlinify(title: String) -> some View {
+        modifier(NavigationInlineModifier(title: title))
     }
     
     func textFieldify(withHeightScaling scaling: CGFloat) -> some View {

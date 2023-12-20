@@ -82,6 +82,20 @@
 		EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */; };
 		EEED91892B32D61000E9094F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91882B32D61000E9094F /* CameraView.swift */; };
 		EEED918B2B32DAA600E9094F /* CameraCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED918A2B32DAA600E9094F /* CameraCaptureView.swift */; };
+		EEED918E2B32E6C200E9094F /* ScoopButtonLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED918D2B32E6C200E9094F /* ScoopButtonLabelView.swift */; };
+		EEED91902B32E85800E9094F /* ScoopTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED918F2B32E85800E9094F /* ScoopTextField.swift */; };
+		EEED91932B32EA8C00E9094F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91922B32EA8C00E9094F /* ChartView.swift */; };
+		EEED91952B32F20300E9094F /* ScoopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91942B32F20300E9094F /* ScoopButton.swift */; };
+		EEED91972B32F53700E9094F /* GettingTheInsideScoopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91962B32F53700E9094F /* GettingTheInsideScoopView.swift */; };
+		EEED91992B32F5C400E9094F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91982B32F5C400E9094F /* Strings.swift */; };
+		EEED919B2B332B2D00E9094F /* CameraCaptureViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED919A2B332B2D00E9094F /* CameraCaptureViewTest.swift */; };
+		EEED919D2B333C1200E9094F /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED919C2B333C1200E9094F /* CameraManager.swift */; };
+		EEED919F2B333C4E00E9094F /* CameraFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED919E2B333C4E00E9094F /* CameraFeedView.swift */; };
+		EEED91A12B33495800E9094F /* OCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91A02B33495800E9094F /* OCR.swift */; };
+		EEED91A32B334E2B00E9094F /* OCRResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91A22B334E2B00E9094F /* OCRResultsView.swift */; };
+		EEFA18A52B336D2A009DD73C /* ScannerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFA18A42B336D2A009DD73C /* ScannerContentView.swift */; };
+		EEFA18A82B336DD7009DD73C /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = EEFA18A72B336DD7009DD73C /* CodeScanner */; };
+		EEFA18B02B33A04E009DD73C /* DataScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFA18AF2B33A04E009DD73C /* DataScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +171,19 @@
 		EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectCore.swift; sourceTree = "<group>"; };
 		EEED91882B32D61000E9094F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		EEED918A2B32DAA600E9094F /* CameraCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureView.swift; sourceTree = "<group>"; };
+		EEED918D2B32E6C200E9094F /* ScoopButtonLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopButtonLabelView.swift; sourceTree = "<group>"; };
+		EEED918F2B32E85800E9094F /* ScoopTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopTextField.swift; sourceTree = "<group>"; };
+		EEED91922B32EA8C00E9094F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		EEED91942B32F20300E9094F /* ScoopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopButton.swift; sourceTree = "<group>"; };
+		EEED91962B32F53700E9094F /* GettingTheInsideScoopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingTheInsideScoopView.swift; sourceTree = "<group>"; };
+		EEED91982B32F5C400E9094F /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		EEED919A2B332B2D00E9094F /* CameraCaptureViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureViewTest.swift; sourceTree = "<group>"; };
+		EEED919C2B333C1200E9094F /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		EEED919E2B333C4E00E9094F /* CameraFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFeedView.swift; sourceTree = "<group>"; };
+		EEED91A02B33495800E9094F /* OCR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCR.swift; sourceTree = "<group>"; };
+		EEED91A22B334E2B00E9094F /* OCRResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRResultsView.swift; sourceTree = "<group>"; };
+		EEFA18A42B336D2A009DD73C /* ScannerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerContentView.swift; sourceTree = "<group>"; };
+		EEFA18AF2B33A04E009DD73C /* DataScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +195,7 @@
 				EE320D262902E9A00083FF2D /* Kingfisher in Frameworks */,
 				EE96A187290747D3005E10DB /* OrderedCollections in Frameworks */,
 				EE96A185290747D3005E10DB /* DequeModule in Frameworks */,
+				EEFA18A82B336DD7009DD73C /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +223,6 @@
 			children = (
 				EE2C776A29026AD100D9FE84 /* Models */,
 				EE2C776929026ACC00D9FE84 /* Views */,
-				EE2C77512902689E00D9FE84 /* ContentView.swift */,
 				EE2C776829026AB800D9FE84 /* ViewModels */,
 				EE2C776729026AB200D9FE84 /* API */,
 				EE2C776629026AAE00D9FE84 /* Utils */,
@@ -203,6 +230,8 @@
 				EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */,
 				EE2C77532902689F00D9FE84 /* Assets.xcassets */,
 				EE2C77552902689F00D9FE84 /* Preview Content */,
+				EEFA18A42B336D2A009DD73C /* ScannerContentView.swift */,
+				EEFA18AF2B33A04E009DD73C /* DataScannerView.swift */,
 			);
 			path = messaging;
 			sourceTree = "<group>";
@@ -246,6 +275,9 @@
 		EE2C776929026ACC00D9FE84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EE2C77512902689E00D9FE84 /* ContentView.swift */,
+				EEED91912B32EA6300E9094F /* Chart */,
+				EEED918C2B32E69700E9094F /* Labels Buttons and Text Fields */,
 				EEED91872B32D5F500E9094F /* Scanner */,
 				EE5623FD290E39BB00C17B20 /* Search */,
 				EE97DD2A29055301006C86AD /* Food */,
@@ -352,15 +384,12 @@
 		EE97DD2A29055301006C86AD /* Food */ = {
 			isa = PBXGroup;
 			children = (
-				EE7B1867290C4875006C20EA /* VerticalChartView.swift */,
-				EE97DD2D2905538B006C86AD /* HorizontalChartView.swift */,
 				EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */,
 				EE97DD31290553AC006C86AD /* FoodItemCellView.swift */,
 				EE97DD33290553B9006C86AD /* FoodItemsListView.swift */,
 				EE7B1863290C2D1B006C20EA /* BadgeView.swift */,
 				EE9372432B2F2866006A18B2 /* FDCapiTestView.swift */,
-				EE9372452B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift */,
-				EE9372492B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift */,
+				EEED91962B32F53700E9094F /* GettingTheInsideScoopView.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -383,6 +412,7 @@
 				EED1A5C92B2EE8A90096CA07 /* ArraysZip.swift */,
 				EED1A5CB2B2EE8F20096CA07 /* OrderedDictionary.swift */,
 				EED1A5CD2B2EE95F0096CA07 /* CoreGraphics.swift */,
+				EEED91982B32F5C400E9094F /* Strings.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -392,8 +422,35 @@
 			children = (
 				EEED91882B32D61000E9094F /* CameraView.swift */,
 				EEED918A2B32DAA600E9094F /* CameraCaptureView.swift */,
+				EEED919A2B332B2D00E9094F /* CameraCaptureViewTest.swift */,
+				EEED919C2B333C1200E9094F /* CameraManager.swift */,
+				EEED919E2B333C4E00E9094F /* CameraFeedView.swift */,
+				EEED91A02B33495800E9094F /* OCR.swift */,
+				EEED91A22B334E2B00E9094F /* OCRResultsView.swift */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		EEED918C2B32E69700E9094F /* Labels Buttons and Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				EEED918D2B32E6C200E9094F /* ScoopButtonLabelView.swift */,
+				EEED918F2B32E85800E9094F /* ScoopTextField.swift */,
+				EEED91942B32F20300E9094F /* ScoopButton.swift */,
+			);
+			path = "Labels Buttons and Text Fields";
+			sourceTree = "<group>";
+		};
+		EEED91912B32EA6300E9094F /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				EEED91922B32EA8C00E9094F /* ChartView.swift */,
+				EE7B1867290C4875006C20EA /* VerticalChartView.swift */,
+				EE97DD2D2905538B006C86AD /* HorizontalChartView.swift */,
+				EE9372452B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift */,
+				EE9372492B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,6 +474,7 @@
 				EE96A182290747D3005E10DB /* Collections */,
 				EE96A184290747D3005E10DB /* DequeModule */,
 				EE96A186290747D3005E10DB /* OrderedCollections */,
+				EEFA18A72B336DD7009DD73C /* CodeScanner */,
 			);
 			productName = messaging;
 			productReference = EE2C774C2902689E00D9FE84 /* messaging.app */;
@@ -449,6 +507,7 @@
 			packageReferences = (
 				EE320D242902E9A00083FF2D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */,
+				EEFA18A62B336DD7009DD73C /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = EE2C774D2902689E00D9FE84 /* Products */;
 			projectDirPath = "";
@@ -477,14 +536,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEED91992B32F5C400E9094F /* Strings.swift in Sources */,
 				EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */,
 				EEB6AE7E2B2DB0D600C8EBE5 /* FoodNutrientParser.swift in Sources */,
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
+				EEED919B2B332B2D00E9094F /* CameraCaptureViewTest.swift in Sources */,
 				EE96902D2B2B21ED006A30DC /* Measures.swift in Sources */,
+				EEED91A12B33495800E9094F /* OCR.swift in Sources */,
+				EEED91932B32EA8C00E9094F /* ChartView.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
 				EE93724A2B2F77D4006A18B2 /* HorizontalChartViewFDCapiTest.swift in Sources */,
 				EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */,
+				EEFA18B02B33A04E009DD73C /* DataScannerView.swift in Sources */,
 				EE3FEB452B28755B0081E17A /* FDCFoodService.swift in Sources */,
 				EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */,
 				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
@@ -493,6 +557,7 @@
 				EE97DD34290553B9006C86AD /* FoodItemsListView.swift in Sources */,
 				EED1A5C82B2EE8380096CA07 /* Sets.swift in Sources */,
 				EE320D232902E9320083FF2D /* Labels.swift in Sources */,
+				EEED91A32B334E2B00E9094F /* OCRResultsView.swift in Sources */,
 				EE97DD3829058FE7006C86AD /* VerticalLine.swift in Sources */,
 				EE9690252B2B0B5D006A30DC /* FDCUnits.swift in Sources */,
 				EE96A17E29071CE9005E10DB /* LineCaps.swift in Sources */,
@@ -508,9 +573,12 @@
 				EE320D2A2903137C0083FF2D /* Constants.swift in Sources */,
 				EE7B1864290C2D1B006C20EA /* BadgeView.swift in Sources */,
 				EE2C77522902689E00D9FE84 /* ContentView.swift in Sources */,
+				EEFA18A52B336D2A009DD73C /* ScannerContentView.swift in Sources */,
 				EE0AFF5A290A88F700C5B899 /* RoundedRect.swift in Sources */,
+				EEED91902B32E85800E9094F /* ScoopTextField.swift in Sources */,
 				EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */,
 				EE320D1F2902CBAA0083FF2D /* Fonts.swift in Sources */,
+				EEED91972B32F53700E9094F /* GettingTheInsideScoopView.swift in Sources */,
 				EEED918B2B32DAA600E9094F /* CameraCaptureView.swift in Sources */,
 				EE0AFF62290ACE8900C5B899 /* RoundedRectTopLeftCap.swift in Sources */,
 				EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */,
@@ -518,6 +586,7 @@
 				EE97DD3E2905A88B006C86AD /* Nutrient.swift in Sources */,
 				EEB6AE7C2B2D921900C8EBE5 /* Serving.swift in Sources */,
 				EE320D2C290313C80083FF2D /* Extensions.swift in Sources */,
+				EEED919D2B333C1200E9094F /* CameraManager.swift in Sources */,
 				EE97DD3C290599B6006C86AD /* CardView.swift in Sources */,
 				EE97DD32290553AC006C86AD /* FoodItemCellView.swift in Sources */,
 				EE0AFF5E290A90BB00C5B899 /* RoundedRectCaps.swift in Sources */,
@@ -533,8 +602,10 @@
 				EE9690212B2AD80F006A30DC /* FDCnutrientsMapper.swift in Sources */,
 				EE97DD3A2905967D006C86AD /* HorizontalLine.swift in Sources */,
 				EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */,
+				EEED919F2B333C4E00E9094F /* CameraFeedView.swift in Sources */,
 				EE3FEB3F2B28746A0081E17A /* FDCFoodDataResponse.swift in Sources */,
 				EE3FEB412B2874B00081E17A /* FDCFood.swift in Sources */,
+				EEED91952B32F20300E9094F /* ScoopButton.swift in Sources */,
 				EE96A17A2906DE89005E10DB /* RoundedLineView.swift in Sources */,
 				EE0AFF5C290A8E3700C5B899 /* Protocols.swift in Sources */,
 				EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */,
@@ -544,6 +615,7 @@
 				EED1A5CC2B2EE8F20096CA07 /* OrderedDictionary.swift in Sources */,
 				EE9690272B2B0C54006A30DC /* FDCMeasure.swift in Sources */,
 				EE9372462B2F2A93006A18B2 /* VerticalChartViewFDCapiTest.swift in Sources */,
+				EEED918E2B32E6C200E9094F /* ScoopButtonLabelView.swift in Sources */,
 				EE0AFF60290ACD6B00C5B899 /* RoundedRectTopRightCap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,6 +750,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Scoop;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera to scan the grocery bill.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -709,6 +782,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Scoop;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera to scan the grocery bill.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -767,6 +841,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		EEFA18A62B336DD7009DD73C /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -789,6 +871,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE96A181290747D3005E10DB /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		EEFA18A72B336DD7009DD73C /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EEFA18A62B336DD7009DD73C /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
