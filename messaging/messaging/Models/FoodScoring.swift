@@ -69,7 +69,6 @@ struct FoodScoring {
                     macro.details,
                     profile.value(for: macro)
                 )
-            let (scaled, scale) = scaled(value: value, daily: daily, factor: factor)
             let genericReason = genericReason(for: macro)
             let valueReason = valueReason(for: food, value: value, unit: unit, nutrient: nutrient, serving: serving)
             let scaleReason = scaledReason(for: food, nutrient: macro, value: value, daily: daily, factor: factor)

@@ -16,7 +16,6 @@ struct Constants {
     static let SUCESS = "SUCCESS"
     static let FAILURE = "FAILURE"
     
-//    static let APIkeyFDC = "DEMO_KEY"
     static let APIkeyFDC = "SFGVHByt5NbrHT8I8xQyUiAXhNUJKZOAoR783a4g"
     static let APIurlstringFDC = "https://api.nal.usda.gov/fdc/v1/foods/search"
     

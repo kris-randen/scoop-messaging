@@ -80,6 +80,8 @@
 		EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */; };
 		EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */; };
 		EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */; };
+		EEED91892B32D61000E9094F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91882B32D61000E9094F /* CameraView.swift */; };
+		EEED918B2B32DAA600E9094F /* CameraCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED918A2B32DAA600E9094F /* CameraCaptureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +155,8 @@
 		EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleRoundedRect.swift; sourceTree = "<group>"; };
 		EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
 		EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectCore.swift; sourceTree = "<group>"; };
+		EEED91882B32D61000E9094F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		EEED918A2B32DAA600E9094F /* CameraCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,11 +195,11 @@
 			children = (
 				EE2C776A29026AD100D9FE84 /* Models */,
 				EE2C776929026ACC00D9FE84 /* Views */,
+				EE2C77512902689E00D9FE84 /* ContentView.swift */,
 				EE2C776829026AB800D9FE84 /* ViewModels */,
 				EE2C776729026AB200D9FE84 /* API */,
 				EE2C776629026AAE00D9FE84 /* Utils */,
 				EE2C774F2902689E00D9FE84 /* messagingApp.swift */,
-				EE2C77512902689E00D9FE84 /* ContentView.swift */,
 				EE4042E12904CCD4005714A9 /* GoogleService-Info.plist */,
 				EE2C77532902689F00D9FE84 /* Assets.xcassets */,
 				EE2C77552902689F00D9FE84 /* Preview Content */,
@@ -242,6 +246,7 @@
 		EE2C776929026ACC00D9FE84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EEED91872B32D5F500E9094F /* Scanner */,
 				EE5623FD290E39BB00C17B20 /* Search */,
 				EE97DD2A29055301006C86AD /* Food */,
 				EEC26E8A2904A4FA002BCF97 /* Profile */,
@@ -382,6 +387,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		EEED91872B32D5F500E9094F /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				EEED91882B32D61000E9094F /* CameraView.swift */,
+				EEED918A2B32DAA600E9094F /* CameraCaptureView.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -474,6 +488,7 @@
 				EE3FEB452B28755B0081E17A /* FDCFoodService.swift in Sources */,
 				EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */,
 				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
+				EEED91892B32D61000E9094F /* CameraView.swift in Sources */,
 				EE96A17C29071B8C005E10DB /* Line.swift in Sources */,
 				EE97DD34290553B9006C86AD /* FoodItemsListView.swift in Sources */,
 				EED1A5C82B2EE8380096CA07 /* Sets.swift in Sources */,
@@ -496,6 +511,7 @@
 				EE0AFF5A290A88F700C5B899 /* RoundedRect.swift in Sources */,
 				EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */,
 				EE320D1F2902CBAA0083FF2D /* Fonts.swift in Sources */,
+				EEED918B2B32DAA600E9094F /* CameraCaptureView.swift in Sources */,
 				EE0AFF62290ACE8900C5B899 /* RoundedRectTopLeftCap.swift in Sources */,
 				EE7B1866290C2D5B006C20EA /* Badge.swift in Sources */,
 				EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */,
