@@ -10,6 +10,10 @@ import SwiftUI
 import OrderedCollections
 
 struct Chart {
+    enum Orientation {
+        case horizontal, vertical
+    }
+    
     struct Bar {
         let name: String
         let compound: String

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Foundation
-import Kingfisher
 
 enum LabelType: String, CaseIterable {
     case none = ""

@@ -44,7 +44,9 @@ struct Badge {
     enum Kind {
         case food
         case nutrient
-        case other(kind: Nutrient.Kind)
+        case kind(kind: Nutrient.Kind)
+        case mass(unit: Units.Mass)
+        case volume(unit: Units.Volume)
         
         var size: Size {
             switch self {
@@ -67,7 +69,7 @@ struct Badge {
     var textColors: (background: Color, foreground: Color) = (.black, .white)
     var iconColors:(background: Color, foreground: Color) = (.blue, .white)
     
-    init(kind: Kind, nqi: Int, size: Size = .normal, text: String = "Low Quality", icon: String = LabelType.thumbsDownCircled.name) {
+    init(kind: Kind, nqi: Int = -47, size: Size = .normal, text: String = "Low Quality", icon: String = LabelType.thumbsDownCircled.name) {
         self.size = kind.size
         self.text = getText(kind: kind, nqi: nqi)
         self.icon = getIcon(kind: kind, nqi: nqi)
@@ -145,8 +147,12 @@ struct Badge {
             default:
                 return "Minor Source"
             }
-        case .other(let kind):
-            return kind.name
+        case .kind(let kind):
+            return kind.name.lowercased()
+        case .mass(let unit):
+            return unit.name.lowercased()
+        case .volume(let unit):
+            return unit.name.lowercased()
         }
     }
     
@@ -166,15 +172,8 @@ struct Badge {
             default:
                 return LabelType.checkmarkShield.name
             }
-        case .other(let kind):
-            switch kind {
-            case .macro:
-                return LabelType.none.name
-            case .vitamin:
-                return LabelType.none.name
-            case .mineral:
-                return LabelType.none.name
-            }
+        case .kind, .mass, .volume:
+            return LabelType.none.name
         }
     }
 }

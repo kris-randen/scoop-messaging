@@ -8,10 +8,10 @@
 import UIKit
 
 struct Dimensions {
-    private static let Bounds: CGRect = UIScreen().bounds
-    private static let Height: CGFloat = Bounds.height
-    private static let Width: CGFloat = Bounds.width
-    private static let MinDim: CGFloat = Bounds.minDim
+    static let Bounds: CGRect = UIScreen().bounds
+    static let Height: CGFloat = Bounds.height
+    static let Width: CGFloat = Bounds.width
+    static let MinDim: CGFloat = Bounds.minDim
     
     struct HeightScaling {
         static let textField: CGFloat = 25
@@ -28,6 +28,7 @@ struct Dimensions {
     
     struct CornerRadiusScaling {
         static let textField: CGFloat = 32.0
+        static let picker: CGFloat = 5.0
         
     }
     

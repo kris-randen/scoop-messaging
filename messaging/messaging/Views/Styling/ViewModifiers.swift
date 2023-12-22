@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Foundation
-import Kingfisher
 import Combine
 
 /// Common aspect ratios
@@ -57,24 +56,6 @@ public struct FitToAspectRatio: ViewModifier {
 
 // Image extension that composes with the `.resizable()` modifier
 public extension Image {
-    func fitToAspectRatio(_ aspectRatio: CGFloat) -> some View {
-        self.resizable().modifier(FitToAspectRatio(aspectRatio))
-    }
-    
-    func fitToAspectRatio(_ aspectRatio: AspectRatio) -> some View {
-        self.resizable().modifier(FitToAspectRatio(aspectRatio))
-    }
-    
-    func fitToAspectRatio(_ aspectRatio: CGFloat, backgroundColor: Color) -> some View {
-        self.resizable().modifier(FitToAspectRatio(aspectRatio, backgroundColor: backgroundColor))
-    }
-    
-    func squarify() -> some View {
-        self.resizable().modifier(FitToAspectRatio(1))
-    }
-}
-
-public extension KFImage {
     func fitToAspectRatio(_ aspectRatio: CGFloat) -> some View {
         self.resizable().modifier(FitToAspectRatio(aspectRatio))
     }
@@ -506,6 +487,30 @@ struct NavigationInlineModifier: ViewModifier {
     }
 }
 
+struct FrameModifier: ViewModifier {
+    var orientation: Chart.Orientation = .vertical
+    func body(content: Content) -> some View {
+        switch orientation {
+        case .horizontal:
+            content.frame(width: 0.98 * Constants.Width, height: Constants.Height)
+        case .vertical:
+            content.frame(height: 0.8 * Constants.Width)
+        }
+    }
+}
+
+struct RotationModifier: ViewModifier {
+    var orientation: Chart.Orientation = .vertical
+    func body(content: Content) -> some View {
+        switch orientation {
+        case .horizontal:
+            content.rotationEffect(0.degrees)
+        case .vertical:
+            content.rotationEffect(270.degrees)
+        }
+    }
+}
+
 struct KeyboardAdaptive: ViewModifier {
     @State private var bottomPadding: CGFloat = 0
     
@@ -537,6 +542,14 @@ extension Notification {
 }
 
 extension View {
+    func framify(for orientation: Chart.Orientation) -> some View {
+        modifier(FrameModifier(orientation: orientation))
+    }
+    
+    func rotatify(for orientation: Chart.Orientation) -> some View {
+        modifier(RotationModifier(orientation: orientation))
+    }
+    
     func keyboardAdaptive() -> some View {
         ModifiedContent(content: self, modifier: KeyboardAdaptive())
     }

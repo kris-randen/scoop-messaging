@@ -1,4 +1,11 @@
 //
+//  Unitss.swift
+//  messaging
+//
+//  Created by Krishnaswami Rajendren on 12/23/23.
+//
+
+//
 //  Units.swift
 //  messaging
 //
@@ -116,6 +123,22 @@ enum Units {
             case .mg: Constants.Units.Mass.mg
             case .gm: Constants.Units.Mass.gm
             case .kg: Constants.Units.Mass.kg
+            }
+        }
+        
+        var badgeName: String {
+            name.capitalized
+        }
+        
+        static var display: [Units.Mass] {
+            [.gm, .kg]
+        }
+        
+        func toggle() -> Units.Mass {
+            switch self {
+            case .gm: .kg
+            case .kg: .gm
+            default: .gm
             }
         }
     }
@@ -244,6 +267,10 @@ enum Units {
             case .l:  Constants.Units.Volume.l
             case .kl: Constants.Units.Volume.kl
             }
+        }
+        
+        static var display: [Units.Volume] {
+            [.ml, .l]
         }
     }
     

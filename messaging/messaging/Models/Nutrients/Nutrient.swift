@@ -550,7 +550,7 @@ struct Nutrient {
     }
     
     static var required: [any NutrientType] {
-        Micro.Vitamin.allCases + Micro.Mineral.allCases + [Macro.energy, Macro.fiber, Macro.protein, Macro.fats]
+        Micro.Vitamin.allCases + Micro.Mineral.allCases.filter{$0 != .Na} + [Macro.energy, Macro.fiber, Macro.protein, Macro.fats]
     }
     
     static var restricted: [any NutrientType] {

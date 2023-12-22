@@ -9,8 +9,11 @@ import SwiftUI
 import Foundation
 
 class FoodItemsListViewModel: ObservableObject {
+    //MARK: - Published properties that FoodItemsListView can bind to
+    @Published var foodItems: [FDCFood] = []
+    @Published var isLoading: Bool = false
     @Published var nutrientProfile: NutrientProfile?
-    @Published var isLoading = false
+    
     let fdcFoodService: FDCFoodService
     
     init(fdcFoodService: FDCFoodService = FDCFoodService()) {

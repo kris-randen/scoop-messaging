@@ -10,4 +10,5 @@ import SwiftUI
 
 struct Shapes {
     static let textField: Modifiers.Shapes = .rectangle(cornerRadiusScaling: Dimensions.CornerRadiusScaling.textField)
+    static let picker: Modifiers.Shapes = .rectangle(cornerRadiusScaling: Dimensions.CornerRadiusScaling.textField)
 }
