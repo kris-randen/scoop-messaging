@@ -10,7 +10,7 @@ import SwiftUI
 struct BarsView: View {
     var chart: Chart
     var size: CGSize
-    var orientation: Chart.Orientation = .vertical
+    var orientation: Chart.Orientation = .horizontal
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(chart.bars, id: \.name) { bar in
@@ -25,7 +25,7 @@ struct BarsView: View {
             figure(for: bar, in: chart, with: size)
             legend(for: bar)
                 .foregroundColor(Colors.scoopRed)
-                .padding(.bottom, 5)
+                .padding(.bottom, 6)
         }
     }
     
@@ -41,7 +41,7 @@ struct BarsView: View {
     }
     
     fileprivate func legend(for bar: Chart.Bar) -> some View {
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .bottom) {
             Text(bar.value == 0 ? "ZERO" : description(for: bar.value))
                 .font(Fonts.CardNutrientSubtitle.weight(.black))
                 .fixedSize(horizontal: true, vertical: false)
@@ -78,4 +78,8 @@ struct BarsView: View {
             return String(format: "%.1fX", value)
         }
     }
+}
+
+#Preview {
+    BarsView(chart: Chart(profile: Profiles.carrot, kind: .vitamin), size: Constants.screen.size)
 }

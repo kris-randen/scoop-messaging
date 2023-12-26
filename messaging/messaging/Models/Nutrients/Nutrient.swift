@@ -65,6 +65,7 @@ extension NQIndexable {
 
 protocol NutrientType: ComparableHash, NQIndexable, Codable, Equatable {
     var name: String { get }
+    var display: String { get }
     var compound: String { get }
     var unit: Units.Mass { get }
     var compareKey: Int8 { get }
@@ -152,16 +153,18 @@ struct Nutrient {
     enum Macro: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
         case energy
         case protein
+        case fiber
         case carbs
         case sugar
-        case fiber
         case fats
+        case water
+        case epa
+        case dha
+        case linoleicAcid
+        case aLinoleicAcid
         case saturatedFat
         case transFat
         case cholesterol
-        case linoleicAcid
-        case aLinoleicAcid
-        case water
         
         var compareKey: Int8 { return self.rawValue }
         
@@ -172,7 +175,8 @@ struct Nutrient {
         }
         
         static var zero: OrderedDictionary<Macro, Double> {
-            Macro.zeroOrderedDict.filter { fdcMap.keySet.contains($0.key.fdcID) }
+            zeroOrderedDict.filter { fdcMap.keySet.contains($0.key.fdcID) }
+//            zeroOrderedDict
         }
         
         static var zeroIntakes: MacroIntakes {
@@ -182,23 +186,66 @@ struct Nutrient {
         var name: String {
             switch self {
             case .energy:       Constants.Nutrients.Name.calories
+            case .protein:      Constants.Nutrients.Name.protein
             case .sugar:        Constants.Nutrients.Name.sugar
             case .water:        Constants.Nutrients.Name.water
             case .carbs:        Constants.Nutrients.Name.carbs
             case .fiber:        Constants.Nutrients.Name.fiber
-            case .fats:         Constants.Nutrients.Name.fats
-            case .saturatedFat: Constants.Nutrients.Name.saturatedFat
-            case .transFat:     Constants.Nutrients.Name.transFat
             case .cholesterol:  Constants.Nutrients.Name.cholesterol
             case .linoleicAcid: Constants.Nutrients.Name.linoleicAcid
             case .aLinoleicAcid:Constants.Nutrients.Name.aLinoleicAcid
-            case .protein:      Constants.Nutrients.Name.protein
+            case .epa:          Constants.Nutrients.Name.epa
+            case .dha:          Constants.Nutrients.Name.dha
+            case .fats:         Constants.Nutrients.Name.fats
+            case .saturatedFat: Constants.Nutrients.Name.saturatedFat
+            case .transFat:     Constants.Nutrients.Name.transFat
             }
         }
         
-        var unit: Units.Mass { .gm }
+        var display: String {
+            switch self {
+            case .energy:       Constants.Nutrients.Display.calories
+            case .sugar:        Constants.Nutrients.Display.sugar
+            case .water:        Constants.Nutrients.Display.water
+            case .carbs:        Constants.Nutrients.Display.carbs
+            case .fiber:        Constants.Nutrients.Display.fiber
+            case .fats:         Constants.Nutrients.Display.fats
+            case .saturatedFat: Constants.Nutrients.Display.saturatedFat
+            case .transFat:     Constants.Nutrients.Display.transFat
+            case .cholesterol:  Constants.Nutrients.Display.cholesterol
+            case .epa:          Constants.Nutrients.Name.epa
+            case .dha:          Constants.Nutrients.Name.dha
+            case .linoleicAcid: Constants.Nutrients.Display.linoleicAcid
+            case .aLinoleicAcid:Constants.Nutrients.Display.aLinoleicAcid
+            case .protein:      Constants.Nutrients.Display.protein
+            }
+        }
         
-        var compound: String { "" }
+        var unit: Units.Mass {
+            switch self {
+            case .cholesterol: return .mg
+            default: return .gm
+            }
+        }
+        
+        var compound: String {
+            switch self {
+            case .energy:       Constants.Nutrients.Compound.calories
+            case .protein:      Constants.Nutrients.Compound.protein
+            case .sugar:        Constants.Nutrients.Compound.sugar
+            case .water:        Constants.Nutrients.Compound.water
+            case .carbs:        Constants.Nutrients.Compound.carbs
+            case .fiber:        Constants.Nutrients.Compound.fiber
+            case .cholesterol:  Constants.Nutrients.Compound.cholesterol
+            case .linoleicAcid: Constants.Nutrients.Compound.linoleicAcid
+            case .aLinoleicAcid:Constants.Nutrients.Compound.aLinoleicAcid
+            case .epa:          Constants.Nutrients.Compound.epa
+            case .dha:          Constants.Nutrients.Compound.dha
+            case .fats:         Constants.Nutrients.Compound.fats
+            case .saturatedFat: Constants.Nutrients.Compound.saturatedFat
+            case .transFat:     Constants.Nutrients.Compound.transFat
+            }
+        }
         
         var fdcID: Int {
             switch self {
@@ -247,6 +294,8 @@ struct Nutrient {
             
             var name: String { "" }
             
+            var display: String { name }
+            
             var unit: Units.Mass { .gm }
             
             var compound: String { "" }
@@ -278,6 +327,7 @@ struct Nutrient {
             
             var dailyValue: Double { 0 }
             var name: String { "" }
+            var display: String { name }
             var compound: String { "" }
             var unit: Units.Mass { .gm }
         }
@@ -300,6 +350,8 @@ struct Nutrient {
             var dailyValue: Double { 0 }
             
             var name: String { "" }
+            
+            var display: String { name }
             
             var compound: String { "" }
             
@@ -378,6 +430,8 @@ struct Nutrient {
                 case .k:    Constants.Nutrients.Name.vitaminK
                 }
             }
+            
+            var display: String { name }
             
             var compound: String {
                 switch self {
@@ -499,6 +553,8 @@ struct Nutrient {
                 }
             }
             
+            var display: String { name }
+            
             var compound: String {
                 switch self {
                 case .Ca:   Constants.Nutrients.Compound.calcium
@@ -550,7 +606,7 @@ struct Nutrient {
     }
     
     static var required: [any NutrientType] {
-        Micro.Vitamin.allCases + Micro.Mineral.allCases.filter{$0 != .Na} + [Macro.energy, Macro.fiber, Macro.protein, Macro.fats]
+        Micro.Vitamin.allCases + Micro.Mineral.allCases.filter{$0 != .Na} + [Macro.energy, Macro.fiber, Macro.protein, Macro.fats, Macro.water]
     }
     
     static var restricted: [any NutrientType] {

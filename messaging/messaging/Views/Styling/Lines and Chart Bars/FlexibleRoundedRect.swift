@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FlexibleRoundedRect: View {
-    var orientation: CGRect.Orientation
+    var orientation: CGRect.Orientation = .horizontal
     var alignment: Alignment = .leading
     var scaling: CGFloat = 0.8
     var width = CGFloat(50)
@@ -75,7 +75,7 @@ struct FlexibleRoundedRect: View {
 
 struct FlexibleRoundedRect_Previews: PreviewProvider {
     static var previews: some View {
-        FlexibleRoundedRect(orientation: .vertical, alignment: .bottom, radiusScaling: 0.4)
+        FlexibleRoundedRect(orientation: .horizontal, alignment: .leading, radiusScaling: 0.4)
             .padding()
     }
 }

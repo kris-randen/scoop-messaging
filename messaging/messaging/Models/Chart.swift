@@ -25,7 +25,7 @@ struct Chart {
         
         init(nutrient: any NutrientType, intake: Double, kind: Nutrient.Kind) {
             self.nutrient = nutrient
-            self.name = nutrient.name
+            self.name = nutrient.display
             self.compound = nutrient.compound
             self.unit = nutrient.unit.description
             self.value = intake
@@ -52,7 +52,6 @@ struct Chart {
         
         var legend: String {
             guard value != 0 else { return name }
-            print("Bar Nutrient = \(nutrient.name)")
             return nutrient.required ? "Required" : "Allowed"
         }
         
@@ -116,14 +115,15 @@ struct Chart {
     }
     
     static func bars(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
-        return intakes.intakes.sortedByValues(ascending: false).map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
+//        return intakes.intakes.sortedByValues(ascending: false).map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
+        return intakes.intakes.map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
     }
     
     static func barsAll(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
         switch kind {
         case .vitamin:
             guard let intakes = intakes as? VitaminIntakes else { return Chart.zeroVitaminBars }
-            return Chart.bars(for: intakes, kind: kind)
+            return bars(for: intakes, kind: kind)
             
         case .mineral:
             guard let intakes = intakes as? MineralIntakes else { return Chart.zeroMineralBars }
@@ -169,26 +169,27 @@ struct Chart {
         
         switch kind {
         case .vitamin:
-            for (nutrient, intake, scaled) in profile.intakesAndScaledVitamin.sorted(by: {$0.value > $1.value}) {
+            for (nutrient, intake, scaled) in profile.intakesAndScaledVitamin.sorted(by: {$0.nutrient < $1.nutrient}) {
                 self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
             
         case .mineral:
-            for (nutrient, intake, scaled) in profile.intakesAndScaledMineral.sorted(by: {$0.value > $1.value}) {
+            for (nutrient, intake, scaled) in profile.intakesAndScaledMineral.sorted(by: {$0.nutrient < $1.nutrient}) {
                 self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
             
         case .macro:
-            for (nutrient, intake, scaled) in profile.intakesAndScaledMacro.sorted(by: {$0.value > $1.value}) {
-                if displayBars.map({$0.name}) .contains(nutrient.name) {
-                    self.bars.append(Bar(nutrient: nutrient, intake: intake, kind: self.kind, scaled: scaled))
-                }
+            for (nutrient, intake, scaled) in profile.intakesAndScaledMacro.sorted(by: {$0.nutrient < $1.nutrient}) {
+//                if displayBars.map({$0.name}) .contains(nutrient.name) {
+//                    self.bars.append(Bar(nutrient: nutrient, intake: intake, kind: self.kind, scaled: scaled))
+//                }
+                self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
         }
     }
     
     var displayBars: [Nutrient.Macro] {
-        [.sugar, .carbs, .fats, .protein, .fiber]
+        Nutrient.Macro.allCases
     }
     
     func barWidth(for size: CGSize) -> CGFloat {

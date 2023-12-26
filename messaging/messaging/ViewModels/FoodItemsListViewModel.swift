@@ -7,38 +7,22 @@
 
 import SwiftUI
 import Foundation
+import Combine
 
+@MainActor
 class FoodItemsListViewModel: ObservableObject {
     //MARK: - Published properties that FoodItemsListView can bind to
-    @Published var foodItems: [FDCFood] = []
+    @Published var profile: NutrientProfile?
     @Published var isLoading: Bool = false
-    @Published var nutrientProfile: NutrientProfile?
     
-    let fdcFoodService: FDCFoodService
+    //MARK: - Private properties for data handling
+    private var fdcService = FDCFoodServiceNew()
     
-    init(fdcFoodService: FDCFoodService = FDCFoodService()) {
-        self.fdcFoodService = fdcFoodService
-    }
-    
-    func fetchNutrientProfile(for foodItem: String) async {
-        print("Fetching in View Model food item: \(foodItem)")
-        DispatchQueue.main.async {
-            self.isLoading = true
-            print("Fetching in View Model food item: \(foodItem)")
-        }
+    //MARK: - Methods for fetching and updating data
+    func fetchNutritionInfo(for foodItem: String) async {
+        isLoading = true
+        defer { isLoading = false } ///Ensure loading is set to false when done
         
-        do {
-            let data = try await fdcFoodService.fetchDataUnhandled(for: foodItem)
-            
-            DispatchQueue.main.async {
-                self.nutrientProfile = FoodNutrientParser.extract(from: data)
-                self.isLoading = false
-            }
-        } catch {
-            print("Error fetching data: \(error)")
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
-        }
+        profile = await fdcService.fetchNutritionInfo(for: foodItem)
     }
 }

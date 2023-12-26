@@ -292,7 +292,7 @@ struct Profiles {
                 .Mo: 45, .P: 1250, .Se: 55, .Zn: 11, .K: 4700, .Na: 2300, .Cl: 2.3
             ]),
             .macro: MacroIntakes(intakes: [
-                .water: 3.7, .carbs: 130, .sugar: 20, .fats: 78, .fiber: 38, .linoleicAcid: 17, .aLinoleicAcid: 1.6, .protein: 56, .energy: Constants.DRI.energy
+                .water: 3700, .carbs: 130, .sugar: 20, .fats: 78, .fiber: 38, .linoleicAcid: 17, .aLinoleicAcid: 1.6, .protein: 56, .energy: Constants.DRI.energy, .cholesterol: 300.0, .saturatedFat: 13.0, .transFat: 2.0, .epa: 0.5, .dha: 0.5
             ])
         ]), description: "Daily Value",
         type: .value)
@@ -351,7 +351,12 @@ struct Profiles {
             .fiber: 4.88,
             .sugar: 0,
             .protein: 0.91,
-            .fats: 0.15
+            .fats: 0.15,
+            .linoleicAcid: 0.0,
+            .aLinoleicAcid: 0.0,
+            .cholesterol: 0.0,
+            .saturatedFat: 0.0,
+            .water: 1.2
         ]),
         .vitamin: VitaminIntakes(intakes: [
             .a: 45.3,

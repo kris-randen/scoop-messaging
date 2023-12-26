@@ -30,7 +30,6 @@ struct FoodNutrientParser {
     
     static func extract(from food: FDCFood) -> NutrientIntakes {
         print("Food: \(food)")
-//        return FDCUnits.nutrientIntakes(from: food.foodNutrients)
         return FDCUnits.nutrientIntakesAll(from: food.foodNutrients)
     }
     

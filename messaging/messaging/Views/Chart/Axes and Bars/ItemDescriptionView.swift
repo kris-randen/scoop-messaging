@@ -16,9 +16,11 @@ struct ItemDescriptionView: View {
                 Text("\(food) 🕵🏻")
                     .font(Fonts.Card.food.weight(.bold))
                 HStack {
-                    Text("**NQI** = \(Int(nqi))")
+//                    Text("**NQI** = \(Int(nqi))")
+//                        .font(Fonts.Card.food.weight(.regular))
+                    Text("**NQI** = NA")
                         .font(Fonts.Card.food.weight(.regular))
-                    BadgeView(badge: Badge(kind: .food, nqi: Int(nqi)))
+//                    BadgeView(badge: Badge(kind: .food, nqi: Int(nqi)))
                 }
             }
             .multilineTextAlignment(.center)

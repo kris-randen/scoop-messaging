@@ -73,9 +73,13 @@
 		EEDB3C76290ADD6400D8AB20 /* FlexibleRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */; };
 		EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */; };
 		EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */; };
+		EEDF600D2B3AC12F007296A2 /* ChartBodyViewVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDF600C2B3AC12F007296A2 /* ChartBodyViewVariable.swift */; };
+		EEDF600F2B3AC228007296A2 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDF600E2B3AC228007296A2 /* ChartView.swift */; };
+		EEDF60112B3AC2EB007296A2 /* NutrientDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDF60102B3AC2EB007296A2 /* NutrientDetailView.swift */; };
+		EEDF60132B3AC837007296A2 /* AxisTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDF60122B3AC837007296A2 /* AxisTitlesView.swift */; };
 		EEED918E2B32E6C200E9094F /* ScoopButtonLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED918D2B32E6C200E9094F /* ScoopButtonLabelView.swift */; };
 		EEED91902B32E85800E9094F /* ScoopTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED918F2B32E85800E9094F /* ScoopTextField.swift */; };
-		EEED91932B32EA8C00E9094F /* NutrientDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91922B32EA8C00E9094F /* NutrientDetailView.swift */; };
+		EEED91932B32EA8C00E9094F /* NutrientDetailViewVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91922B32EA8C00E9094F /* NutrientDetailViewVariable.swift */; };
 		EEED91952B32F20300E9094F /* ScoopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91942B32F20300E9094F /* ScoopButton.swift */; };
 		EEED91972B32F53700E9094F /* GettingTheInsideScoopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91962B32F53700E9094F /* GettingTheInsideScoopView.swift */; };
 		EEED91992B32F5C400E9094F /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEED91982B32F5C400E9094F /* StringExtensions.swift */; };
@@ -83,13 +87,17 @@
 		EEF504EF2B34A1720001F1DC /* ScoopTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF504EE2B34A1720001F1DC /* ScoopTabView.swift */; };
 		EEF504F12B34D34B0001F1DC /* TextFieldAutoCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF504F02B34D34B0001F1DC /* TextFieldAutoCompleteView.swift */; };
 		EEF927F92B35A37800A87C2E /* ScoopTextFieldAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF927F82B35A37800A87C2E /* ScoopTextFieldAutocomplete.swift */; };
-		EEF927FB2B35F3B100A87C2E /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF927FA2B35F3B100A87C2E /* ChartView.swift */; };
+		EEF927FB2B35F3B100A87C2E /* ChartViewVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF927FA2B35F3B100A87C2E /* ChartViewVariable.swift */; };
 		EEF927FE2B36043C00A87C2E /* ChartTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF927FD2B36043C00A87C2E /* ChartTitleView.swift */; };
-		EEF928002B3604CF00A87C2E /* AxisTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF927FF2B3604CF00A87C2E /* AxisTitlesView.swift */; };
+		EEF928002B3604CF00A87C2E /* AxisTitlesViewVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF927FF2B3604CF00A87C2E /* AxisTitlesViewVariable.swift */; };
 		EEF928022B36069A00A87C2E /* BarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF928012B36069A00A87C2E /* BarsView.swift */; };
 		EEF928042B360ADD00A87C2E /* ItemDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF928032B360ADD00A87C2E /* ItemDescriptionView.swift */; };
 		EEF928072B360EEA00A87C2E /* NutrientProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF928062B360EEA00A87C2E /* NutrientProfile.swift */; };
 		EEF9280A2B36101C00A87C2E /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF928092B36101C00A87C2E /* Units.swift */; };
+		EEF9280C2B36390D00A87C2E /* CacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF9280B2B36390D00A87C2E /* CacheActor.swift */; };
+		EEF9280E2B36398900A87C2E /* FDCFoodServiceNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF9280D2B36398900A87C2E /* FDCFoodServiceNew.swift */; };
+		EEF928102B363CFE00A87C2E /* FoodItemsListViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF9280F2B363CFE00A87C2E /* FoodItemsListViewNew.swift */; };
+		EEF928122B363D6800A87C2E /* ScoopButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF928112B363D6800A87C2E /* ScoopButtonNew.swift */; };
 		EEFA18A52B336D2A009DD73C /* ScannerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFA18A42B336D2A009DD73C /* ScannerContentView.swift */; };
 		EEFA18B02B33A04E009DD73C /* DataScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFA18AF2B33A04E009DD73C /* DataScannerView.swift */; };
 /* End PBXBuildFile section */
@@ -159,9 +167,13 @@
 		EEDB3C75290ADD6400D8AB20 /* FlexibleRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleRoundedRect.swift; sourceTree = "<group>"; };
 		EEDB3C77290ADE2500D8AB20 /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
 		EEDB3C79290ADF0D00D8AB20 /* RoundedRectCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectCore.swift; sourceTree = "<group>"; };
+		EEDF600C2B3AC12F007296A2 /* ChartBodyViewVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBodyViewVariable.swift; sourceTree = "<group>"; };
+		EEDF600E2B3AC228007296A2 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		EEDF60102B3AC2EB007296A2 /* NutrientDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientDetailView.swift; sourceTree = "<group>"; };
+		EEDF60122B3AC837007296A2 /* AxisTitlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisTitlesView.swift; sourceTree = "<group>"; };
 		EEED918D2B32E6C200E9094F /* ScoopButtonLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopButtonLabelView.swift; sourceTree = "<group>"; };
 		EEED918F2B32E85800E9094F /* ScoopTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopTextField.swift; sourceTree = "<group>"; };
-		EEED91922B32EA8C00E9094F /* NutrientDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientDetailView.swift; sourceTree = "<group>"; };
+		EEED91922B32EA8C00E9094F /* NutrientDetailViewVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientDetailViewVariable.swift; sourceTree = "<group>"; };
 		EEED91942B32F20300E9094F /* ScoopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopButton.swift; sourceTree = "<group>"; };
 		EEED91962B32F53700E9094F /* GettingTheInsideScoopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingTheInsideScoopView.swift; sourceTree = "<group>"; };
 		EEED91982B32F5C400E9094F /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -169,13 +181,17 @@
 		EEF504EE2B34A1720001F1DC /* ScoopTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopTabView.swift; sourceTree = "<group>"; };
 		EEF504F02B34D34B0001F1DC /* TextFieldAutoCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAutoCompleteView.swift; sourceTree = "<group>"; };
 		EEF927F82B35A37800A87C2E /* ScoopTextFieldAutocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopTextFieldAutocomplete.swift; sourceTree = "<group>"; };
-		EEF927FA2B35F3B100A87C2E /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		EEF927FA2B35F3B100A87C2E /* ChartViewVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewVariable.swift; sourceTree = "<group>"; };
 		EEF927FD2B36043C00A87C2E /* ChartTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTitleView.swift; sourceTree = "<group>"; };
-		EEF927FF2B3604CF00A87C2E /* AxisTitlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisTitlesView.swift; sourceTree = "<group>"; };
+		EEF927FF2B3604CF00A87C2E /* AxisTitlesViewVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisTitlesViewVariable.swift; sourceTree = "<group>"; };
 		EEF928012B36069A00A87C2E /* BarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarsView.swift; sourceTree = "<group>"; };
 		EEF928032B360ADD00A87C2E /* ItemDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDescriptionView.swift; sourceTree = "<group>"; };
 		EEF928062B360EEA00A87C2E /* NutrientProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientProfile.swift; sourceTree = "<group>"; };
 		EEF928092B36101C00A87C2E /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		EEF9280B2B36390D00A87C2E /* CacheActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActor.swift; sourceTree = "<group>"; };
+		EEF9280D2B36398900A87C2E /* FDCFoodServiceNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDCFoodServiceNew.swift; sourceTree = "<group>"; };
+		EEF9280F2B363CFE00A87C2E /* FoodItemsListViewNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemsListViewNew.swift; sourceTree = "<group>"; };
+		EEF928112B363D6800A87C2E /* ScoopButtonNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoopButtonNew.swift; sourceTree = "<group>"; };
 		EEFA18A42B336D2A009DD73C /* ScannerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerContentView.swift; sourceTree = "<group>"; };
 		EEFA18AF2B33A04E009DD73C /* DataScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -250,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				EE3FEB442B28755B0081E17A /* FDCFoodService.swift */,
+				EEF9280B2B36390D00A87C2E /* CacheActor.swift */,
+				EEF9280D2B36398900A87C2E /* FDCFoodServiceNew.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -371,10 +389,11 @@
 			isa = PBXGroup;
 			children = (
 				EE97DD2F2905539B006C86AD /* FoodDetailMacrosView.swift */,
-				EE97DD31290553AC006C86AD /* FoodItemCellView.swift */,
+				EEF9280F2B363CFE00A87C2E /* FoodItemsListViewNew.swift */,
 				EE97DD33290553B9006C86AD /* FoodItemsListView.swift */,
 				EE7B1863290C2D1B006C20EA /* BadgeView.swift */,
 				EEED91962B32F53700E9094F /* GettingTheInsideScoopView.swift */,
+				EE97DD31290553AC006C86AD /* FoodItemCellView.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -419,6 +438,7 @@
 				EEED918F2B32E85800E9094F /* ScoopTextField.swift */,
 				EEED91942B32F20300E9094F /* ScoopButton.swift */,
 				EEF927F82B35A37800A87C2E /* ScoopTextFieldAutocomplete.swift */,
+				EEF928112B363D6800A87C2E /* ScoopButtonNew.swift */,
 			);
 			path = "Labels Buttons and Text Fields";
 			sourceTree = "<group>";
@@ -427,11 +447,14 @@
 			isa = PBXGroup;
 			children = (
 				EEF927FC2B36034D00A87C2E /* Axes and Bars */,
-				EEED91922B32EA8C00E9094F /* NutrientDetailView.swift */,
+				EEED91922B32EA8C00E9094F /* NutrientDetailViewVariable.swift */,
+				EEDF60102B3AC2EB007296A2 /* NutrientDetailView.swift */,
 				EE9372452B2F2A93006A18B2 /* VerticalChartView.swift */,
 				EE9372492B2F77D4006A18B2 /* HorizontalChartView.swift */,
-				EEF927FA2B35F3B100A87C2E /* ChartView.swift */,
+				EEF927FA2B35F3B100A87C2E /* ChartViewVariable.swift */,
 				EEF927FD2B36043C00A87C2E /* ChartTitleView.swift */,
+				EEDF600C2B3AC12F007296A2 /* ChartBodyViewVariable.swift */,
+				EEDF600E2B3AC228007296A2 /* ChartView.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -439,9 +462,10 @@
 		EEF927FC2B36034D00A87C2E /* Axes and Bars */ = {
 			isa = PBXGroup;
 			children = (
-				EEF927FF2B3604CF00A87C2E /* AxisTitlesView.swift */,
+				EEF927FF2B3604CF00A87C2E /* AxisTitlesViewVariable.swift */,
 				EEF928012B36069A00A87C2E /* BarsView.swift */,
 				EEF928032B360ADD00A87C2E /* ItemDescriptionView.swift */,
+				EEDF60122B3AC837007296A2 /* AxisTitlesView.swift */,
 			);
 			path = "Axes and Bars";
 			sourceTree = "<group>";
@@ -547,16 +571,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEED91992B32F5C400E9094F /* StringExtensions.swift in Sources */,
+				EEDF600D2B3AC12F007296A2 /* ChartBodyViewVariable.swift in Sources */,
 				EEC26E8C2904A50D002BCF97 /* ProfileView.swift in Sources */,
 				EEB6AE7E2B2DB0D600C8EBE5 /* FoodNutrientParser.swift in Sources */,
 				EE320D1D2902A1060083FF2D /* Colors.swift in Sources */,
 				EE96902D2B2B21ED006A30DC /* Measures.swift in Sources */,
-				EEED91932B32EA8C00E9094F /* NutrientDetailView.swift in Sources */,
+				EEED91932B32EA8C00E9094F /* NutrientDetailViewVariable.swift in Sources */,
 				EE97DD302905539B006C86AD /* FoodDetailMacrosView.swift in Sources */,
 				EE97DD422905C93F006C86AD /* FlexibleHorizontalLine.swift in Sources */,
 				EE93724A2B2F77D4006A18B2 /* HorizontalChartView.swift in Sources */,
 				EEDB3C7A290ADF0D00D8AB20 /* RoundedRectCore.swift in Sources */,
 				EEFA18B02B33A04E009DD73C /* DataScannerView.swift in Sources */,
+				EEDF60112B3AC2EB007296A2 /* NutrientDetailView.swift in Sources */,
 				EE3FEB452B28755B0081E17A /* FDCFoodService.swift in Sources */,
 				EE0AFF64290ACF3600C5B899 /* RoundedRectBottomRightCap.swift in Sources */,
 				EE4B61AB2909EF89004E50E3 /* Chart.swift in Sources */,
@@ -592,6 +618,7 @@
 				EE320D212902DAA70083FF2D /* Dimensions.swift in Sources */,
 				EE97DD3E2905A88B006C86AD /* Nutrient.swift in Sources */,
 				EEB6AE7C2B2D921900C8EBE5 /* Serving.swift in Sources */,
+				EEDF60132B3AC837007296A2 /* AxisTitlesView.swift in Sources */,
 				EE320D2C290313C80083FF2D /* AllExtensions.swift in Sources */,
 				EE97DD3C290599B6006C86AD /* CardView.swift in Sources */,
 				EE97DD32290553AC006C86AD /* FoodItemCellView.swift in Sources */,
@@ -602,24 +629,29 @@
 				EED1A5CA2B2EE8A90096CA07 /* ArraysZip.swift in Sources */,
 				EEF927F92B35A37800A87C2E /* ScoopTextFieldAutocomplete.swift in Sources */,
 				EE96A1802907205A005E10DB /* FlexibleRoundedLine.swift in Sources */,
+				EEF9280C2B36390D00A87C2E /* CacheActor.swift in Sources */,
 				EE9F2BD02B31C73F009D9683 /* FoodScoring.swift in Sources */,
+				EEF9280E2B36398900A87C2E /* FDCFoodServiceNew.swift in Sources */,
 				EE0AFF66290ACF8700C5B899 /* RoundedRectBottomLeftCap.swift in Sources */,
 				EE9690212B2AD80F006A30DC /* FDCnutrientsMapper.swift in Sources */,
 				EE97DD3A2905967D006C86AD /* HorizontalLine.swift in Sources */,
 				EE24DC482907DFC5002AA125 /* RequiredIntakes.swift in Sources */,
 				EE3FEB3F2B28746A0081E17A /* FDCFoodDataResponse.swift in Sources */,
 				EE3FEB412B2874B00081E17A /* FDCFood.swift in Sources */,
+				EEF928122B363D6800A87C2E /* ScoopButtonNew.swift in Sources */,
 				EEED91952B32F20300E9094F /* ScoopButton.swift in Sources */,
 				EE96A17A2906DE89005E10DB /* RoundedLineView.swift in Sources */,
 				EE0AFF5C290A8E3700C5B899 /* Protocols.swift in Sources */,
 				EE2C77502902689E00D9FE84 /* messagingApp.swift in Sources */,
 				EE320D2E290364BF0083FF2D /* Shapes.swift in Sources */,
-				EEF927FB2B35F3B100A87C2E /* ChartView.swift in Sources */,
+				EEF927FB2B35F3B100A87C2E /* ChartViewVariable.swift in Sources */,
 				EEF927FE2B36043C00A87C2E /* ChartTitleView.swift in Sources */,
 				EEDB3C78290ADE2500D8AB20 /* RoundedRectView.swift in Sources */,
 				EE9690232B2ADAF5006A30DC /* FDCfoodNutrient.swift in Sources */,
+				EEF928102B363CFE00A87C2E /* FoodItemsListViewNew.swift in Sources */,
 				EED1A5CC2B2EE8F20096CA07 /* OrderedDictionaryExtensions.swift in Sources */,
-				EEF928002B3604CF00A87C2E /* AxisTitlesView.swift in Sources */,
+				EEDF600F2B3AC228007296A2 /* ChartView.swift in Sources */,
+				EEF928002B3604CF00A87C2E /* AxisTitlesViewVariable.swift in Sources */,
 				EEF504F12B34D34B0001F1DC /* TextFieldAutoCompleteView.swift in Sources */,
 				EE9372462B2F2A93006A18B2 /* VerticalChartView.swift in Sources */,
 				EEED918E2B32E6C200E9094F /* ScoopButtonLabelView.swift in Sources */,

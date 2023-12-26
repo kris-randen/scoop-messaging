@@ -25,7 +25,7 @@ struct VerticalChartView: View {
                 CardView()
                 VStack(alignment: .center) {
                     ItemDescriptionView(food: food, nqi: nqi)
-                    ChartView(orientation: orientation, chart: chart, size: geo.size)
+                    ChartViewVariable(orientation: orientation, chart: chart, size: geo.size)
                 }
             }
             .padding()

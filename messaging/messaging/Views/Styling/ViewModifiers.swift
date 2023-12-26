@@ -487,7 +487,7 @@ struct NavigationInlineModifier: ViewModifier {
     }
 }
 
-struct FrameModifier: ViewModifier {
+struct ChartFrameModifierVariable: ViewModifier {
     var orientation: Chart.Orientation = .vertical
     func body(content: Content) -> some View {
         switch orientation {
@@ -542,8 +542,12 @@ extension Notification {
 }
 
 extension View {
-    func framify(for orientation: Chart.Orientation) -> some View {
-        modifier(FrameModifier(orientation: orientation))
+    func chartFramifyVariable(for orientation: Chart.Orientation) -> some View {
+        modifier(ChartFrameModifierVariable(orientation: orientation))
+    }
+    
+    func chartFramify() -> some View {
+        modifier(ChartFrameModifierVariable(orientation: .horizontal))
     }
     
     func rotatify(for orientation: Chart.Orientation) -> some View {

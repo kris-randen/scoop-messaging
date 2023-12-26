@@ -26,7 +26,7 @@ struct HorizontalChartView: View {
                 ScrollView {
                     VStack {
                         ItemDescriptionView(food: profile.food, nqi: profile.nqi)
-                        ChartView(orientation: orientation, chart: chart, size: geo.size)
+                        ChartView(chart: chart, size: geo.size)
                     }
                 }
             }
@@ -38,5 +38,5 @@ struct HorizontalChartView: View {
 
 
 #Preview {
-    HorizontalChartView(kind: .constant(.vitamin), profile: Profiles.carrot)
+    HorizontalChartView(kind: .constant(.macro), profile: Profiles.carrot)
 }

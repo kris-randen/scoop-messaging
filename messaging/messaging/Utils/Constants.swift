@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Foundation
-//import Firebase
 
 struct Constants {
     static let space = " "
@@ -18,13 +17,14 @@ struct Constants {
     
     static let APIkeyFDC = "SFGVHByt5NbrHT8I8xQyUiAXhNUJKZOAoR783a4g"
     static let APIurlstringFDC = "https://api.nal.usda.gov/fdc/v1/foods/search"
+    static let fdcServers = "https://api.nal.usda.gov/fdc"
     
     static let screen = UIScreen.main.bounds
     static let screenWidth = screen.width
     static let screenHeight = screen.height
     static let Bounds = screen
-    static let Width = screenWidth
-    static let Height = screenHeight
+    static let Width = screenWidth              // iPhone 15 Pro Max Width = 430
+    static let Height = screenHeight            // iPhone 15 Pro Max Height = 932
     static let MinDim = screen.minDim
     
     static let instaBlue = Color(red: 81 / 255, green: 91 / 255, blue: 212 / 255)
@@ -135,6 +135,14 @@ struct Constants {
             static let carbs: Nutrient.Macro = .carbs
             static let sugar: Nutrient.Macro = .sugar
             static let fiber: Nutrient.Macro = .fiber
+            static let epa: Nutrient.Macro = .epa
+            static let dha: Nutrient.Macro = .dha
+            static let linAcid: Nutrient.Macro = .linoleicAcid
+            static let aLinAcid: Nutrient.Macro = .aLinoleicAcid
+            static let saturatedFat: Nutrient.Macro = .saturatedFat
+            static let cholesterol: Nutrient.Macro = .cholesterol
+            static let transFat: Nutrient.Macro = .transFat
+            static let water: Nutrient.Macro = .water
         }
         
         struct Micro {
@@ -222,8 +230,10 @@ struct Constants {
             static let fats = "Fats"
             static let fatsGood = "Good Fats"
             static let fatsBad = "Bad Fats"
-            static let linoleicAcid = "Linoleic Acid"
-            static let aLinoleicAcid = "alpha-Linoleic Acid"
+            static let epa = "Omega-3 EPA"
+            static let dha = "Omega-3 DHA"
+            static let linoleicAcid = "Omega-6 LA"
+            static let aLinoleicAcid = "Omega-6 a-LA"
             static let protein = "Protein"
             static let saturatedFat = "Saturated Fat"
             static let transFat = "Trans Fat"
@@ -289,6 +299,63 @@ struct Constants {
                 .map{$0.lowercased()}.set
         }
         
+        struct Display {
+            static let vitaminA = "Vitamin A"
+            static let vitaminAiu = "Vitamin A, IU"
+            static let vitaminB1 = "Vitamin B1"
+            static let vitaminB2 = "Vitamin B2"
+            static let vitaminB3 = "Vitamin B3"
+            static let vitaminB4 = "Vitamin B4"
+            static let vitaminB5 = "Vitamin B5"
+            static let vitaminB6 = "Vitamin B6"
+            static let vitaminB7 = "Vitamin B7"
+            static let vitaminB9 = "Vitamin B9"
+            static let vitaminB12 = "Vitamin B12"
+            static let vitaminC = "Vitamin C"
+            static let vitaminD = "Vitamin D"
+            static let vitaminDiu = "Vitamin D, IU"
+            static let vitaminE = "Vitamin E"
+            static let vitaminEiu = "Vitamin E, IU"
+            static let vitaminK = "Vitamin K"
+            
+            static let calcium = "Mineral Ca"
+            static let chloride = "Mineral Cl"
+            static let chromium = "Mineral Cr"
+            static let copper = "Mineral Cu"
+            static let fluoride = "Mineral F"
+            static let iodine = "Mineral I"
+            static let iron = "Mineral Fe"
+            static let magnesium = "Mineral Mg"
+            static let manganese = "Mineral Mn"
+            static let molybdenum = "Mineral Mo"
+            static let phosphorous = "Mineral P"
+            static let potassium = "Mineral K"
+            static let selenium = "Mineral Se"
+            static let sulfur = "Sulfur, S"
+            static let sodium = "Mineral Na"
+            static let zinc = "Mineral Zn"
+            
+            static let calories = "Calories"
+            static let energy = "Energy"
+            static let sugar = "Sugar"
+            static let water = "Water"
+            static let carbs = "Carbs"
+            static let carbsGood = "Good Carbs"
+            static let carbsBad = "Bad Carbs"
+            static let fiber = "Fiber"
+            static let fats = "Fats"
+            static let fatsGood = "Good Fats"
+            static let fatsBad = "Bad Fats"
+            static let epa = "Omega-3 EPA"
+            static let dha = "Omega-3 DHA"
+            static let linoleicAcid = "Omega-6 LA"
+            static let aLinoleicAcid = "Omega-6 a-LA"
+            static let protein = "Protein"
+            static let saturatedFat = "Saturated Fat"
+            static let transFat = "Trans Fat"
+            static let cholesterol = "Cholesterol"
+        }
+        
         struct FDCmap {
             static let macro = [
                 FDCid.protein: Macro.protein,
@@ -296,7 +363,15 @@ struct Constants {
                 FDCid.fats: Macro.fats,
                 FDCid.carbs: Macro.carbs,
                 FDCid.sugar: Macro.sugar,
-                FDCid.fiber: Macro.fiber
+                FDCid.fiber: Macro.fiber,
+                FDCid.epa: Macro.epa,
+                FDCid.dha: Macro.dha,
+                FDCid.linAcid: Macro.linAcid,
+                FDCid.aLinAcid: Macro.aLinAcid,
+                FDCid.saturatedFat: Macro.saturatedFat,
+                FDCid.transFat: Macro.transFat,
+                FDCid.cholesterol: Macro.cholesterol,
+                FDCid.water: Macro.water
             ]
             
             static let vitamin = [
@@ -346,6 +421,14 @@ struct Constants {
             static let carbs = 1005
             static let sugar = 2000
             static let fiber = 1079
+            static let epa = 1278
+            static let dha = 1272
+            static let linAcid = 1269
+            static let aLinAcid = 1270
+            static let cholesterol = 1253
+            static let water = 1051
+            static let saturatedFat = 1258
+            static let transFat = 1257
             
             static let vitaminA = 1106
             static let vitaminAiu = 1104
@@ -457,11 +540,13 @@ struct Constants {
             static let fats = "Total lipid (fat)"
             static let fatsGood = "Good Fats"
             static let fatsBad = "Bad Fats"
+            static let epa = "PUFA 20:5 n-3 (EPA)"
+            static let dha = "PUFA 22:6 n-3 (DHA)"
             static let linoleicAcid = "Linoleic Acid"
             static let aLinoleicAcid = "alpha-Linoleic Acid"
             static let protein = "Protein"
-            static let saturatedFat = "Saturated Fat"
-            static let transFat = "Trans Fat"
+            static let saturatedFat = "Fatty acids, total saturated"
+            static let transFat = "Fatty acids, total trans"
             static let cholesterol = "Cholesterol"
             
             static let macros = [
@@ -554,6 +639,26 @@ struct Constants {
         }
         
         struct Compound {
+            static let calories = "Calories"
+            static let energy = "Calories"
+            static let sugar = "Sugar"
+            static let water = "Water"
+            static let carbs = "Carbs"
+            static let carbsGood = "Good Carbs"
+            static let carbsBad = "Bad Carbs"
+            static let fiber = "Fiber"
+            static let fats = "Fats"
+            static let fatsGood = "Good Fats"
+            static let fatsBad = "Bad Fats"
+            static let epa = "PUFA 20:5 (n-3)"
+            static let dha = "PUFA 22:6 (n-3)"
+            static let linoleicAcid = "PUFA 18:2"
+            static let aLinoleicAcid = "PUFA 18:3"
+            static let protein = "Protein"
+            static let saturatedFat = "Saturated Fat"
+            static let transFat = "Trans Fat"
+            static let cholesterol = "Cholesterol"
+            
             static let vitaminA = "Calciferol"
             static let vitaminB1 = "Thiamin"
             static let vitaminB2 = "Riboflavin"
