@@ -22,7 +22,6 @@ class FoodItemsListViewModel: ObservableObject {
     func fetchNutritionInfo(for foodItem: String) async {
         isLoading = true
         defer { isLoading = false } ///Ensure loading is set to false when done
-        
         profile = await fdcService.fetchNutritionInfo(for: foodItem)
     }
 }

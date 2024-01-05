@@ -102,6 +102,10 @@ struct Nutrient {
         case macro = "Macro"
         case vitamin = "Vitamin"
         case mineral = "Mineral"
+        case vitaminA = "Vitamin A"
+        case vitaminD = "Vitamin D"
+        case vitaminE = "Vitamin E"
+        case vitaminK = "Vitamin K"
         
         var fdcMap: FDCMap { Nutrient.fdcMapper[self]! }
         
@@ -109,11 +113,18 @@ struct Nutrient {
             allCases.filter {$0.fdcMap.keySet.contains(nutrientID)}.first
         }
         
+        static var micros: String {"Micros"}
+        static var macros: String {"Macros"}
+        
         var chartTitle: (title: String, subtitle: String) {
             switch self {
-            case .macro: ("Macros", "Carbs, Protein, Fat")
-            case .vitamin: ("Micros", "Vitamin")
-            case .mineral: ("Micros", "Mineral")
+            case .macro: (Kind.macros, "Carbs, Protein, Fat")
+            case .vitamin: (Kind.micros, name)
+            case .mineral: (Kind.micros, name)
+            case .vitaminA: (Kind.micros, name)
+            case .vitaminD: (Kind.micros, name)
+            case .vitaminE: (Kind.micros, name)
+            case .vitaminK: (Kind.micros, name)
             }
         }
         
@@ -126,6 +137,7 @@ struct Nutrient {
             case .vitamin: .mineral
             case .mineral: .macro
             case .macro: .vitamin
+            default: .macro
             }
         }
     }
@@ -483,6 +495,145 @@ struct Nutrient {
             func DRI(nutrient: Nutrient.Micro.Vitamin, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
                 0
             }
+            
+            enum A: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
+                case retinol
+                case caroteneBeta
+                case caroteneAlpha
+                case caroteneBetaCis
+                case caroteneBetaTrans
+                case cryptoxanthinBeta
+                case cryptoxanthinAlpha
+                
+                
+                var name: String { "" }
+                
+                var display: String { "" }
+                
+                var compound: String { "" }
+                
+                var unit: Units.Mass { .ug }
+                
+                var compareKey: Int8 { self.rawValue }
+                
+                var fdcID: Int {
+                    switch self {
+                    case .retinol: 1105
+                    case .caroteneBeta: 1107
+                    case .caroteneAlpha: 1108
+                    case .cryptoxanthinBeta: 1120
+                    case .caroteneBetaCis: 1159
+                    case .caroteneBetaTrans: 2028
+                    case .cryptoxanthinAlpha: 2032
+                    }
+                }
+                
+                typealias DailyIntakes = VitaminAIntakes
+                
+                static var dailyIntakes: DailyIntakes  = VitaminAIntakes()
+                
+            }
+            
+            enum D: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
+                case ergocalciferol
+                case cholecalciferol
+                case hydroxycholecalciferol25
+                case hydroxyergocalciferol25
+                
+                var name: String { "" }
+                
+                var display: String { "" }
+                
+                var compound: String { "" }
+                
+                var unit: Units.Mass { .ug }
+                
+                var compareKey: Int8 { self.rawValue }
+                
+                var fdcID: Int {
+                    switch self {
+                    case .ergocalciferol: 1111
+                    case .cholecalciferol: 1112
+                    case .hydroxycholecalciferol25: 1113
+                    case .hydroxyergocalciferol25: 1115
+                    }
+                }
+                
+                typealias DailyIntakes = VitaminDIntakes
+                
+                static var dailyIntakes: DailyIntakes  = VitaminDIntakes()
+                
+            }
+            
+            enum E: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
+                case tocopherolAlpha
+                case tocopherolBeta
+                case tocopherolGamma
+                case tocopherolDelta
+                
+                case tocotrienolAlpha
+                case tocotrienolBeta
+                case tocotrienolGamma
+                case tocotrienolDelta
+                
+                var name: String { "" }
+                
+                var display: String { "" }
+                
+                var compound: String { "" }
+                
+                var unit: Units.Mass { .mg }
+                
+                var compareKey: Int8 { rawValue }
+                
+                var fdcID: Int {
+                    switch self {
+                    case .tocopherolAlpha: 1109
+                    case .tocopherolBeta: 1125
+                    case .tocopherolGamma: 1126
+                    case .tocopherolDelta: 1127
+                    case .tocotrienolAlpha: 1128
+                    case .tocotrienolBeta: 1129
+                    case .tocotrienolGamma: 1130
+                    case .tocotrienolDelta: 1131
+                    }
+                }
+                
+                typealias DailyIntakes = VitaminEIntakes
+                
+                static var dailyIntakes: DailyIntakes  = VitaminEIntakes()
+                
+            }
+            
+            enum K: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
+                case menaquinone4
+                case dihydrophylloquinone
+                case phylloquinone
+                
+                var name: String { "" }
+                
+                var display: String { "" }
+                
+                var compound: String { "" }
+                
+                var unit: Units.Mass { .ug }
+                
+                var compareKey: Int8 { rawValue }
+                
+                var fdcID: Int {
+                    switch self {
+                    case .menaquinone4: 1183
+                    case .dihydrophylloquinone: 1184
+                    case .phylloquinone: 1185
+                    }
+                }
+                
+                typealias DailyIntakes = VitaminKIntakes
+                
+                static var dailyIntakes: DailyIntakes  = VitaminKIntakes()
+                
+            }
+            
         }
         
         enum Mineral: Int8, EnumTypeOrderedKey, NutrientType, FDCidAble {
@@ -606,7 +757,7 @@ struct Nutrient {
     }
     
     static var required: [any NutrientType] {
-        Micro.Vitamin.allCases + Micro.Mineral.allCases.filter{$0 != .Na} + [Macro.energy, Macro.fiber, Macro.protein, Macro.fats, Macro.water]
+        Micro.Vitamin.allCases + Micro.Mineral.allCases.filter{$0 != .Na} + [Macro.energy, Macro.fiber, Macro.protein, Macro.fats, Macro.water, Macro.epa, Macro.dha]
     }
     
     static var restricted: [any NutrientType] {

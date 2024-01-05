@@ -161,7 +161,7 @@ enum Units {
         func conversion(to: Units.IU) -> Double {
             return 0
         }
-        
+
         func conversion(to: Units.Mass) -> Double {
             switch self {
             case .vitaminA, .retinol, .suppbetac:
@@ -169,42 +169,42 @@ enum Units {
                 case .ng:
                     return 300
                 default:
-                    return to.conversion(to: .ng) * conversion(to: .ng)
+                    return conversion(to: .ng) / to.conversion(to: .ng)
                 }
             case .dietbetac:
                 switch to {
                 case .ng:
                     return 50
                 default:
-                    return to.conversion(to: .ng) * conversion(to: .ng)
+                    return conversion(to: .ng) / to.conversion(to: .ng)
                 }
             case .alphcarot, .betacrypt:
                 switch to {
                 case .ng:
                     return 25
                 default:
-                    return to.conversion(to: .ng) * conversion(to: .ng)
+                    return conversion(to: .ng) / to.conversion(to: .ng)
                 }
             case .vitaminD:
                 switch to {
                 case .ng:
                     return 25
                 default:
-                    return to.conversion(to: .ng) * conversion(to: .ng)
+                    return conversion(to: .ng) / to.conversion(to: .ng)
                 }
             case .vitaEnat:
                 switch to {
                 case .ug:
                     return 670
                 default:
-                    return to.conversion(to: .ug) * conversion(to: .ug)
+                    return conversion(to: .ug) / to.conversion(to: .ug)
                 }
             case .vitaEsyn:
                 switch to {
                 case .ug:
                     return 450
                 default:
-                    return to.conversion(to: .ug) * conversion(to: .ug)
+                    return conversion(to: .ug) / to.conversion(to: .ug)
                 }
             }
         }

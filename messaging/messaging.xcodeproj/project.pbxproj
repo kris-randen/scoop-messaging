@@ -398,6 +398,17 @@
 			path = Food;
 			sourceTree = "<group>";
 		};
+		EEBA2ADD2B3ECE9F00229D6F /* Variable Old */ = {
+			isa = PBXGroup;
+			children = (
+				EEF927FF2B3604CF00A87C2E /* AxisTitlesViewVariable.swift */,
+				EEED91922B32EA8C00E9094F /* NutrientDetailViewVariable.swift */,
+				EEF927FA2B35F3B100A87C2E /* ChartViewVariable.swift */,
+				EE9372452B2F2A93006A18B2 /* VerticalChartView.swift */,
+			);
+			path = "Variable Old";
+			sourceTree = "<group>";
+		};
 		EEC26E8A2904A4FA002BCF97 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,14 +458,12 @@
 			isa = PBXGroup;
 			children = (
 				EEF927FC2B36034D00A87C2E /* Axes and Bars */,
-				EEED91922B32EA8C00E9094F /* NutrientDetailViewVariable.swift */,
 				EEDF60102B3AC2EB007296A2 /* NutrientDetailView.swift */,
-				EE9372452B2F2A93006A18B2 /* VerticalChartView.swift */,
 				EE9372492B2F77D4006A18B2 /* HorizontalChartView.swift */,
-				EEF927FA2B35F3B100A87C2E /* ChartViewVariable.swift */,
+				EEDF600E2B3AC228007296A2 /* ChartView.swift */,
 				EEF927FD2B36043C00A87C2E /* ChartTitleView.swift */,
 				EEDF600C2B3AC12F007296A2 /* ChartBodyViewVariable.swift */,
-				EEDF600E2B3AC228007296A2 /* ChartView.swift */,
+				EEBA2ADD2B3ECE9F00229D6F /* Variable Old */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -462,7 +471,6 @@
 		EEF927FC2B36034D00A87C2E /* Axes and Bars */ = {
 			isa = PBXGroup;
 			children = (
-				EEF927FF2B3604CF00A87C2E /* AxisTitlesViewVariable.swift */,
 				EEF928012B36069A00A87C2E /* BarsView.swift */,
 				EEF928032B360ADD00A87C2E /* ItemDescriptionView.swift */,
 				EEDF60122B3AC837007296A2 /* AxisTitlesView.swift */,

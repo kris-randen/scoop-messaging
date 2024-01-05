@@ -132,6 +132,9 @@ struct Chart {
         case .macro:
             guard let intakes = intakes as? MacroIntakes else { return Chart.zeroMacroBars }
             return bars(for: intakes, kind: kind)
+        default:
+            guard let intakes = intakes as? MacroIntakes else { return Chart.zeroMacroBars }
+            return bars(for: intakes, kind: kind)
         }
     }
     
@@ -148,6 +151,10 @@ struct Chart {
             return allMinerals.filter { !intakes.intakes.keys.contains($0) }
             
         case .macro:
+            let allMacros = Nutrient.Macro.allCases
+            guard let intakes = intakes as? MacroIntakes else { return allMacros }
+            return allMacros.filter { !intakes.intakes.keys.contains($0) }
+        default:
             let allMacros = Nutrient.Macro.allCases
             guard let intakes = intakes as? MacroIntakes else { return allMacros }
             return allMacros.filter { !intakes.intakes.keys.contains($0) }
@@ -169,20 +176,24 @@ struct Chart {
         
         switch kind {
         case .vitamin:
-            for (nutrient, intake, scaled) in profile.intakesAndScaledVitamin.sorted(by: {$0.nutrient < $1.nutrient}) {
+//            for (nutrient, intake, scaled) in profile.intakesAndScaledVitamin.sorted(by: {$0.nutrient < $1.nutrient}) {
+            for (nutrient, intake, scaled) in profile.intakesAndScaledVitamin.sorted(by: {$0.value > $1.value}) {
                 self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
             
         case .mineral:
-            for (nutrient, intake, scaled) in profile.intakesAndScaledMineral.sorted(by: {$0.nutrient < $1.nutrient}) {
+//            for (nutrient, intake, scaled) in profile.intakesAndScaledMineral.sorted(by: {$0.nutrient < $1.nutrient}) {
+            for (nutrient, intake, scaled) in profile.intakesAndScaledMineral.sorted(by: {$0.value > $1.value}) {
                 self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
             
         case .macro:
+//            for (nutrient, intake, scaled) in profile.intakesAndScaledMacro.sorted(by: {$0.nutrient < $1.nutrient}) {
+            for (nutrient, intake, scaled) in profile.intakesAndScaledMacro.sorted(by: {$0.value > $1.value}) {
+                self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
+            }
+        default:
             for (nutrient, intake, scaled) in profile.intakesAndScaledMacro.sorted(by: {$0.nutrient < $1.nutrient}) {
-//                if displayBars.map({$0.name}) .contains(nutrient.name) {
-//                    self.bars.append(Bar(nutrient: nutrient, intake: intake, kind: self.kind, scaled: scaled))
-//                }
                 self.bars.append(Bar(nutrient: nutrient, intake: intake, scaled: scaled))
             }
         }

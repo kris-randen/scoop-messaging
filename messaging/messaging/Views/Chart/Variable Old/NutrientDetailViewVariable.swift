@@ -16,6 +16,8 @@ struct NutrientDetailViewVariable: View {
             VerticalChartView(kind: $kind, profile: profile)
         case .vitamin, .mineral:
             HorizontalChartView(kind: $kind, profile: profile)
+        default:
+            HorizontalChartView(kind: $kind, profile: profile)
         }
     }
 }

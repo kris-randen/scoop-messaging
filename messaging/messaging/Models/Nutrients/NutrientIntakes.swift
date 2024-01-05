@@ -180,6 +180,36 @@ struct VitaminIntakes: Intakeable {
     var kind: Nutrient.Kind = .vitamin
 }
 
+struct VitaminAIntakes: Intakeable {
+    typealias NutrientKey = Nutrient.Micro.Vitamin.A
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
+    var intakes: Intakes = Intakes()
+    var kind: Nutrient.Kind = .vitaminA
+}
+
+struct VitaminDIntakes: Intakeable {
+    typealias NutrientKey = Nutrient.Micro.Vitamin.D
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
+    var intakes: Intakes = Intakes()
+    var kind: Nutrient.Kind = .vitaminD
+}
+
+struct VitaminEIntakes: Intakeable {
+    typealias NutrientKey = Nutrient.Micro.Vitamin.E
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
+    var intakes: Intakes = Intakes()
+    var kind: Nutrient.Kind = .vitaminE
+}
+
+struct VitaminKIntakes: Intakeable {
+    typealias NutrientKey = Nutrient.Micro.Vitamin.K
+    typealias Intakes = OrderedDictionary<NutrientKey, Double>
+    var intakes: Intakes = Intakes()
+    var kind: Nutrient.Kind = .vitaminK
+}
+
+
+
 struct MineralIntakes: Intakeable {
     typealias NutrientKey = Nutrient.Micro.Mineral
     typealias Intakes = OrderedDictionary<NutrientKey, Double>
