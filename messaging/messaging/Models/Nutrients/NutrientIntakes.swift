@@ -20,8 +20,15 @@ typealias MacroIntakeAndScaled = (nutrient: Nutrient.Macro, value: Double, scale
 typealias VitaminIntakeAndScaled = (nutrient: Nutrient.Micro.Vitamin, value: Double, scaled: Double)
 typealias MineralIntakeAndScaled = (nutrient: Nutrient.Micro.Mineral, value: Double, scaled: Double)
 
+protocol DailyValueScaleable {
+    func scaledByDV() -> Self
+}
 
-protocol Intakeable: Multipliable, NQIconvertible {
+protocol Scalable {
+    func scaledTo(factor: Double) -> Self
+}
+
+protocol Intakeable: Multipliable, NQIconvertible, Scalable, DailyValueScaleable {
     associatedtype NutrientKey: NutrientType
     typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes { get set }
@@ -46,6 +53,18 @@ extension Intakeable {
             nqiIntakes[nutrient] = nutrient.nqiFactor(with: energy) * value / nutrient.dailyValue
         }
         return Self.init(intakes: nqiIntakes)
+    }
+    
+    func scaledTo(factor: Double) -> Self {
+        return factor * self
+    }
+    
+    func scaledByDV() -> Self {
+        var scaledIntakes = Intakes()
+        for (nutrient, value) in intakes {
+            scaledIntakes[nutrient] = value / nutrient.dailyValue
+        }
+        return Self.init(intakes: scaledIntakes)
     }
 }
 
@@ -86,13 +105,19 @@ extension Intakeable {
     var negativeNQI: Double { negatives.nqi }
 }
 
-protocol Intakeables: Multipliable, NQIconvertible {
+protocol Intakeables: Multipliable, NQIconvertible, Scalable, DailyValueScaleable {
     var intakes: OrderedDictionary<Nutrient.Kind, any Intakeable> { get set }
     var nqi: Double { get }
+    
+    init()
+    init(intakes: OrderedDictionary<Nutrient.Kind, any Intakeable>)
 }
 
 extension Intakeables {
-    
+    init(intakes: OrderedDictionary<Nutrient.Kind, any Intakeable>) {
+        self.init()
+        self.intakes = intakes
+    }
     
     var numPositives: Int {
         let num = intakes.reduce(0) { sum, intake in
@@ -125,10 +150,30 @@ extension Intakeables {
     var nqi: Double {
         positiveNQI + Double(numPositives) * negativeNQI
     }
+    
+    func scaledTo(factor: Double) -> Self {
+        return self * factor
+    }
+    
+    func scaledByDV() -> Self {
+        return Self.init(intakes: [
+            .macro: self.intakes[.macro]!.scaledByDV(),
+            .vitamin: self.intakes[.vitamin]!.scaledByDV(),
+            .mineral: self.intakes[.mineral]!.scaledByDV()
+        ])
+    }
 }
 
 
 struct NutrientIntakes: Intakeables {
+    init() {
+        self.intakes = [
+            .macro: Nutrient.Macro.zeroIntakes,
+            .vitamin: Nutrient.Micro.Vitamin.zeroIntakes,
+            .mineral: Nutrient.Micro.Mineral.zeroIntakes
+        ]
+    }
+    
     typealias Intakes = OrderedDictionary<Nutrient.Kind, any Intakeable>
     var intakes: Intakes
     

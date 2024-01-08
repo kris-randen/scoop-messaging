@@ -14,7 +14,6 @@ struct FDCFoodServiceNew {
     
     private func urlString(for foodItem: String) -> String {
         "\(urlPrefix)?query=\(foodItem)&api_key=\(apiKey)"
-//    "\(urlPrefix)?query=\(foodItem)&dataType=Foundation&pageSize=5&pageNumber=1&sortBy=dataType.keyword&sortOrder=asc&api_key=\(apiKey)"
     }
     
     private func url(for foodItem: String) -> URL {
@@ -70,3 +69,10 @@ struct FDCFoodServiceNew {
         try await URLSession.shared.data(from: url(for: foodItem))
     }
 }
+
+
+
+
+
+
+//    "\(urlPrefix)?query=\(foodItem)&dataType=Foundation&pageSize=5&pageNumber=1&sortBy=dataType.keyword&sortOrder=asc&api_key=\(apiKey)"

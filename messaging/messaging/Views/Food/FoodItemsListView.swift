@@ -2,7 +2,7 @@
 //  FoodItemsListViewNew.swift
 //  messaging
 //
-//  Created by Krishnaswami Rajendren on 12/23/23.
+//  Created by Krishnaswami Rajendren on 1/5/24.
 //
 
 import SwiftUI
@@ -16,7 +16,6 @@ struct FoodItemsListView: View {
     
     @State var loading: Bool = false
     @State var navigate = false
-    let allUnits: [String] = Units.Mass.allCases.map{$0.name} + Units.Volume.allCases.map{$0.name}
     
     init() {
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: "Avenir Next Bold", size: 18)!, .foregroundColor: UIColor(Colors.scoopRed)]
@@ -25,6 +24,7 @@ struct FoodItemsListView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Spacer()
                 ScoopTextFieldAndToggle(
                     text: $food,
                     kind: $kind,
@@ -32,12 +32,12 @@ struct FoodItemsListView: View {
                     serving: $serving
                 )
                 ScoopButtonNew(vm: vm, food: food, navigate: $navigate)
-                    .padding()
+                    .padding(.horizontal)
                 if vm.isLoading {
                     GettingTheInsideScoopView(food: food)
                 }
                 if let profile = vm.profile {
-                    NavigationLink("", destination: NutrientDetailView(kind: $kind, profile: profile), isActive: $navigate)
+                    NavigationLink("", destination: HorizontalChartView(kind: $kind, serving: $serving, profile: profile), isActive: $navigate)
                 }
             }
             .vStackify()

@@ -18,27 +18,23 @@ struct FoodNutrientParser {
         }
     }
     
-    static func select(from foods: [FDCFood]) -> FDCFood? {
-        print("Food: \(foods.first!)")
-        return foods.first
-    }
+    static func select(from foods: [FDCFood]) -> FDCFood? { foods.first }
     
     static func extract(from food: FDCFood) -> any ConvertibleMeasure {
-        print("Extracting in FoodNutrientParser.extract from food: \(food)")
-        return Serving.get(from: food)
+        Serving.get(from: food)
     }
     
     static func extract(from food: FDCFood) -> NutrientIntakes {
-        print("Food: \(food)")
-        return FDCUnits.nutrientIntakesAll(from: food.foodNutrients)
+        FDCUnits.nutrientIntakesAll(from: food.foodNutrients)
     }
     
-    static func extractNonNQIprofile(from food: FDCFood) -> NutrientProfile {
+    static func extractValueProfile(from food: FDCFood) -> NutrientProfile {
         NutrientProfile(
             intakes: extract(from: food),
             description: food.description,
             type: .value,
-            serving: extract(from: food)
+            serving: extract(from: food),
+            energy: food.energy
         )
     }
     
@@ -47,12 +43,14 @@ struct FoodNutrientParser {
     }
     
     static func extract(from food: FDCFood) -> NutrientProfile {
-        print("Extracting in FoodNutrientParser.extract from food: \(food)")
-        return extractNonNQIprofile(from: food).convertedToNQI(for: food.energy)
+        extractValueProfile(from: food)
+    }
+    
+    static func extractScaledByDV(from food: FDCFood) -> NutrientProfile {
+        extractValueProfile(from: food).scaledByDV()
     }
     
     static func extract(from data: Data) -> NutrientProfile {
-        print("Extracting data.")
-        return extract(from: select(from: parseFoods(from: data)!)!)
+        extract(from: select(from: parseFoods(from: data)!)!)
     }
 }

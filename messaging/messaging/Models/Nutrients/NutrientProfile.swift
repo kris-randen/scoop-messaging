@@ -119,6 +119,7 @@ extension NutrientProfileable {
         switch type {
         case .value: nqiFactor
         case .nqi: nutrient.dailyValue
+        case .scaled: 1
         }
     }
     
@@ -195,7 +196,7 @@ protocol ServeableNutrientProfile: NutrientProfileable {
     var serving: any ConvertibleMeasure { get }
 }
 
-struct NutrientProfile: NutrientProfileable, NQIconvertible {
+struct NutrientProfile: NutrientProfileable, NQIconvertible, Scalable, DailyValueScaleable {
     var intakes: NutrientIntakes
     var description: String
     var type: NutrientValueType
@@ -212,8 +213,16 @@ extension NutrientProfile {
     }
     
     func convertedToNQI() -> NutrientProfile {
-        guard self.type == .value else { return self }
-        return NutrientProfile.convertValueToNQI(valueProfile: self)
+        if self.type == .nqi { return self }
+        return self.convertedToNQI(for: self.energy)
+    }
+    
+    func scaledTo(factor: Double) -> Self {
+        return self * factor
+    }
+    
+    func scaledByDV() -> Self {
+        return Self.init(intakes: self.intakes.scaledByDV(), description: self.description, type: .scaled)
     }
     
     func convertedToNQI(for energy: Energy) -> Self {

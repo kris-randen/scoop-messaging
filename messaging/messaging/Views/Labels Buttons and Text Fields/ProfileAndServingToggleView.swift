@@ -23,6 +23,6 @@ struct ProfileAndServingToggleView: View {
     }
 }
 
-//#Preview {
-//    ProfileAndServingToggleView()
-//}
+#Preview {
+    ProfileAndServingToggleView(kind: .constant(.vitamin), serving: .constant(.kcal2000))
+}

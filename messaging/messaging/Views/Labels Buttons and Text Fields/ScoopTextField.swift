@@ -21,14 +21,6 @@ struct ScoopTextField: View {
             Text("Maggie...")
                     .foregroundColor(Colors.scoopRedPlaceholder)
         }
-//        .overlay(alignment: .trailing) {
-//            Button {
-//                kind = kind.toggle()
-//            } label: {
-//                BadgeView(badge: Badge(kind: .kind(kind: kind)))
-//            }
-//            .padding(.trailing, -45)
-//        }
         .textFieldify(heightScaling: Dimensions.HeightScaling.textField)
         .font(Fonts.signInTextField)
         .borderify(shape: shape, color: Colors.scoopYellow)

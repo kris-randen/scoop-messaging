@@ -1,22 +1,22 @@
 //
-//  HorizontalChartViewFDCapiTest.swift
+//  HorizontalChartViewNew.swift
 //  messaging
 //
-//  Created by Krishnaswami Rajendren on 12/18/23.
+//  Created by Krishnaswami Rajendren on 1/5/24.
 //
 
 import SwiftUI
-import Foundation
-import OrderedCollections
 
 struct HorizontalChartView: View {
     @Binding var kind: Nutrient.Kind
+    @Binding var serving: Serving.Kind
     var profile: NutrientProfile
-    var orientation: Chart.Orientation { .horizontal }
-    
+    var orientation: Chart.Orientation {
+        .horizontal
+    }
     
     var chart: Chart {
-        Chart(profile: profile, kind: kind, nqi: profile.nqi)
+        Chart(profile: (serving == .gm100 ? profile.scaledByDV() : profile.convertedToNQI()), kind: kind, nqi: profile.nqi)
     }
     
     var body: some View {
@@ -34,11 +34,11 @@ struct HorizontalChartView: View {
                 .padding()
             }
             .navigationTitle(kind.navigationTitle)
+            ProfileAndServingToggleView(shape: Shapes.textField, kind: $kind, serving: $serving)
         }
     }
 }
 
-
 #Preview {
-    HorizontalChartView(kind: .constant(.macro), profile: Profiles.carrot)
+    HorizontalChartView(kind: .constant(.vitamin), serving: .constant(.kcal2000), profile: Profiles.carrot)
 }
