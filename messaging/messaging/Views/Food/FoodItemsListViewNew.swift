@@ -2,7 +2,7 @@
 //  FoodItemsListViewNew.swift
 //  messaging
 //
-//  Created by Krishnaswami Rajendren on 12/23/23.
+//  Created by Krishnaswami Rajendren on 1/5/24.
 //
 
 import SwiftUI
@@ -12,11 +12,10 @@ struct FoodItemsListViewNew: View {
     @State var food: String = "carrot"
     @State var kind: Nutrient.Kind = .macro
     @State var quantity: String = ""
-    @State var unit: Units.Mass = .gm
+    @State var serving: Serving.Kind = .kcal2000
     
     @State var loading: Bool = false
     @State var navigate = false
-    let allUnits: [String] = Units.Mass.allCases.map{$0.name} + Units.Volume.allCases.map{$0.name}
     
     init() {
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: "Avenir Next Bold", size: 18)!, .foregroundColor: UIColor(Colors.scoopRed)]
@@ -25,11 +24,12 @@ struct FoodItemsListViewNew: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScoopTextField(
+                Spacer()
+                ScoopTextFieldAndToggle(
                     text: $food,
                     kind: $kind,
                     quantity: $quantity,
-                    unit: $unit
+                    serving: $serving
                 )
                 ScoopButtonNew(vm: vm, food: food, navigate: $navigate)
                     .padding()
@@ -37,7 +37,7 @@ struct FoodItemsListViewNew: View {
                     GettingTheInsideScoopView(food: food)
                 }
                 if let profile = vm.profile {
-                    NavigationLink("", destination: NutrientDetailView(kind: $kind, profile: profile), isActive: $navigate)
+                    NavigationLink("", destination: NutrientDetailViewNew(kind: $kind, serving: $serving, profile: profile), isActive: $navigate)
                 }
             }
             .vStackify()

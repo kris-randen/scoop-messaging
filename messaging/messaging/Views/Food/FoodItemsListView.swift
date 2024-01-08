@@ -1,19 +1,19 @@
 //
-//  FoodItemsListView.swift
+//  FoodItemsListViewNew.swift
 //  messaging
 //
-//  Created by Krishnaswami Rajendren on 10/23/22.
+//  Created by Krishnaswami Rajendren on 12/23/23.
 //
 
 import SwiftUI
 
 struct FoodItemsListView: View {
+    @StateObject var vm = FoodItemsListViewModel()
     @State var food: String = "carrot"
     @State var kind: Nutrient.Kind = .macro
     @State var quantity: String = ""
-    @State var unit: Units.Mass = .gm
+    @State var serving: Serving.Kind = .kcal2000
     
-    @State var profile: NutrientProfile = Profiles.carrot
     @State var loading: Bool = false
     @State var navigate = false
     let allUnits: [String] = Units.Mass.allCases.map{$0.name} + Units.Volume.allCases.map{$0.name}
@@ -25,23 +25,20 @@ struct FoodItemsListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScoopTextField(
+                ScoopTextFieldAndToggle(
                     text: $food,
                     kind: $kind,
                     quantity: $quantity,
-                    unit: $unit
+                    serving: $serving
                 )
-                ScoopButton(
-                    food: food,
-                    profile: $profile,
-                    loading: $loading,
-                    navigate: $navigate
-                )
-                .padding()
-                if loading {
+                ScoopButtonNew(vm: vm, food: food, navigate: $navigate)
+                    .padding()
+                if vm.isLoading {
                     GettingTheInsideScoopView(food: food)
                 }
-                NavigationLink("", destination: NutrientDetailViewVariable(kind: $kind, profile: profile), isActive: $navigate)
+                if let profile = vm.profile {
+                    NavigationLink("", destination: NutrientDetailView(kind: $kind, profile: profile), isActive: $navigate)
+                }
             }
             .vStackify()
             .navigationInlinify(title: Constants.NavigationTitle.foodItem)
@@ -51,8 +48,6 @@ struct FoodItemsListView: View {
     }
 }
 
-struct FoodItemsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        FoodItemsListView()
-    }
+#Preview {
+    FoodItemsListView()
 }

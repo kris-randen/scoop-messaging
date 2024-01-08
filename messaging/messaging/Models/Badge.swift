@@ -47,6 +47,7 @@ struct Badge {
         case kind(kind: Nutrient.Kind)
         case mass(unit: Units.Mass)
         case volume(unit: Units.Volume)
+        case serving(kind: Serving.Kind)
         
         var size: Size {
             switch self {
@@ -60,8 +61,8 @@ struct Badge {
         }
     }
     
-     var kind: Kind = .food
-     var nqi: Int = -47
+    var kind: Kind = .food
+    var nqi: Int = -47
     
     var size: Size = .normal
     var text: String = "Low Quality"
@@ -118,6 +119,8 @@ struct Badge {
             default:
                 return (.green, .white)
             }
+        case .serving:
+            return (Colors.scoopYellow, Colors.scoopRed)
         default:
             return (Colors.scoopRed, Colors.scoopYellow)
         }
@@ -153,6 +156,8 @@ struct Badge {
             return unit.name.lowercased()
         case .volume(let unit):
             return unit.name.lowercased()
+        case .serving(let kind):
+            return kind.name.lowercased()
         }
     }
     
@@ -172,7 +177,7 @@ struct Badge {
             default:
                 return LabelType.checkmarkShield.name
             }
-        case .kind, .mass, .volume:
+        case .kind, .mass, .volume, .serving:
             return LabelType.none.name
         }
     }
