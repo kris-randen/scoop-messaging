@@ -21,5 +21,5 @@ struct ChartView: View {
 }
 
 #Preview {
-    ChartView(chart: Chart(profile: Profiles.arugula, kind: .macro), size: Constants.screen.size)
+    ChartView(chart: Chart(profile: Profiles.arugula, kind: .vitamin), size: Constants.screen.size)
 }

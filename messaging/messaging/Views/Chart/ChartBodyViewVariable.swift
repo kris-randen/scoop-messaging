@@ -14,7 +14,6 @@ struct ChartBodyViewVariable: View {
     var body: some View {
         HStack(alignment: .bottom) {
             AxisTitlesView(chart: chart)
-//                .padding(.trailing, 10)
                 .frame(width: size.width/3.5, alignment: .trailing)
                 .multilineTextAlignment(.trailing)
             axis()
@@ -31,5 +30,5 @@ struct ChartBodyViewVariable: View {
 }
 
 #Preview {
-    ChartBodyViewVariable(chart: Chart(profile: Profiles.carrot, kind: .macro), size: Constants.screen.size, orientation: .horizontal)
+    ChartBodyViewVariable(chart: Chart(profile: Profiles.arugula, kind: .vitamin), size: Constants.screen.size, orientation: .horizontal)
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import FirebaseFirestoreSwift
 
 struct Demography {
     enum AgeGroup: Equatable, Codable {

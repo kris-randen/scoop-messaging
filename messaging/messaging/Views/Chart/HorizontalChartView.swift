@@ -31,7 +31,7 @@ struct HorizontalChartView: View {
                         }
                     }
                 }
-                .padding()
+                .padding(Constants.Width/35)
             }
             .navigationTitle(kind.navigationTitle)
             ProfileAndServingToggleView(shape: Shapes.textField, kind: $kind, serving: $serving)
@@ -40,5 +40,5 @@ struct HorizontalChartView: View {
 }
 
 #Preview {
-    HorizontalChartView(kind: .constant(.vitamin), serving: .constant(.kcal2000), profile: Profiles.carrot)
+    HorizontalChartView(kind: .constant(.mineral), serving: .constant(.kcal2000), profile: Profiles.arugula)
 }

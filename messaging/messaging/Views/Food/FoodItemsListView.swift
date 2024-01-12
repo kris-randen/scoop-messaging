@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FoodItemsListView: View {
     @StateObject var vm = FoodItemsListViewModel()
-    @State var food: String = "carrot"
-    @State var kind: Nutrient.Kind = .macro
+    @State var food: String = "Beef Liver Raw"
+    @State var kind: Nutrient.Kind = .vitamin
     @State var quantity: String = ""
     @State var serving: Serving.Kind = .kcal2000
     

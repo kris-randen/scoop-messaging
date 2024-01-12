@@ -21,7 +21,8 @@ struct BarsView: View {
     
     fileprivate func barView(for bar: Chart.Bar, in chart: Chart, with size: CGSize) -> some View
     {
-        VStack(alignment: .leading, spacing: 12){
+//        VStack(alignment: .leading, spacing: 12){
+        VStack(alignment: .leading){
             figure(for: bar, in: chart, with: size)
             legend(for: bar)
                 .foregroundColor(Colors.scoopRed)
@@ -49,12 +50,13 @@ struct BarsView: View {
                 .font(Fonts.CardNutrientSubtitle)
                 .fixedSize(horizontal: true, vertical: false)
             if bar.value >= 8 {
+                Spacer()
                 BadgeView(badge: Badge(kind: .nutrient, nqi: 8))
                     .padding(.horizontal, 5)
             }
         }
         .foregroundColor(bar.legendColor)
-        .padding(5)
+//        .padding(5)
     }
     
     fileprivate func scaling(for bar: Chart.Bar) -> Double {
@@ -67,19 +69,22 @@ struct BarsView: View {
     }
     
     func description(for value: Double) -> String {
+        if value < 1 {
+            return String(format: "%.0f%%", (value * 100))
+        }
         switch (value - floor(value)) {
         case 0.25...0.75:
-            return String(format: "%.1fX", (floor(value) + 0.5))
+            return String(format: "%.0fX", (floor(value) + 0.5))
         case 0...0.25:
             return String(format: "%.0fX", floor(value))
         case 0.75...1:
             return String(format: "%.0fX", ceil(value))
         default:
-            return String(format: "%.1fX", value)
+            return String(format: "%.0fX", value)
         }
     }
 }
 
 #Preview {
-    BarsView(chart: Chart(profile: Profiles.carrot, kind: .vitamin), size: Constants.screen.size)
+    BarsView(chart: Chart(profile: Profiles.arugula, kind: .mineral), size: Constants.screen.size)
 }

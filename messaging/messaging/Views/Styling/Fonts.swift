@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-struct Fonts {
+public struct Fonts {
     struct SignIn {
         static let logoScoop =          Font
                                             .custom("Avenir", size: 28, relativeTo: .largeTitle)
