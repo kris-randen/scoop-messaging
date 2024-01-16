@@ -20,7 +20,7 @@ protocol NutrientProfileable: Multipliable {
     var description: String { get }
     var type: NutrientValueType { get }
     var intakes: NutrientIntakes { get set }
-    var serving: any ConvertibleMeasure { get }
+    var serving: Serving { get }
     
     var nqi: Double { get }
 }
@@ -193,14 +193,14 @@ extension NutrientProfileable {
 
 
 protocol ServeableNutrientProfile: NutrientProfileable {
-    var serving: any ConvertibleMeasure { get }
+    var serving: Serving { get }
 }
 
 struct NutrientProfile: NutrientProfileable, NQIconvertible, Scalable, DailyValueScaleable {
     var intakes: NutrientIntakes
     var description: String
     var type: NutrientValueType
-    var serving: any ConvertibleMeasure = Serving.Mass(unit: .gm, value: 100)
+    var serving: Serving = Serving(value: 100, unit: .gm)
     var energy = Energy(unit: .kcal, value: 0)
 }
 
@@ -215,6 +215,11 @@ extension NutrientProfile {
     func convertedToNQI() -> NutrientProfile {
         if self.type == .nqi { return self }
         return self.convertedToNQI(for: self.energy)
+    }
+    
+    func scaledTo(servingSize: Serving) -> Self {
+        let factor = serving.factor(to: servingSize)
+        return scaledTo(factor: factor)
     }
     
     func scaledTo(factor: Double) -> Self {
@@ -275,7 +280,7 @@ extension Dictionary: Multipliable where Value: Multipliable {
 
 struct NutrientProfileServed: ServeableNutrientProfile {
     var intakes: NutrientIntakes
-    var serving: any ConvertibleMeasure
+    var serving: Serving = Serving(value: 100, unit: .gm)
     var description: String
     var type: NutrientValueType
 }

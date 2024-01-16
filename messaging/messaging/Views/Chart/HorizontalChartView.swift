@@ -15,8 +15,19 @@ struct HorizontalChartView: View {
         .horizontal
     }
     
+    var scaled: NutrientProfile {
+        switch serving {
+        case .gm100:
+            profile.scaledByDV().scaledTo(servingSize:Serving(value: 100, unit: .gm))
+        case .kcal2000:
+            profile.convertedToNQI()
+        case .list:
+            profile.scaledByDV()
+        }
+    }
+    
     var chart: Chart {
-        Chart(profile: (serving == .gm100 ? profile.scaledByDV() : profile.convertedToNQI()), kind: kind, nqi: profile.nqi)
+        Chart(profile: scaled, kind: kind, nqi: profile.nqi)
     }
     
     var body: some View {
@@ -34,7 +45,13 @@ struct HorizontalChartView: View {
                 .padding(Constants.Width/35)
             }
             .navigationTitle(kind.navigationTitle)
-            ProfileAndServingToggleView(shape: Shapes.textField, kind: $kind, serving: $serving)
+            switch serving {
+            case .gm100, .kcal2000:
+                ProfileAndServingToggleView(shape: Shapes.textField, kind: $kind, serving: $serving)
+            case .list:
+                ProfileToggleView(kind: $kind)
+            }
+            
         }
     }
 }

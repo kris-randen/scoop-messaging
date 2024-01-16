@@ -20,7 +20,7 @@ struct FoodNutrientParser {
     
     static func select(from foods: [FDCFood]) -> FDCFood? { foods.first }
     
-    static func extract(from food: FDCFood) -> any ConvertibleMeasure {
+    static func extract(from food: FDCFood) -> Serving {
         Serving.get(from: food)
     }
     
